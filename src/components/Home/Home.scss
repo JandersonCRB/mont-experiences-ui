@@ -1,0 +1,29 @@
+.cover--title {
+    font-weight: 700;
+}
+
+.section--row {
+    h3 {
+        font-weight: 700;
+    }
+}
+
+.see_more {
+    a {
+        font-size: 16px;
+        color: #4826E8;
+        font-weight: 600;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: #4826E8;
+    }
+
+    i {
+        font-size: 14px;
+        color: #4826E8;
+        font-weight: 700;
+        padding-left: 5px;
+    }
+}
