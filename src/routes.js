@@ -10,7 +10,7 @@ const routes =
         {/* <Redirect from='/' to='index' /> */}
         <Route path='experiences' component={c.Layout} >
             <IndexRoute component={c.Experiences} />
-            {/* <Route path=':experienceId' exact component={c.Show} /> */}
+            <Route path=':experienceId' exact component={c.Show} />
             <Route path=':experienceId/edit' exact component={c.ExperienceEdit} />
             <Route path='new' exact component={c.ExperienceNew} />
         </Route>

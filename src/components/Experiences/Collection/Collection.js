@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 
 import Paper from 'material-ui/Paper';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import DeleteIcon from 'material-ui-icons/Delete';
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
+import VisibilityIcon from 'material-ui-icons/Visibility';
+import IconButton from 'material-ui/IconButton';
+import Tooltip from 'material-ui/Tooltip';
+import { CircularProgress } from 'material-ui/Progress';
+import purple from 'material-ui/colors/purple';
+
+import { browserHistory } from 'react-router';
 
 import { Link } from 'react-router';
 
@@ -16,9 +25,12 @@ class Collection extends Component {
   }
   render() {
     const { collection, isLoading } = this.props.experience;
+    if (isLoading){
+      return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
+    }
     return (
       <div>
-        <Link to ='experiences/new/'>Nova experiência</Link>
+        <Link to='experiences/new/'>Nova experiência</Link>
         <Paper>
           <Table>
             <TableHead>
@@ -33,7 +45,7 @@ class Collection extends Component {
             </TableHead>
             <TableBody>
               {collection.slice().map(n => {
-                return(
+                return (
                   <TableRow key={n.id} hover>
                     <TableCell numeric>{n.id}</TableCell>
                     <TableCell>{n.name}</TableCell>
@@ -41,12 +53,24 @@ class Collection extends Component {
                     <TableCell>Praias</TableCell>
                     <TableCell>Sim</TableCell>
                     <TableCell>
-                      <Link to={`/experiences/${n.id}/edit`} style={{margin: 5}}>Editar</Link>
-                      <Link to={`/experiences/${n.id}`} style={{margin: 5}}>Exibir</Link>
-                      <Link to={`/experiences/${n.id}`} style={{margin: 5}}>Deletar</Link>
+                      <Tooltip id="tooltip-icon" title="Mostrar">
+                        <IconButton aria-label="Mostrar">
+                          <VisibilityIcon onClick={() => browserHistory.push(`/experiences/${n.id}`)} />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip id="tooltip-icon" title="Editar">
+                        <IconButton aria-label="Editar">
+                          <ModeEditIcon onClick={() => browserHistory.push(`/experiences/${n.id}/edit`)} />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip id="tooltip-icon" title="Deletar">
+                        <IconButton aria-label="Deletar">
+                          <DeleteIcon />
+                        </IconButton>
+                      </Tooltip>
                     </TableCell>
                   </TableRow>
-              );
+                );
               })}
             </TableBody>
           </Table>

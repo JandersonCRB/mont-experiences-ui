@@ -3,14 +3,15 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
+import { CircularProgress } from 'material-ui/Progress';
+import purple from 'material-ui/colors/purple';
 
 import { inject, observer } from 'mobx-react';
 
 @inject('experience') @observer
 class Edit extends Component {
 	constructor(props) {
-		super(props);
-		this.name = "jande"
+    super();
 		this.state = {
 			values: {
 				name: '',
@@ -34,18 +35,25 @@ class Edit extends Component {
 				active: false
 			},
 			errors: {}
-		}
+    }
+    this.notFound = false;
 	}
 
 	componentWillMount() {
 
 		const { experience } = this.props;
-		experience.findAll();
+		experience.findBy({id: this.props.params.experienceId},{
+      200: (body) => {
+        experience.setSelected(body.data);
+        this.setState({values: body.data})
+      },
+      404: () => {this.notFound = true;}
+    }); //GET REQUEST
 	}
 
 	change(e, v) {
 
-		const values = Object.assign(this.state.values, { [e.target.name]: e.target.value })
+		const values = Object.assign(this.state.values, { [e.target.name]: e.target.value }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
 		this.setState({ values });
 	}
 
@@ -55,8 +63,13 @@ class Edit extends Component {
 		console.log(this.state);
 	}
 	render() {
-		const { collection, isLoading } = this.props.experience;
-		const exp = collection.slice().filter(c => c.id === parseInt(this.props.params.experienceId, 10))[0]
+    const { selected, isLoading } = this.props.experience;
+    if (isLoading){
+      return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
+    }else if(this.notFound){
+      return <div>EXPERIENCE NOT FOUND</div>;
+    }
+    console.log(selected);
 		return (
 			//ADICIONAR CANCELAMENTO E CHECKBOXES
 			<div className='container mb-4'>

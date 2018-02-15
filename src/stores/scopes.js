@@ -1,11 +1,14 @@
 const readable = {
     find() { this.findBy(); },
-    findBy(parameters) {
+    findBy(parameters, callback = {}) {
         this.setIsLoading(true);
         this.clearSelected();
-        this.call({ parameters, type: 'get' }, {
-            200: (body) => { this.setSelected(body.data); },
-        });
+        let defaultCallback={
+            200: (body) => {this.setSelected(body.data);}
+        }
+        defaultCallback = Object.assign(defaultCallback, callback);
+        console.log(defaultCallback);
+        this.call({ parameters, type: 'get' }, defaultCallback);
     },
     findAll(parameters) {
         this.setIsLoading(true);
