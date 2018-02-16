@@ -11,7 +11,7 @@ import { inject, observer } from 'mobx-react';
 @inject('experience') @observer
 class Edit extends Component {
 	constructor(props) {
-    super();
+		super();
 		this.state = {
 			values: {
 				name: '',
@@ -35,20 +35,20 @@ class Edit extends Component {
 				active: false
 			},
 			errors: {}
-    }
-    this.notFound = false;
+		}
+		this.notFound = false;
 	}
 
 	componentWillMount() {
 
 		const { experience } = this.props;
 		experience.findBy({id: this.props.params.experienceId},{
-      200: (body) => {
-        experience.setSelected(body.data);
-        this.setState({values: body.data})
-      },
-      404: () => {this.notFound = true;}
-    }); //GET REQUEST
+			200: (body) => {
+				experience.setSelected(body.data);
+				this.setState({values: body.data})
+			},
+			404: () => {this.notFound = true;}
+		}); //GET REQUEST
 	}
 
 	change(e, v) {
@@ -63,13 +63,13 @@ class Edit extends Component {
 		console.log(this.state);
 	}
 	render() {
-    const { selected, isLoading } = this.props.experience;
-    if (isLoading){
-      return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
-    }else if(this.notFound){
-      return <div>EXPERIENCE NOT FOUND</div>;
-    }
-    console.log(selected);
+		const { selected, isLoading } = this.props.experience;
+		if (isLoading){
+			return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
+		}else if(this.notFound){
+			return <div>EXPERIENCE NOT FOUND</div>;
+		}
+		console.log(selected);
 		return (
 			//ADICIONAR CANCELAMENTO E CHECKBOXES
 			<div className='container mb-4'>
