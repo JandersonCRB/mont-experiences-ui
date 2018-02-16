@@ -1,16 +1,17 @@
 import React from 'react';
 
+import { Link } from 'react-router';
 import './Card.scss';
 
 export default class Card extends React.Component {
 
-	render(){
-		return(
+	render() {
+		return (
 			<div className="card-block">
 				<div className="card card-experience ml-auto mr-auto">
-					<a href="#" style={{textDecoration: 'none'}}>
+					<Link to={`experiences/${this.props.id}`} style={{ textDecoration: 'none' }}>
 						<div className="img-wrap">
-							<img src={this.props.cover_photo_url} alt=""/>
+							<img src={this.props.cover_photo_url} alt="" />
 						</div>
 						<div className="content-wrap">
 							<div className="content">
@@ -23,7 +24,7 @@ export default class Card extends React.Component {
 								<span className="price">{this.props.price}</span>
 							</div>
 						</div>
-					</a>
+					</Link>
 				</div>
 			</div>
 		)
