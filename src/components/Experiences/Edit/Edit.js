@@ -44,8 +44,12 @@ class Edit extends Component {
 		const { experience } = this.props;
 		experience.findBy({id: this.props.params.experienceId},{
 			200: (body) => {
+				Object.keys(body.data).forEach(key => {
+					body.data[key] = body.data[key] || '';
+				})
 				experience.setSelected(body.data);
-				this.setState({values: body.data})
+				this.setState({values: body.data});
+				console.log(this.state);
 			},
 			404: () => {this.notFound = true;}
 		}); //GET REQUEST
