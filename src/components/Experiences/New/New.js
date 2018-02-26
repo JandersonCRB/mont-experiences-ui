@@ -47,7 +47,7 @@ class New extends Component {
 
 		experience.create({}, this.state.values, {
 			201: (response) => {
-				experience.appendToCollection(response.data);
+				experience.appendToCollection(response);
 			},
 			422: (response) => {
 				this.setState(response);

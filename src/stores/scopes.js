@@ -4,7 +4,7 @@ const readable = {
         this.setIsLoading(true);
         this.clearSelected();
         let defaultCallback={
-            200: (body) => {this.setSelected(body.data);}
+            200: (body) => {this.setSelected(body);}
         }
         defaultCallback = Object.assign(defaultCallback, callback);
         console.log(defaultCallback);
@@ -14,7 +14,7 @@ const readable = {
         this.setIsLoading(true);
         this.clearCollection();
         this.call({ parameters, type: 'get' }, {
-            200: (body) => { this.setCollection(body.data); },
+            200: (body) => { this.setCollection(body); },
         })
     }
 }
@@ -23,7 +23,7 @@ const writable = {
     update(parameters, body) {
         this.setIsLoading(true);
         this.call({ parameters, body, type: 'patch' }, {
-            200: (response) => this.setSelected(response.data),
+            200: (response) => this.setSelected(response),
         });
     },
     create(parameters, body, callback) {
@@ -33,7 +33,7 @@ const writable = {
     delete(parameters) {
         this.setIsLoading(true);
         this.call({ parameters, type: 'delete'}, {
-            200: (response) => this.removeFromColletion(response.data),
+            200: (response) => this.removeFromColletion(response),
         });
     },
 }
