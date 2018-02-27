@@ -5,6 +5,7 @@ import ExperienceNew from './Experiences/New/New.jsx';
 import ExperienceEdit from './Experiences/Edit/Edit.jsx';
 import ExperienceSearch from './Experiences/Search/Search.jsx';
 import Experiences from './Experiences/Collection/Collection.jsx';
+import SignIn from './Users/SignIn/SignIn.jsx';
 
 export default{
     Layout,
@@ -13,5 +14,6 @@ export default{
     ExperienceNew,
     ExperienceEdit,
     ExperienceSearch,
-    Experiences
+    Experiences,
+    SignIn
 }

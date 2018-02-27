@@ -1,0 +1,27 @@
+.sign_in {
+    border: 1px solid #ececec;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    span {
+        font-size: 16px;
+    }
+    a {
+        font-size: 16px;
+        text-decoration: none;
+        color: #4826E8;
+        font-weight: 500;
+    }
+    button {
+        a {
+        color: #fff;
+        }
+        a:hover {
+        color: #fff;
+        }
+    }
+    .forgot-password {
+        a {
+        font-size: 14px;
+        }
+    }
+}

@@ -22,6 +22,7 @@ const endpoint = api({
 
 const models = {
     experience: new stores.Experience(endpoint),
+    user: new stores.User(endpoint)
 }
 
 ReactDOM.render(
