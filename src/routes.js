@@ -11,6 +11,7 @@ const routes =
         <Route path='experiences' component={c.Layout} >
             <IndexRoute component={c.Experiences} />
             <Route path='new' exact component={c.ExperienceNew} />
+            <Route path='search' exact component={c.Search} />
             <Route path=':experienceId' exact component={c.Show} />
             <Route path=':experienceId/edit' exact component={c.ExperienceEdit} />
         </Route>

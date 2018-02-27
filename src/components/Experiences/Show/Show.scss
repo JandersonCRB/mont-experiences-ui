@@ -1,0 +1,58 @@
+.experience-topic{
+    margin: 20px;
+    white-space: pre-line;
+    p {
+        font-size: 15px;
+    }
+    span {
+        font-size: 15px;
+    }
+    h3 {
+        font-weight: 700;
+    }
+    h4 {
+        font-weight: 700;
+    }
+    h5 {
+        font-weight: 500;
+    }
+}
+
+.sidebar{
+    position: -webkit-sticky;  // required for Safari
+    position: sticky;
+    top: 15px; // required as well.
+}
+
+.price{
+    font-weight: 500;
+    font-size: 25px;
+    color: #000;
+}
+
+.card-booking {
+    height: auto;
+    border: 1px solid #ebebeb;
+    font-size: 16px;
+    .content-wrap {
+      padding: 20px;
+    }
+    .title {
+      h2 {
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: #666;
+        font-size: 18px;
+      }
+    }
+    p {
+      margin-bottom: 10px;
+    }
+    i {
+    position: relative;
+    /* Adjust these values accordingly */
+    top: 2.5px;
+    font-size: 20px;
+    margin-right: 20px;
+    }
+  }

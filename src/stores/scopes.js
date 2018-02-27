@@ -7,7 +7,6 @@ const readable = {
             200: (body) => {this.setSelected(body);}
         }
         defaultCallback = Object.assign(defaultCallback, callback);
-        console.log(defaultCallback);
         this.call({ parameters, type: 'get' }, defaultCallback);
     },
     findAll(parameters) {

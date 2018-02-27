@@ -13,6 +13,7 @@ import stores from './stores';
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './BootstrapOverride.scss';
 
 const endpoint = api({
     endpoint: 'http://localhost:3000/',
