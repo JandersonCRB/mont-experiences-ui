@@ -4,6 +4,12 @@ import scopes from './scopes';
 class User extends Connect {
     namespace = 'v1';
     resource = 'users';
+
+    createSession = (email, password) => {
+        // console.log(email);
+        // console.log(password);
+        // setIsLoading(true);
+    }
 }
 
 mix(User, scopes.readable);

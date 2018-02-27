@@ -9,7 +9,7 @@ import { inject, observer } from 'mobx-react';
 
 import './SignIn.scss';
 
-@inject('user') @observer
+@inject('session') @observer
 export default class SignIn extends Component {
   constructor(){
     super();
@@ -23,7 +23,8 @@ export default class SignIn extends Component {
   }
 
   login = () => {
-    console.log('login', this.state);
+    const {email, password} = this.state.values
+    this.props.session.createSession(email, password);
   }
   change(e, v) {
     const values = Object.assign(this.state.values, { [e.target.name]: e.target.value }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
