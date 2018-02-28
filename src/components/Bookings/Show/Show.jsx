@@ -36,7 +36,7 @@ class BookingsShow extends Component {
 
     render() {
         const { isLoading, selected } = this.props.booking;
-        if (isLoading || selected == null) {
+        if (isLoading) {
             return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
         } else {
             return (

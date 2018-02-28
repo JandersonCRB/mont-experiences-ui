@@ -9,6 +9,7 @@ class Session extends Connect {
 
     @observable signedIn = false;
     @observable email = null;
+    @observable user = null;
 
     @action setSignedIn(status, email) {
         this.signedIn = status;
@@ -36,6 +37,7 @@ class Session extends Connect {
             this.signInFromStorage(store.email);
         } else if (email && password) {
             this.setIsLoading(true);
+            console.log('i');
             this.create({}, { email, password }, {
                 201: (body) => {
                     const { authentication_token, email } = body;
@@ -53,7 +55,8 @@ class Session extends Connect {
     }
     @action signInFromStorage(email) {
         this.findAll({}, {
-            200: () => {
+            204: (body) => {
+                console.log('uhsae');
                 this.email = email;
                 this.signedIn = true;
                 this.isLoading = false;
@@ -62,9 +65,12 @@ class Session extends Connect {
                 this.signOut();
             }
         });
-        this.email = localStorage.getItem('email');
-        this.signedIn = true;
-        this.isLoading = false;
+        console.log(this.email);
+        console.log(this.signedIn);
+        console.log(this.isLoading);
+        // this.email = localStorage.getItem('email');
+        // this.signedIn = true;
+        // this.isLoading = false;
     }
 }
 
