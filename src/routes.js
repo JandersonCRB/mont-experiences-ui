@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Route, Redirect, IndexRoute } from 'react-router';
+import { Route, Redirect, IndexRoute, IndexRedirect } from 'react-router';
 
 import c from './components';
 
@@ -16,7 +16,8 @@ const routes =
             <Route path=':experienceId/edit' exact component={c.ExperienceEdit} />
         </Route>
         <Route path='users' component={c.Layout} >
-            <IndexRoute component={c.SignIn} />
+            <IndexRedirect to='sign_in' />
+            <Route path='sign_in' exact component={c.SignIn} />
         </Route>
         <Route path='/' component={c.Layout} >
             <IndexRoute component={c.Home} />

@@ -1,49 +1,48 @@
 .header--bar {
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
+}
+
+.navbar-brand {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  img {
+    height: 50px;
+    padding-top: 5px;
   }
-  
-  .navbar-brand {
-    padding-bottom: 0px;
-    padding-top: 0px;
-    img {
-      height: 50px;
-      padding-top: 5px;
-    }
+}
+
+.navbar {
+  margin-bottom: 0px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
+  a {
+    color: #666;
+    font-family: "Open Sans";
+    font-size: 15px;
+    font-weight: 700 !important;
   }
-  
-  .navbar {
-    margin-bottom: 0px;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
-    a {
-      color: #666;
-      font-family: "Open Sans";
-      font-size: 15px;
-      font-weight: 700 !important;
-    }
-    a:hover {
-      background-color: #fff !important;
-      color: #4826E8;
-    }
-    a:active {
-      background-color: #fff !important;
-      color: #4826E8;
-    }
-    i {
-      font-size: 15px;
-      color: #666;
-    }
+  a:hover {
+    background-color: #fff !important;
+    color: #4826E8;
   }
-  
-  .dropdown.open {
-    background-color: #fff;
+  a:active {
+    background-color: #fff !important;
+    color: #4826E8;
   }
-  
-  .icon--menu_mobile {
-    width: 35px;
-    height: 3px;
-    background-color: #000;
-    margin: 5px 0;
+  i {
+    font-size: 15px;
+    color: #666;
   }
-  
+}
+
+.dropdown.open {
+  background-color: #fff;
+}
+
+.icon--menu_mobile {
+  width: 35px;
+  height: 3px;
+  background-color: #000;
+  margin: 5px 0;
+}
