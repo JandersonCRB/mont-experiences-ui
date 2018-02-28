@@ -24,6 +24,9 @@ export default class NavBar extends React.Component {
       return (
         <ul className="navbar-nav ml-auto mr-5">
           <li className="nav-item">
+            <Link to={'/bookings'} className="nav-link">Meus Agendamentos</Link>
+          </li>
+          <li className="nav-item">
             <Link to={'/users/sign_in'} className="nav-link">{session.email}</Link>
           </li>
           <li className="nav-item">
@@ -62,7 +65,6 @@ export default class NavBar extends React.Component {
           {this.guestOrMember()}
         </div>
       </nav>
-
     )
   }
 }
