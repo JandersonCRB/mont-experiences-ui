@@ -25,6 +25,7 @@ const endpoint = api({
 
 const models = {
     experience: new stores.Experience(endpoint),
+    booking:    new stores.Booking(endpoint),
     user:       new stores.User(endpoint),
     session:    new stores.Session(endpoint)
 }

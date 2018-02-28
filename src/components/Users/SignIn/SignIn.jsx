@@ -55,7 +55,8 @@ export default class SignIn extends Component {
               />
               <TextField
                 name='password'
-                className="w-75 m-2"
+                className='w-75 m-2'
+                type='password'
                 id='password'
                 label="Password"
                 value={this.state.password}
