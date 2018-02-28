@@ -21,6 +21,7 @@ const routes =
         </Route>
         <Route path='bookings' component={c.Layout} >
             <IndexRoute component={c.Bookings} />
+            <Route path=':bookingId' exact component={c.BookingsShow} />
         </Route>
         <Route path='/' component={c.Layout} >
             <IndexRoute component={c.Home} />

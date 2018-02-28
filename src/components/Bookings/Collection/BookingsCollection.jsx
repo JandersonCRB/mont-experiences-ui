@@ -11,7 +11,7 @@ import { Link } from 'react-router';
 @inject('booking') @observer
 class BookingsCollection extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         const { booking } = this.props;
 
         booking.findAll();
@@ -20,10 +20,10 @@ class BookingsCollection extends Component {
 
     renderBooking = (booking) => {
         return (
-            <div className="col-md-5 m-2">
+            <div className="col-md-5 m-2" key={booking.id}>
                 <Paper>
-                    <h1>{booking.name}</h1>
-                    <Link to={`bookings/${booking.id}`}>Ver detalhes</Link>
+                    <h1>{booking.experience.name}</h1>
+                    <Link to={`/bookings/${booking.id}`}>Ver detalhes</Link>
                     <br />
                     <span>{booking.dates}</span><br/>
                     <span>{booking.name}</span><br/>
@@ -38,7 +38,6 @@ class BookingsCollection extends Component {
     renderBookingsCollection = (collection) => {
         return (
             <div className='row'>
-
                 {collection.slice().map(booking => {
                     return this.renderBooking(booking);
                 })}

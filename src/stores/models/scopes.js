@@ -13,7 +13,7 @@ const readable = {
         this.setIsLoading(true);
         this.clearCollection();
         let defaultCallback = {
-            200: (body) => { this.setCollection(body); },
+            200: (body) => { this.setCollection(body); this.setIsLoading(false)},
         }
         defaultCallback = Object.assign(defaultCallback, callback);
         this.call({ parameters, type: 'get' }, defaultCallback)

@@ -7,6 +7,7 @@ import ExperienceSearch from './Experiences/Search/Search.jsx';
 import Experiences from './Experiences/Collection/Collection.jsx';
 import SignIn from './Users/SignIn/SignIn.jsx';
 import Bookings from './Bookings/Collection/BookingsCollection.jsx';
+import BookingsShow from './Bookings/Show/Show.jsx';
 
 export default{
     Layout,
@@ -17,5 +18,6 @@ export default{
     ExperienceSearch,
     Experiences,
     Bookings,
+    BookingsShow,
     SignIn
 }

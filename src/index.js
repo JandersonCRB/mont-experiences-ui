@@ -18,8 +18,8 @@ import './BootstrapOverride.scss';
 const endpoint = api({
     endpoint: 'http://localhost:3000/',
     header: (h) => {
-        h.append('X-User-Email', localStorage.getItem('email')),
-        h.append('X-User-Token', localStorage.getItem('token'))
+        h.append('X-User-Email', localStorage.getItem('email'));
+        h.append('X-User-Token', localStorage.getItem('token'));
     }
 });
 
