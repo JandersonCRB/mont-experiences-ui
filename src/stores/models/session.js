@@ -55,8 +55,7 @@ class Session extends Connect {
     }
     @action signInFromStorage(email) {
         this.findAll({}, {
-            204: (body) => {
-                console.log('uhsae');
+            200: (body) => {
                 this.email = email;
                 this.signedIn = true;
                 this.isLoading = false;
@@ -65,12 +64,6 @@ class Session extends Connect {
                 this.signOut();
             }
         });
-        console.log(this.email);
-        console.log(this.signedIn);
-        console.log(this.isLoading);
-        // this.email = localStorage.getItem('email');
-        // this.signedIn = true;
-        // this.isLoading = false;
     }
 }
 
