@@ -1,21 +1,64 @@
-.experience-topic{
-    margin: 20px;
-    white-space: pre-line;
-    p {
-        font-size: 15px;
-    }
-    span {
-        font-size: 15px;
-    }
-    h3 {
-        font-weight: 700;
-    }
-    h4 {
-        font-weight: 700;
-    }
-    h5 {
-        font-weight: 500;
-    }
+.topic-container {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.topic-title {
+  margin-bottom: 16px;
+  font-size: 20px;
+  color: #484848;
+  font-weight: 500;
+}
+
+.topic-content {
+  span {
+    font-size: 17px;
+    color: #484848;
+  }
+}
+
+.booking-card {
+  border: 1px solid #DBDBDB;
+  width: 100%;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.price-container {
+  border-bottom: 1px solid #DBDBDB;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  span {
+    color: #484848;
+  }
+}
+
+.book-container {
+  padding-bottom: 15px;
+}
+
+.btn-book {
+  background-color: #9037ff;
+  color: #fff;
+  height: 45px;
+}
+
+.btn-book:hover {
+
+}
+
+@media all and (min-width: 767px) {
+  .page-wrap {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.price {
+  font-weight: 500;
+  font-size: 25px;
+  color: #484848;
 }
 
 .sidebar{
@@ -24,35 +67,23 @@
     top: 15px; // required as well.
 }
 
-.price{
+.experience-name {
+  h2 {
+    color: #484848;
+    font-size: 30px;
     font-weight: 500;
-    font-size: 25px;
-    color: #000;
+  }
 }
 
-.card-booking {
-    height: auto;
-    border: 1px solid #ebebeb;
-    font-size: 16px;
-    .content-wrap {
-      padding: 20px;
-    }
-    .title {
-      h2 {
-        margin-bottom: 20px;
-        font-weight: 700;
-        color: #666;
-        font-size: 18px;
-      }
-    }
-    p {
-      margin-bottom: 10px;
-    }
-    i {
-    position: relative;
-    /* Adjust these values accordingly */
-    top: 2.5px;
-    font-size: 20px;
-    margin-right: 20px;
-    }
+.experience-icons {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #DBDBDB;
+  ul {
+    list-style: none;
+    padding: 0;
   }
+  li {
+    font-size: 18px;
+  }
+}
