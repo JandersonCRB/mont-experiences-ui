@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 const ExperienceCard = ({experience}) => {
 
   return (
-    <li className="col-md-3 col-sm-3 col-6">
+    <li className="col-lg-3 col-md-4 col-sm-6 col-6">
       <div className="card-experience">
       <Link to={`experiences/${experience.id}`} style={{ textDecoration: 'none' }}>
         <div className="img-wrap">
