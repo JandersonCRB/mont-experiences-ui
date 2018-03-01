@@ -10,10 +10,20 @@ import routes from './routes';
 import { api } from 'fronto-api';
 import { Provider } from 'mobx-react';
 import stores from './stores';
-
+import purple from 'material-ui/colors/purple';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BootstrapOverride.scss';
+
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+
+
+const theme = createMuiTheme({
+    palette: {
+        primary: { main: purple[700] },
+        secondary: { main: purple[50] }
+    },
+});
 
 const endpoint = api({
     endpoint: 'http://localhost:3000/',
@@ -25,15 +35,17 @@ const endpoint = api({
 
 const models = {
     experience: new stores.Experience(endpoint),
-    booking:    new stores.Booking(endpoint),
-    user:       new stores.User(endpoint),
-    session:    new stores.Session(endpoint)
+    booking: new stores.Booking(endpoint),
+    user: new stores.User(endpoint),
+    session: new stores.Session(endpoint)
 }
 
 ReactDOM.render(
-    <Provider {...stores} {...models} >
-        <Router routes={routes} history={browserHistory} />
-    </Provider>,
-    document.getElementById('root'));
+    <MuiThemeProvider theme={theme}>
+        <Provider {...stores} {...models} >
+            <Router routes={routes} history={browserHistory} />
+        </Provider>
+    </MuiThemeProvider>,
+        document.getElementById('root'));
 
 registerServiceWorker();
