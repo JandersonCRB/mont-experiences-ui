@@ -67,8 +67,7 @@ export default class SignIn extends Component {
                 className='mb-4 mt-3'
                 variant='raised'
                 size='large'
-                style={{ color: 'purple' }}
-                color='inherit'
+                color='primary'
               >
                 Entrar
 							</Button>

@@ -9,7 +9,6 @@ import { inject, observer } from 'mobx-react';
 export default class NavBar extends React.Component {
   
   componentWillMount () {
-    this.props.session.signIn();
   }
   
   signOut = (e) => {

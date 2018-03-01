@@ -60,7 +60,6 @@ class Session extends Connect {
                 this.isLoading = false;
 
                 this.current_user = body;
-                console.log(this.current_user);
             },
             default: () => {
                 this.signOut();
