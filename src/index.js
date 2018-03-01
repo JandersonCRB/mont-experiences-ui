@@ -17,11 +17,15 @@ import './BootstrapOverride.scss';
 
 const endpoint = api({
     endpoint: 'http://localhost:3000/',
-    header: (h) => {}
+    header: (h) => {
+        h.append('X-User-Email', localStorage.getItem('email'));
+        h.append('X-User-Token', localStorage.getItem('token'));
+    }
 });
 
 const models = {
     experience: new stores.Experience(endpoint),
+    booking:    new stores.Booking(endpoint),
     user:       new stores.User(endpoint),
     session:    new stores.Session(endpoint)
 }
