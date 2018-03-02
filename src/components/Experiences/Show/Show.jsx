@@ -88,7 +88,7 @@ export default class Show extends React.Component {
     if (selected.itinerary) {
       buffer.push(
         <div className="topic-container">
-          <div className="topic-title">O que faremos?</div>
+          <div className="topic-title" >O que faremos?</div>
           <div className="topic-content">
           <span>
             {selected.itinerary}
@@ -124,7 +124,7 @@ export default class Show extends React.Component {
     if (selected.about_booking) {
       buffer.push(
         <div className="topic-container">
-          <div className="topic-title">Seu Agendamento</div>
+          <div className="topic-title"> Seu Agendamento</div>
           <div className="topic-content">
           <span>
             {selected.about_booking}
@@ -135,7 +135,7 @@ export default class Show extends React.Component {
     }
     if (selected.about_location) {
       buffer.push(
-        <div className="topic-container">
+        <div className="topic-container" >
           <div className="topic-title">Sobre a Localização</div>
           <div className="topic-content">
           <span>
@@ -155,7 +155,6 @@ export default class Show extends React.Component {
           {selected.photos.map(photo => (
             <div>
               <img src={photo.url} />
-              {/* {console.log(photo.url)} */}
             </div>
           ))}
         </Slider>
@@ -195,11 +194,11 @@ export default class Show extends React.Component {
                   {this.renderIcons(selected)}
                 </ul>
               </div>
-              <div>
+              <div style={{ whiteSpace: 'pre-wrap' }}>
               {this.renderTopics(selected)}
               </div>
             </div>
-            <div className="col-md-4 sidebar">
+            <div className="col-md-4 sidebar" >
               {this.renderBookingCard(selected)}
             </div>
           </div>
