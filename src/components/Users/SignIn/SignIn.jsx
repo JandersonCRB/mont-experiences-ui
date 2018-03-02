@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 
 import { Link } from 'react-router';
 
@@ -41,13 +42,13 @@ export default class SignIn extends Component {
     }
     return (
       <div>
-        <div className="col-md-4 col-sm-10 col-10 mx-auto text-center" style={{ maxWidth: '450px' }}>
-          <Paper elevation={6} className="p-4">
-            <h3>Entrar</h3>
+        <div className="col-md-4 col-sm-10 col-10 mx-auto text-center mb-5 mt-5" style={{ maxWidth: '450px' }}>
+          <Paper elevation={6} style={{borderRadius:"4px"}} className="p-5">
+            <h3 className="title-header">Entrar</h3>
             <form onSubmit={this.login}>
               <TextField
                 name='email'
-                className="w-75 m-2"
+                className="w-100 mb-3"
                 id='email'
                 label="Email"
                 value={this.state.email}
@@ -55,10 +56,10 @@ export default class SignIn extends Component {
               />
               <TextField
                 name='password'
-                className='w-75 m-2'
+                className='w-100 mb-3'
                 type='password'
                 id='password'
-                label="Password"
+                label="Senha"
                 value={this.state.password}
                 onChange={e => this.change(e)}
               />
@@ -67,12 +68,12 @@ export default class SignIn extends Component {
                 className='mb-4 mt-3'
                 variant='raised'
                 size='large'
+                fullWidth
                 color='primary'
               >
                 Entrar
 							</Button>
             </form>
-            <br />
             <Link to={'/'}>Esqueceu a senha?</Link>
             <hr />
             <span>Não tem uma conta? <Link to={'/'}>Cadastre-se</Link></span>

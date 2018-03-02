@@ -7,10 +7,10 @@ import { inject, observer } from 'mobx-react';
 
 @inject('session') @observer
 export default class NavBar extends React.Component {
-  
+
   componentWillMount () {
   }
-  
+
   signOut = (e) => {
     e.preventDefault();
 
@@ -21,7 +21,7 @@ export default class NavBar extends React.Component {
     const { session } = this.props;
     if (session.signedIn) {
       return (
-        <ul className="navbar-nav ml-auto mr-5">
+        <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link to={'/bookings'} className="nav-link">Meus Agendamentos</Link>
           </li>
@@ -35,7 +35,7 @@ export default class NavBar extends React.Component {
       )
     } else {
       return (
-        <ul className="navbar-nav ml-auto mr-5">
+        <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link to={'/users/sign_in'} className="nav-link">Entrar</Link>
           </li>
@@ -49,14 +49,14 @@ export default class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <Link to={'/'} className="navbar-brand ml-5 mr-4">
+      <nav className="navbar navbar-expand-md navbar-light mb-4">
+        <Link to={'/'} className="navbar-brand">
           <img src={require('../imgs/mont_logo_dark.png')} alt="" />
         </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="navbar-collapse justify-content-end collapse show" id="navbarCollapse">
+        <div className="navbar-collapse justify-content-end collapse" id="navbarCollapse">
           {/* <form className="form-inline mt-4 mt-md-0">
             <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

@@ -6,6 +6,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import './Show.scss';
+import Location from 'material-ui-icons/LocationOn';
+
+const styles = {
+  icon: {
+    color: "#484848",
+    fontSize: "20px"
+  }
+}
 
 @inject('experience') @observer
 export default class Show extends React.Component {
@@ -21,60 +29,119 @@ export default class Show extends React.Component {
     }); //GET REQUEST
   }
 
+  renderIcons(selected) {
+    let buffer = [];
+
+    if (selected.location) {
+      buffer.push(
+        <li><span className="icon"><Location fontSize style={styles.icon} /> </span><span>{selected.location}</span></li>
+      );
+    }
+
+    if (selected.calendar) {
+      buffer.push(
+        <li>{selected.calendar}</li>
+      );
+    }
+
+    if (selected.duration) {
+      buffer.push(
+        <li>{selected.duration}</li>
+      );
+    }
+
+    if (selected.language) {
+      buffer.push(
+        <li>{selected.language}</li>
+      );
+    }
+
+    if (selected.cancelation) {
+      buffer.push(
+        <li>{selected.cancelation}</li>
+      );
+    }
+
+    if (selected.payment_method) {
+      buffer.push(
+        <li>{selected.payment_method}</li>
+      );
+    }
+    return buffer;
+  }
+
   renderTopics(selected) {
     let buffer = [];
 
     if (selected.description) {
       buffer.push(
-        <div className="experience-topic">
-          <h4>A Experiência</h4>
-          {selected.description}
-          <hr />
+        <div className="topic-container">
+          <div className="topic-title">A Experiência</div>
+          <div className="topic-content">
+          <span>
+            {selected.description}
+          </span>
+          </div>
         </div>
       );
     }
     if (selected.itinerary) {
       buffer.push(
-        <div className="experience-topic">
-          <h4>O que faremos?</h4>
-          {selected.itinerary}
-          <hr />
+        <div className="topic-container">
+          <div className="topic-title">O que faremos?</div>
+          <div className="topic-content">
+          <span>
+            {selected.itinerary}
+          </span>
+          </div>
         </div>
       );
     }
     if (selected.observation) {
       buffer.push(
-        <div className="experience-topic">
-          <h4>Informações Adicionais</h4>
-          {selected.observation}
-          <hr />
+        <div className="topic-container">
+          <div className="topic-title">Informações Adicionais</div>
+          <div className="topic-content">
+          <span>
+            {selected.observation}
+          </span>
+          </div>
         </div>
       );
     }
     if (selected.about_transfer) {
       buffer.push(
-        <div className="experience-topic">
-          <h4>Sobre o Transfer</h4>
-          {selected.about_transfer}
-          <hr />
+        <div className="topic-container">
+          <div className="topic-title">Sobre o Transfer</div>
+          <div className="topic-content">
+          <span>
+            {selected.about_transfer}
+          </span>
+          </div>
         </div>
       );
     }
     if (selected.about_booking) {
       buffer.push(
-        <div className="experience-topic">
-          <h4>Seu Agendamento</h4>
-          {selected.observation}
-          <hr />
+        <div className="topic-container">
+          <div className="topic-title">Seu Agendamento</div>
+          <div className="topic-content">
+          <span>
+            {selected.about_booking}
+          </span>
+          </div>
         </div>
       );
     }
     if (selected.about_location) {
       buffer.push(
-        <div className="experience-topic">
-          <h4>Sobre a Localização</h4>
-          {selected.about_location}
-          <hr />
+        <div className="topic-container">
+          <div className="topic-title">Sobre a Localização</div>
+          <div className="topic-content">
+          <span>
+            {selected.about_location}
+          </span>
+          </div>
         </div>
       );
     }
@@ -98,13 +165,15 @@ export default class Show extends React.Component {
 
   renderBookingCard(selected) {
     return (
-      <div class="card card-booking">
-        <div class="content-wrap">
-          <div class="pb16">
-            <span class="price">{selected.price}</span>
-            <span>por pessoa</span>
+      <div className="booking-card">
+        <div className="content-wrap">
+          <div className="price-container">
+            <span className="price">{selected.price}</span>
+            <span> por pessoa</span>
           </div>
-          <button className="btn btn-primary w-100">Agendar</button>
+          <div className="book-container">
+          <button className="btn btn-book w-100">Verificar Disponibilidade</button>
+          </div>
         </div>
       </div>
     )
@@ -112,20 +181,27 @@ export default class Show extends React.Component {
   render() {
     const { selected, isLoading } = this.props.experience;
     console.log(selected);
-    if (isLoading) return <div>Loading</div>
+    if (isLoading) return <div className="container">Loading</div>
     return (
       <div id="Show" className="container">
-        <div className="row">
-          <div className="col-sm-8 pb16">
-            {this.renderImages(selected)}
-            <div>
-              <h2><strong>{selected.name}</strong></h2>
+        <div className="page-wrap">
+          <div className="row">
+            <div className="col-md-8 col-sm-12">
+              <div className="experience-name">
+                <h2>{selected.name}</h2>
+              </div>
+              <div className="experience-icons">
+                <ul>
+                  {this.renderIcons(selected)}
+                </ul>
+              </div>
+              <div>
+              {this.renderTopics(selected)}
+              </div>
             </div>
-            <hr />
-            {this.renderTopics(selected)}
-          </div>
-          <div class="col-sm-4 col-xs-12 sidebar">
-            {this.renderBookingCard(selected)}
+            <div className="col-md-4 sidebar">
+              {this.renderBookingCard(selected)}
+            </div>
           </div>
         </div>
       </div>

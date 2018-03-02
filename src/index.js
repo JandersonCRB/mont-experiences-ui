@@ -20,7 +20,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
 const theme = createMuiTheme({
     palette: {
-        primary: { main: purple[700] },
+        primary: { main: purple[500] },
         secondary: { main: purple[50] }
     },
 });
