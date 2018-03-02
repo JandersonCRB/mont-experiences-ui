@@ -6,6 +6,8 @@ import { CircularProgress } from 'material-ui/Progress';
 import Paper from 'material-ui/Paper';
 import purple from 'material-ui/colors/purple';
 
+import './BookingsCollection.scss';
+
 import { Link } from 'react-router';
 
 @inject('booking') @observer
@@ -20,39 +22,60 @@ class BookingsCollection extends Component {
 
     renderBooking = (booking) => {
         return (
-            <div className="col-md-5 m-2" key={booking.id}>
-                <Paper>
-                    <h1>{booking.experience.name}</h1>
-                    <Link to={`/bookings/${booking.id}`}>Ver detalhes</Link>
-                    <br />
-                    <span>{booking.dates}</span><br/>
-                    <span>{booking.name}</span><br/>
-                    <span>{booking.adults}</span><br/>
-                    <span>{booking.price}</span><br/>
-
+            <li className="col-md-4 col-sm-6" key={booking.id}>
+              <div className="booking-block">
+              <Link to={`/bookings/${booking.id}`} style={{ textDecoration: 'none' }}>
+                <Paper elevation={6} style={{borderRadius:"4px"}} className="p-3">
+                    <div className="booking-name">{booking.experience.name}</div>
+                    <hr></hr>
+                    <div className="detail-section">
+                      <ul>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Data</div>
+                          <div className="booking-detail">{booking.dates}</div>
+                        </li>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Pessoas</div>
+                          <div className="booking-detail">{booking.adults}</div>
+                        </li>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Titular</div>
+                          <div className="booking-detail">{booking.name}</div>
+                        </li>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Total</div>
+                          <div className="booking-detail">{booking.price}</div>
+                        </li>
+                      </ul>
+                    </div>
                 </Paper>
-            </div>
+              </Link>
+              </div>
+            </li>
         )
     }
 
     renderBookingsCollection = (collection) => {
         return (
-            <div className='row'>
+            <ul>
                 {collection.slice().map(booking => {
                     return this.renderBooking(booking);
                 })}
-            </div>
+            </ul>
         )
     }
     render() {
         const { collection, isLoading } = this.props.booking;
         if (isLoading) {
-            return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
+            return <div className="container"><CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} /></div>;
         } else {
             return (
+              <div className="bookings-collection">
                 <div className="container">
-                    {this.renderBookingsCollection(collection)}
+                  <h3>Meus Agendamentos</h3>
+                  {this.renderBookingsCollection(collection)}
                 </div>
+              </div>
             )
         }
     }

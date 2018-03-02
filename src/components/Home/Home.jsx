@@ -36,7 +36,7 @@ export default class Home extends Component {
 
 	render() {
 		const { collection, isLoading } = this.props.experience;
-
+		
 		return (
 			<div>
 				<div className="container">
