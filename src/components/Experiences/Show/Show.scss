@@ -1,5 +1,5 @@
 .topic-container {
-  padding-top: 24px;
+  padding-top: 20px;
   padding-bottom: 24px;
   border-bottom: 1px solid #DBDBDB;
 }
@@ -44,6 +44,10 @@
   height: 45px;
 }
 
+.page-wrap {
+  margin-bottom: 40px;
+}
+
 @media all and (min-width: 767px) {
   .page-wrap {
     padding-left: 30px;
@@ -68,18 +72,48 @@
     color: #484848;
     font-size: 30px;
     font-weight: 500;
+    padding-bottom: 20px;
   }
 }
 
 .experience-icons {
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #DBDBDB;
+  border-top: 1px solid #DBDBDB;
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
   li {
-    font-size: 18px;
+    padding-bottom: 5px;
+    padding-left: 0px;
   }
+}
+
+.icon-text {
+  line-height: 28px;
+  font-size: 17px;
+}
+
+.icon {
+  vertical-align: middle;
+  line-height: 28px;
+  font-size: 18px;
+  color: #484848;
+}
+
+@media all and (max-width: 767px) {
+  .icon-text {
+    line-height: 18px;
+  }
+
+  .icon {
+    line-height: 18px;
+  }
+}
+
+button {
+  font-weight: 500 !important;
 }

@@ -1,19 +1,19 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Link } from 'react-router';
 
 import './Show.scss';
-import Location from 'material-ui-icons/LocationOn';
+import SlideShow from './SlideShow.js';
+import Button from 'material-ui/Button';
 
-const styles = {
-  icon: {
-    color: "#484848",
-    fontSize: "20px"
-  }
-}
+import Location from 'material-ui-icons/LocationOn';
+import Date from 'material-ui-icons/DateRange';
+import Transfer from 'material-ui-icons/DirectionsBus';
+import Language from 'material-ui-icons/Language';
+import Payment from 'material-ui-icons/Payment';
+import Timer from 'material-ui-icons/Timer';
+import Cancel from 'material-ui-icons/Cancel';
+import Car from 'material-ui-icons/DirectionsCar';
 
 @inject('experience') @observer
 export default class Show extends React.Component {
@@ -34,39 +34,51 @@ export default class Show extends React.Component {
 
     if (selected.location) {
       buffer.push(
-        <li key='location-icon'><span className="icon"><Location fontSize style={styles.icon} /> </span><span>{selected.location}</span></li>
+        <li key='location-icon'><span className="icon"><Location fontSize/> </span><span className="icon-text">{selected.location}</span></li>
       );
     }
 
     if (selected.calendar) {
       buffer.push(
-        <li key='calendar-icon'>{selected.calendar}</li>
+        <li key='calendar-icon'><span className="icon"><Date fontSize /> </span><span className="icon-text">{selected.calendar}</span></li>
       );
     }
 
     if (selected.duration) {
       buffer.push(
-        <li key='duration-icon'>{selected.duration}</li>
+        <li key='duration-icon'><span className="icon"><Timer fontSize /> </span><span className="icon-text">{selected.duration}</span></li>
       );
     }
 
     if (selected.language) {
       buffer.push(
-        <li key='language-icon'>{selected.language}</li>
+        <li key='language-icon'><span className="icon"><Language fontSize /> </span><span className="icon-text">{selected.language}</span></li>
       );
     }
 
     if (selected.cancelation) {
       buffer.push(
-        <li key='cancelation-icon'>{selected.cancelation}</li>
+        <li key='cancelation-icon'><span className="icon"><Cancel fontSize /> </span><span className="icon-text">{selected.cancelation}</span></li>
       );
     }
 
     if (selected.payment_method) {
       buffer.push(
-        <li key='payment_method-icon'>{selected.payment_method}</li>
+        <li key='payment_method-icon'><span className="icon"><Payment fontSize /> </span><span className="icon-text">{selected.payment_method}</span></li>
       );
     }
+
+    if (selected.has_transfer) {
+      buffer.push(
+        <li key='has_transfer-icon'><span className="icon"><Transfer fontSize /> </span><span className="icon-text">Transfer Incluso</span></li>
+      );
+    }
+    else {
+      buffer.push(
+        <li key='has_transfer-icon'><span className="icon"><Car fontSize /> </span><span className="icon-text">Encontro no local</span></li>
+      );
+    }
+
     return buffer;
   }
 
@@ -148,20 +160,6 @@ export default class Show extends React.Component {
     return buffer;
   }
 
-  renderImages(selected) {
-    return (
-      <div className="m-5">
-        <Slider dots>
-          {selected.photos.map((photo,key) => (
-            <div>
-              <img src={photo.url} alt='' key={key}/>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    )
-  }
-
   renderBookingCard(selected) {
     return (
       <div className="booking-card">
@@ -171,7 +169,17 @@ export default class Show extends React.Component {
             <span> por pessoa</span>
           </div>
           <div className="book-container">
-          <button className="btn btn-book w-100">Verificar Disponibilidade</button>
+            <Link to={`/book/${this.props.params.experienceId}`}>
+              <Button
+                className='mb-4 mt-3'
+                variant='raised'
+                size='large'
+                fullWidth
+                color='primary'
+              >
+                Verificar Disponibilidade
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -185,6 +193,11 @@ export default class Show extends React.Component {
         <div className="page-wrap">
           <div className="row">
             <div className="col-md-8 col-sm-12">
+              <SlideShow>
+                {selected.photos.map(photo => (
+                  <img src={photo.url} />
+                ))}
+              </SlideShow>
               <div className="experience-name">
                 <h2>{selected.name}</h2>
               </div>
