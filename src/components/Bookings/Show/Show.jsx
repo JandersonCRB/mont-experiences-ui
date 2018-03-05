@@ -6,6 +6,8 @@ import { CircularProgress } from 'material-ui/Progress';
 import purple from 'material-ui/colors/purple';
 import Paper from 'material-ui/Paper';
 
+import './Show.scss';
+
 @inject('booking') @observer
 class BookingsShow extends Component {
     componentWillMount() {
@@ -17,19 +19,48 @@ class BookingsShow extends Component {
     renderBooking = (booking) => {
         if(!booking) return null;
         return (
-            <div className="col-sm-9 mx-auto">
-                <Paper>
-                    <h1>{booking.experience.name}</h1>
-                    <span>{booking.status}</span><br/>
-                    <span>{booking.dates}</span><br/>
-                    <span>{booking.adults}</span><br/>
-                    <span>{booking.name}</span><br/>
-                    <span>{booking.price}</span><br/>
-                    <span>{booking.experience.price}</span><br/>
-                    <span>{booking.cost}</span><br/>
-                    <span>{booking.experience.payment_method}</span><br/>
-                    <span>{booking.experience.cancelation}</span><br/>
-                </Paper>
+            <div className="col-sm-8 mx-auto">
+                <div className="booking-details">
+                    <div className="booking-name">{booking.experience.name}</div>
+                    <div className="booking-status">{booking.status}</div>
+                    <div className="detail-section">
+                      <ul>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Data</div>
+                          <div className="booking-detail-2">{booking.dates}</div>
+                        </li>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Pessoas</div>
+                          <div className="booking-detail-2">{booking.adults}</div>
+                        </li>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Valor por Pessoa</div>
+                          <div className="booking-detail-2">{booking.experience.price}</div>
+                        </li>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Total</div>
+                          <div className="booking-detail-2">{booking.cost}</div>
+                        </li>
+                      </ul>
+                    </div>
+                    <hr></hr>
+                    <div className="detail-section">
+                      <ul>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Titular</div>
+                          <div className="booking-detail">{booking.name}</div>
+                        </li>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Forma de Pagamento</div>
+                          <div className="booking-detail">{booking.experience.payment_method}</div>
+                        </li>
+                        <li className="col-sm-6 col-6">
+                          <div className="detail-title">Política de Cancelamento</div>
+                          <div className="booking-detail">{booking.experience.cancelation}</div>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -40,8 +71,8 @@ class BookingsShow extends Component {
             return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
         } else {
             return (
-                <div>
-                    {this.renderBooking(selected)}
+                <div className="container">
+                  {this.renderBooking(selected)}
                 </div>
             )
         }
