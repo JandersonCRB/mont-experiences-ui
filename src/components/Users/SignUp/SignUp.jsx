@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import Snackbar from 'material-ui/Snackbar';
 
 import { Link } from 'react-router';
 
@@ -40,12 +41,28 @@ export default class SignUp extends Component {
 			browserHistory.push('/');
 		}
 		return (
-			<div>
+			<React.Fragment>
+				<div style={{ width: '100%', height: '48px', marginTop: '-1.5rem' }}>
+					<Snackbar
+						style={{ position: 'relative', color: '#cecece' }}
+						anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+						autoHideDuration={6000}
+						open={this.state.snackbar}
+						onClose={this.handleClose}
+						message={<span id="message-id">Email ou senha incorretos</span>}
+						SnackbarContentProps={{
+							style: {
+								backgroundColor: '#b05d5a'
+							}
+						}}
+					/>
+				</div>
 				<div className="col-md-4 col-sm-10 col-10 mx-auto text-center mb-5 mt-5" style={{ maxWidth: '450px' }}>
 					<Paper elevation={6} style={{ borderRadius: "4px" }} className="p-5">
 						<h3 className="title-header">Cadastre-se</h3>
 						<form onSubmit={this.login}>
 							<TextField
+								required
 								name='email'
 								className="w-100 mb-3"
 								id='email'
@@ -54,6 +71,7 @@ export default class SignUp extends Component {
 								onChange={e => this.change(e)}
 							/>
 							<TextField
+								required
 								name='password'
 								className='w-100 mb-3'
 								type='password'
@@ -61,6 +79,9 @@ export default class SignUp extends Component {
 								label="Senha"
 								value={this.state.password}
 								onChange={e => this.change(e)}
+								inputProps={{
+									minLength: 6
+								}}
 							/>
 							<Button
 								type='submit'
@@ -78,7 +99,7 @@ export default class SignUp extends Component {
 						<span>Já tem conta? <Link to={'/'}>Faça login</Link></span>
 					</Paper>
 				</div>
-			</div>
+			</React.Fragment>
 		)
 	}
 }

@@ -26,7 +26,7 @@ class Session extends Connect {
         this.current_user = null;
     }
     
-    signIn(email = null, password = null) {
+    signIn(email = null, password = null, callback) {
         const store = {
             authentication_token: localStorage.getItem('token'),
             email: localStorage.getItem('email')
@@ -37,7 +37,7 @@ class Session extends Connect {
             this.signInFromStorage(store.email);
         } else if (email && password) {
             this.setIsLoading(true);
-            this.create({}, { email, password }, {
+            let defaultCallback = {
                 201: (body) => {
                     const { authentication_token, email } = body;
                     localStorage.setItem('email', email);
@@ -48,7 +48,9 @@ class Session extends Connect {
                 401: () => {
                     this.signOut();
                 }
-            })
+            }
+            defaultCallback = Object.assign(defaultCallback, callback);
+            this.create({}, { email, password }, defaultCallback);
         }
     }
     @action signInFromStorage(email) {
