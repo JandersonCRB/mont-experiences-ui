@@ -153,6 +153,7 @@ class BookingsNew extends Component {
             /> <br />
             {/* // https://github.com/airbnb/react-dates */}
             <SingleDatePicker
+              transitionDuration = {0}
               required
               numberOfMonths={1}
               showDefaultInputIcon
@@ -239,7 +240,7 @@ class BookingsNew extends Component {
       const experience = this.props.experience;
       return (
         <div className='container'>
-          <Stepper activeStep={activeStep}>
+          <Stepper orientation="vertical" activeStep={activeStep}>
             {steps.map((label, index) => {
               return (
                 <Step key={label}>
