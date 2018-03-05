@@ -49,9 +49,9 @@ export default class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-md navbar-light mb-4">
+      <nav className="navbar navbar-expand-md navbar-dark mb-4">
         <Link to={'/'} className="navbar-brand">
-          <img src={require('../imgs/mont_logo_dark.png')} alt="" />
+          <img src={require('../imgs/mont_logo_white.png')} alt="" />
         </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
