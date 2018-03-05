@@ -136,6 +136,9 @@ class BookingsNew extends Component {
               value={this.state.values.adults}
               onChange={e => this.change(e)}
               label="Número de pessoas"
+              inputProps={{
+                min: 1
+              }}
             /> <br />
             {/* // https://github.com/airbnb/react-dates */}
             <SingleDatePicker
