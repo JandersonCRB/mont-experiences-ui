@@ -19,6 +19,7 @@ const routes =
             <IndexRedirect to='sign_in' />
             <Route path='sign_in' exact component={c.SignIn} />
             <Route path='sign_up' exact component={c.SignUp} />
+            <Route path='profile' exact component={c.EditUser} />
         </Route>
         <Route path='book' component={c.Layout} >
             <Route path=':experienceId' component={c.BookingsNew} />
