@@ -2,6 +2,8 @@ import { Connect, mix } from 'fronto-connect';
 import scopes from './scopes';
 import { observable, action } from 'mobx';
 
+import {browserHistory} from 'react-router';
+
 class Session extends Connect {
     namespace = 'v1';
     resource = 'sessions';
@@ -24,6 +26,7 @@ class Session extends Connect {
         this.email = null;
         this.isLoading = false;
         this.current_user = null;
+        browserHistory.push('/');
     }
     
     signIn(email = null, password = null, callback) {
