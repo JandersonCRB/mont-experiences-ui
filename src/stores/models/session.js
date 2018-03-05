@@ -9,7 +9,7 @@ class Session extends Connect {
 
     @observable signedIn = false;
     @observable email = null;
-    @observable current_user = null;
+    current_user = observable(null);
 
     @action setSignedIn(status, email) {
         this.signedIn = status;
@@ -60,6 +60,7 @@ class Session extends Connect {
                 this.isLoading = false;
 
                 this.current_user = body;
+                console.log(this.current_user);
             },
             default: () => {
                 this.signOut();
