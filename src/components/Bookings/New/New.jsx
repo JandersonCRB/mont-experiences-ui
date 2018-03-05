@@ -51,8 +51,7 @@ class BookingsNew extends Component {
     let body = this.state.values;
     body.experience_id = this.props.experience.selected.id;
     body.dates = body.dates.format('YYYY-MM-DD');
-    console.log(body);
-    this.props.booking.create({}, this.state.values);
+    this.props.booking.create({}, body);
   }
 
   handleBack = () => {
