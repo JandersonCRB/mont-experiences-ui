@@ -29,7 +29,7 @@ export default class NavBar extends React.Component {
             <Link to={'/users/sign_in'} className="nav-link">{session.email}</Link>
           </li>
           <li className="nav-item">
-            <a href='#' className="nav-link" onClick={this.signOut}>Sair</a>
+            <a href='' className="nav-link" onClick={this.signOut}>Sair</a>
           </li>
         </ul>
       )
