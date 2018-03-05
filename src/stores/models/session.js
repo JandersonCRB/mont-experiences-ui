@@ -1,7 +1,6 @@
 import { Connect, mix } from 'fronto-connect';
 import scopes from './scopes';
 import { observable, action } from 'mobx';
-import { browserHistory } from 'react-router';
 
 class Session extends Connect {
     namespace = 'v1';
@@ -60,7 +59,6 @@ class Session extends Connect {
                 this.isLoading = false;
 
                 this.current_user = body;
-                console.log(this.current_user);
             },
             default: () => {
                 this.signOut();

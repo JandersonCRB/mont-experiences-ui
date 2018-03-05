@@ -17,7 +17,6 @@ import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
 } from 'material-ui/ExpansionPanel';
-import Typography from 'material-ui/Typography';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
 @inject('experience')
@@ -42,19 +41,8 @@ class BookingsNew extends Component {
     }
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('props');
-  //   const { session, experience } = nextProps;
-  //   if (!session.isLoading) {
-  //     const { current_user } = session;
-  //     console.log(session);
-  //     const values = Object.assign(this.state.values, { name: current_user.name }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
-  //     this.setState({ values });
-  //   }
-  // }
-
   componentWillMount() {
-    const { session, booking, experience } = this.props;
+    const { experience } = this.props;
     experience.findBy({ id: this.props.params.experienceId });
   }
 
@@ -79,7 +67,6 @@ class BookingsNew extends Component {
     let { name, email, phone } = this.state.values;
     const steps = getSteps();
     if(activeStep === 1){
-      console.log(name, email, phone);
       if(name && email && phone){
         this.setState({
           activeStep: activeStep + 1,
@@ -165,7 +152,6 @@ class BookingsNew extends Component {
           </div>
         )
       case 1:
-        const { current_user } = this.props.session;
         return (
           <div className="container m-2">
             <ExpansionPanel>
@@ -235,8 +221,6 @@ class BookingsNew extends Component {
       return null;
     }
     else {
-      const booking = this.props.booking;
-      const experience = this.props.experience;
       return (
         <div className='container'>
           <Stepper activeStep={activeStep}>

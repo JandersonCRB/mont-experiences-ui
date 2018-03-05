@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 
 import { Link } from 'react-router';
 
@@ -27,7 +26,7 @@ export default class SignUp extends Component {
 
 	login = (e) => {
 		e.preventDefault();
-		const { email, password } = this.state.values;
+		// const { email, password } = this.state.values;
 		// const { session } = this.props;
 		// session.SignUp(email, password);
 

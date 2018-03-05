@@ -34,37 +34,37 @@ export default class Show extends React.Component {
 
     if (selected.location) {
       buffer.push(
-        <li><span className="icon"><Location fontSize style={styles.icon} /> </span><span>{selected.location}</span></li>
+        <li key='location-icon'><span className="icon"><Location fontSize style={styles.icon} /> </span><span>{selected.location}</span></li>
       );
     }
 
     if (selected.calendar) {
       buffer.push(
-        <li>{selected.calendar}</li>
+        <li key='calendar-icon'>{selected.calendar}</li>
       );
     }
 
     if (selected.duration) {
       buffer.push(
-        <li>{selected.duration}</li>
+        <li key='duration-icon'>{selected.duration}</li>
       );
     }
 
     if (selected.language) {
       buffer.push(
-        <li>{selected.language}</li>
+        <li key='language-icon'>{selected.language}</li>
       );
     }
 
     if (selected.cancelation) {
       buffer.push(
-        <li>{selected.cancelation}</li>
+        <li key='cancelation-icon'>{selected.cancelation}</li>
       );
     }
 
     if (selected.payment_method) {
       buffer.push(
-        <li>{selected.payment_method}</li>
+        <li key='payment_method-icon'>{selected.payment_method}</li>
       );
     }
     return buffer;
@@ -75,7 +75,7 @@ export default class Show extends React.Component {
 
     if (selected.description) {
       buffer.push(
-        <div className="topic-container">
+        <div className="topic-container" key='description'>
           <div className="topic-title">A Experiência</div>
           <div className="topic-content">
           <span>
@@ -87,7 +87,7 @@ export default class Show extends React.Component {
     }
     if (selected.itinerary) {
       buffer.push(
-        <div className="topic-container">
+        <div className="topic-container" key='itinerary'>
           <div className="topic-title" >O que faremos?</div>
           <div className="topic-content">
           <span>
@@ -99,7 +99,7 @@ export default class Show extends React.Component {
     }
     if (selected.observation) {
       buffer.push(
-        <div className="topic-container">
+        <div className="topic-container" key='observation'>
           <div className="topic-title">Informações Adicionais</div>
           <div className="topic-content">
           <span>
@@ -111,7 +111,7 @@ export default class Show extends React.Component {
     }
     if (selected.about_transfer) {
       buffer.push(
-        <div className="topic-container">
+        <div className="topic-container" key='about_transfer'>
           <div className="topic-title">Sobre o Transfer</div>
           <div className="topic-content">
           <span>
@@ -123,7 +123,7 @@ export default class Show extends React.Component {
     }
     if (selected.about_booking) {
       buffer.push(
-        <div className="topic-container">
+        <div className="topic-container" key='about_booking'>
           <div className="topic-title"> Seu Agendamento</div>
           <div className="topic-content">
           <span>
@@ -135,7 +135,7 @@ export default class Show extends React.Component {
     }
     if (selected.about_location) {
       buffer.push(
-        <div className="topic-container" >
+        <div className="topic-container" key='about_location'>
           <div className="topic-title">Sobre a Localização</div>
           <div className="topic-content">
           <span>
@@ -152,9 +152,9 @@ export default class Show extends React.Component {
     return (
       <div className="m-5">
         <Slider dots>
-          {selected.photos.map(photo => (
+          {selected.photos.map((photo,key) => (
             <div>
-              <img src={photo.url} />
+              <img src={photo.url} alt='' key={key}/>
             </div>
           ))}
         </Slider>
@@ -179,7 +179,6 @@ export default class Show extends React.Component {
   }
   render() {
     const { selected, isLoading } = this.props.experience;
-    console.log(selected);
     if (isLoading) return <div className="container">Loading</div>
     return (
       <div id="Show" className="container">

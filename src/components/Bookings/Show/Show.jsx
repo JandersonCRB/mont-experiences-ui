@@ -4,7 +4,6 @@ import { inject, observer } from 'mobx-react';
 
 import { CircularProgress } from 'material-ui/Progress';
 import purple from 'material-ui/colors/purple';
-import Paper from 'material-ui/Paper';
 
 import './Show.scss';
 
