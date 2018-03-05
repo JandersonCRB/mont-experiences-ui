@@ -20,7 +20,7 @@ class BookingsShow extends Component {
         return (
             <div className="col-sm-8 mx-auto">
                 <div className="booking-details">
-                    <div className="booking-name">{booking.experience.name}</div>
+                    <div className="booking-name-2">{booking.experience.name}</div>
                     <div className="booking-status">{booking.status}</div>
                     <div className="detail-section">
                       <ul>
