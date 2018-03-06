@@ -5,7 +5,8 @@ import { browserHistory } from 'react-router';
 
 import { inject, observer } from 'mobx-react';
 
-import moment from 'moment/min/moment-with-locales'
+import moment from 'moment'
+import 'moment/locale/pt-br.js';
 
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
