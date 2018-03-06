@@ -10,9 +10,16 @@ import moment from 'moment/min/moment-with-locales'
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
 
+import './New.scss';
+
+import Location from 'material-ui-icons/LocationOn';
+import Date from 'material-ui-icons/DateRange';
+import Timer from 'material-ui-icons/Timer';
+import People from 'material-ui-icons/People';
 import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
 import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
@@ -93,31 +100,29 @@ class BookingsNew extends Component {
   renderTransfer() {
     if (this.props.experience.selected.has_transfer) {
       return (
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <span>Sobre o translado</span>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <ul className='list-unstyled'>
-              <li>
-                <TextField
-                  name='address'
-                  label='Hotel / Endereço'
-                  value={this.state.values.address}
-                  onChange={(e) => this.change(e)}
-                />
-              </li>
-              <li>
-                <TextField
-                  name='complement'
-                  label='Complemento'
-                  value={this.state.values.complement}
-                  onChange={(e) => this.change(e)}
-                />
-              </li>
-            </ul>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+        <div className="info-container">
+          <div className="section-title">Informações para o translado</div>
+          <ul className='list-unstyled'>
+            <li className="info-input">
+              <TextField
+                name='address'
+                fullWidth
+                label='Hotel / Endereço'
+                value={this.state.values.address}
+                onChange={(e) => this.change(e)}
+              />
+            </li>
+            <li className="info-input">
+              <TextField
+                name='complement'
+                fullWidth
+                label='Complemento'
+                value={this.state.values.complement}
+                onChange={(e) => this.change(e)}
+              />
+            </li>
+          </ul>
+        </div>
       )
     } else {
       return null;
@@ -128,86 +133,129 @@ class BookingsNew extends Component {
     switch (step) {
       case 0:
         return (
-          <div className="container text-center">
-            <TextField
-              className="m-2"
-              type='number'
-              name='adults'
-              value={this.state.values.adults}
-              onChange={e => this.change(e)}
-              label="Número de pessoas"
-              inputProps={{
-                min: 1
-              }}
-            /> <br />
-            {/* // https://github.com/airbnb/react-dates */}
-            <SingleDatePicker
-              transitionDuration = {0}
-              required
-              numberOfMonths={1}
-              showDefaultInputIcon
-              date={this.state.values.dates}
-              onDateChange={e => this.change(e)}
-              focused={this.state.focused}
-              onFocusChange={({ focused }) => this.setState({ focused })}
-              monthFormat="MMMM/YYYY"
-            />
+          <div className="">
+            <div className="steps-container">
+              <span className="current">1. Agendamento</span><span className="next"> > 2. Detalhes do Titular > 3. Confirmação </span>
+            </div>
+            <div className="info-container">
+              <div className="info-label">Selecione a Data</div>
+              {/* // https://github.com/airbnb/react-dates */}
+              <SingleDatePicker
+                transitionDuration = {0}
+                required
+                numberOfMonths={1}
+                showDefaultInputIcon
+                date={this.state.values.dates}
+                onDateChange={e => this.change(e)}
+                focused={this.state.focused}
+                onFocusChange={({ focused }) => this.setState({ focused })}
+                monthFormat="MMMM/YYYY"
+              />
+            </div>
+            <div className="info-container">
+              <div className="info-label">Selecione o Número de Pessoas</div>
+              <TextField
+                className=""
+                fullWidth
+                type='number'
+                name='adults'
+                value={this.state.values.adults}
+                onChange={e => this.change(e)}
+                inputProps={{
+                  min: 1
+                }}
+              />
+            </div>
           </div>
         )
       case 1:
         return (
-          <div className="container m-2">
-            <ExpansionPanel>
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <span>Sobre você</span>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <ul className='list-unstyled'>
-                  <li>
-                    <TextField
-                      required
-                      name='name'
-                      label='Nome Completo'
-                      value={this.state.values.name}
-                      onChange={(e) => this.change(e)}
-                    />
-                  </li>
-                  <li>
-                    <TextField
-                      required
-                      name='email'
-                      label='Email'
-                      value={this.state.values.email}
-                      onChange={(e) => this.change(e)}
-                    />
-                  </li>
-                  <li>
-                    <TextField
-                      required
-                      name='phone'
-                      label='Telefone'
-                      value={this.state.values.phone}
-                      onChange={(e) => this.change(e)}
-                    />
-                  </li>
-                </ul>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            {this.renderTransfer()}
+          <div className="">
+            <div className="steps-container">
+              <span className="completed">1. Agendamento > </span><span className="current">2. Detalhes do Titular</span><span className="next"> > 3. Confirmação </span>
+            </div>
+            <div className="info-container">
+              <ul className='list-unstyled'>
+                <li className="info-input">
+                  <TextField
+                    fullWidth
+                    required
+                    name='name'
+                    label='Nome Completo'
+                    value={this.state.values.name}
+                    onChange={(e) => this.change(e)}
+                  />
+                </li>
+                <li className="info-input">
+                  <TextField
+                    required
+                    fullWidth
+                    name='email'
+                    label='Email'
+                    value={this.state.values.email}
+                    onChange={(e) => this.change(e)}
+                  />
+                </li>
+                <li className="info-input">
+                  <TextField
+                    required
+                    fullWidth
+                    name='phone'
+                    label='Telefone'
+                    value={this.state.values.phone}
+                    onChange={(e) => this.change(e)}
+                  />
+                </li>
+              </ul>
+            </div>
+            <div>
+              {this.renderTransfer()}
+            </div>
           </div>
         )
       case 2:
         return (
-          <div className="container m-2">
-            <ul>
-              <li>{this.state.values.name}</li>
-              <li>{this.state.values.phone}</li>
-              <li>{this.state.values.adults}</li>
-              <li>{this.state.values.email}</li>
-              <li>{this.state.values.dates.format("ll")}</li>
-              <li>{this.state.values.address}</li>
-              <li>{this.state.values.complement}</li>
-            </ul>
+          <div className="confirmation-section">
+            <div className="steps-container">
+              <span className="completed">1. Agendamento > 2. Detalhes do Titular ></span><span className="current"> 3. Confirmação </span>
+            </div>
+            <div className="section-container">
+              <div className="section-title">Seu Agendamento</div>
+              <ul className="list-unstyled">
+                <li>Data: {this.state.values.dates.format("ll")}</li>
+                <li>Quantidade de Pessoas: {this.state.values.adults}</li>
+              </ul>
+            </div>
+            <div className="section-container">
+              <div className="section-title">Detalhes do Titular</div>
+                <ul className="list-unstyled">
+                  <li>Nome: {this.state.values.name}</li>
+                  <li>Email: {this.state.values.email}</li>
+                  <li>Telefone: {this.state.values.phone}</li>
+                  <li>{this.state.values.address}</li>
+                  <li>{this.state.values.address}</li>
+                </ul>
+            </div>
+            <div className="section-container">
+              <div className="section-title">Observações</div>
+              <ul>
+                  { () => {
+                    if (this.props.experience.selected.has_transfer) {
+                      return <li>{this.props.experience.selected.has_transfer}</li>
+                    }
+                 } }
+                 { () => {
+                   if (this.props.experience.selected.payment_method) {
+                     return <li>{this.props.experience.selected.payment_method}</li>
+                   }
+                } }
+                { () => {
+                  if (this.props.experience.selected.cancelation) {
+                    return <li>{this.props.experience.selected.cancelation}</li>
+                  }
+               } }
+              </ul>
+            </div>
           </div>
         )
       default:
@@ -226,49 +274,64 @@ class BookingsNew extends Component {
     else {
       return (
         <div className='container'>
-          <Stepper orientation="vertical" activeStep={activeStep}>
-            {steps.map((label, index) => {
-              return (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              );
-            })}
-          </Stepper>
-
-          <div>
-            {activeStep === steps.length ? (
-              <div>
-                <span>
-                  Seu pedido de agendamento foi solicitado, entraremos em contato! <br/>
-                  Obrigado pela preferência
-              </span>
-              </div>
-            ) : (
-                <React.Fragment>
-                  <form>
-                    {this.getStepContent(activeStep)}
-                    <div className="row">
-                      <Button
-                        disabled={activeStep === 0}
-                        onClick={this.handleBack}
-                      >
-                        Voltar
-                      </Button>
-
-                      <div className="ml-auto">
+          <div className='row'>
+            <div className='col-md-8 col-sm-12'>
+              {this.getStepContent(activeStep)}
+              {activeStep === steps.length ? (
+                <div>
+                  <span>
+                    Seu pedido de agendamento foi solicitado, entraremos em contato! <br/>
+                    Obrigado pela preferência
+                </span>
+                </div>
+              ) : (
+                  <React.Fragment>
+                    <form>
+                      <div className="flow-container text-center">
                         <Button
+                          className="m-3"
+                          disabled={activeStep === 0}
+                          onClick={this.handleBack}
+                        >
+                          Voltar
+                        </Button>
+                        <Button
+                          className="m-3"
                           variant="raised"
                           color="primary"
                           onClick={this.handleNext}
                         >
-                          {activeStep === steps.length - 1 ? 'Finalizar' : 'Avançar'}
+                          {activeStep === steps.length - 1 ? 'Confirmar' : 'Avançar'}
                         </Button>
                       </div>
-                    </div>
-                  </form>
-                </React.Fragment>
-              )}
+                    </form>
+                  </React.Fragment>
+                )}
+            </div>
+            <div className='col-sm-4'>
+              <Paper elevation={6} style={{ borderRadius: "4px" }} className="p-3 mb-5">
+                <ul className="list-unstyled">
+                  <li className="title">{this.props.experience.selected.name}</li>
+                  <li className=""><span className="icon"><Location fontSize /> </span><span className="icon-text">{this.props.experience.selected.location}</span></li>
+                  <li className=""><span className="icon"><Date fontSize /> </span><span className="icon-text">{this.state.values.dates.format("ll")}</span></li>
+                  <li className=""><span className="icon"><People fontSize /> </span><span className="icon-text">{this.state.values.adults}</span></li>
+                </ul>
+                <div>
+                  <div></div>
+                  <div>{this.props.experience.selected.cost}</div>
+                </div>
+                <div className="confirm-container">
+                  <Button
+                    variant="raised"
+                    fullWidth
+                    color="primary"
+                    onClick={this.handleNext}
+                  >
+                    {activeStep === steps.length - 1 ? 'Confirmar' : 'Avançar'}
+                  </Button>
+                </div>
+              </Paper>
+            </div>
           </div>
         </div>
       )
@@ -279,5 +342,5 @@ class BookingsNew extends Component {
 export default BookingsNew;
 
 function getSteps() {
-  return ['Escolha a data que melhor se encaixa para você', 'Conte-nos como podemos chegar até você', 'Revise e confirme as informações inseridas'];
+  return ['Datas', 'Detalhes', 'Confirmar'];
 }
