@@ -2,6 +2,8 @@ import React from "react";
 import './ExperienceCard.scss';
 import { Link } from 'react-router';
 
+import Currency from 'react-currency-formatter';
+
 const ExperienceCard = ({experience}) => {
 
   return (
@@ -17,7 +19,7 @@ const ExperienceCard = ({experience}) => {
             <div className="title-block">
               <div className="title">{experience.name}</div>
             </div>
-            <div className="price">{experience.price}</div>
+            <div className="price"><Currency quantity={experience.price} currency='BRL' /></div>
           </div>
         </div>
         </Link>

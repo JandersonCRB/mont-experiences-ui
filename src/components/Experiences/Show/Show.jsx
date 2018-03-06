@@ -14,6 +14,7 @@ import Payment from 'material-ui-icons/Payment';
 import Timer from 'material-ui-icons/Timer';
 import Cancel from 'material-ui-icons/Cancel';
 import Car from 'material-ui-icons/DirectionsCar';
+import Currency from 'react-currency-formatter';
 
 @inject('experience') @observer
 export default class Show extends React.Component {
@@ -165,7 +166,7 @@ export default class Show extends React.Component {
       <div className="booking-card">
         <div className="content-wrap">
           <div className="price-container">
-            <span className="price">{selected.price}</span>
+            <span className="price"><Currency quantity={selected.price} currency='BRL' /></span>
             <span> por pessoa</span>
           </div>
           <div className="book-container">
