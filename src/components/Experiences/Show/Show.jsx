@@ -34,7 +34,7 @@ export default class Show extends React.Component {
 
     if (selected.location) {
       buffer.push(
-        <li key='location-icon'><span className="icon"><Location fontSize/> </span><span className="icon-text">{selected.location}</span></li>
+        <li key='location-icon'><span className="icon"><Location fontSize /> </span><span className="icon-text">{selected.location}</span></li>
       );
     }
 
@@ -70,12 +70,12 @@ export default class Show extends React.Component {
 
     if (selected.has_transfer) {
       buffer.push(
-        <li key='has_transfer-icon'><span className="icon"><Transfer fontSize /> </span><span className="icon-text">Transfer Incluso</span></li>
+        <li key='bus-icon'><span className="icon"><Transfer fontSize /> </span><span className="icon-text">Transfer Incluso</span></li>
       );
     }
     else {
       buffer.push(
-        <li key='has_transfer-icon'><span className="icon"><Car fontSize /> </span><span className="icon-text">Encontro no local</span></li>
+        <li key='car-icon'><span className="icon"><Car fontSize /> </span><span className="icon-text">Encontro no local</span></li>
       );
     }
 
@@ -90,9 +90,9 @@ export default class Show extends React.Component {
         <div className="topic-container" key='description'>
           <div className="topic-title">A Experiência</div>
           <div className="topic-content">
-          <span>
-            {selected.description}
-          </span>
+            <span>
+              {selected.description}
+            </span>
           </div>
         </div>
       );
@@ -102,9 +102,9 @@ export default class Show extends React.Component {
         <div className="topic-container" key='itinerary'>
           <div className="topic-title" >O que faremos?</div>
           <div className="topic-content">
-          <span>
-            {selected.itinerary}
-          </span>
+            <span>
+              {selected.itinerary}
+            </span>
           </div>
         </div>
       );
@@ -114,9 +114,9 @@ export default class Show extends React.Component {
         <div className="topic-container" key='observation'>
           <div className="topic-title">Informações Adicionais</div>
           <div className="topic-content">
-          <span>
-            {selected.observation}
-          </span>
+            <span>
+              {selected.observation}
+            </span>
           </div>
         </div>
       );
@@ -126,9 +126,9 @@ export default class Show extends React.Component {
         <div className="topic-container" key='about_transfer'>
           <div className="topic-title">Sobre o Transfer</div>
           <div className="topic-content">
-          <span>
-            {selected.about_transfer}
-          </span>
+            <span>
+              {selected.about_transfer}
+            </span>
           </div>
         </div>
       );
@@ -136,11 +136,11 @@ export default class Show extends React.Component {
     if (selected.about_booking) {
       buffer.push(
         <div className="topic-container" key='about_booking'>
-          <div className="topic-title"> Seu Agendamento</div>
+          <div className="topic-title">Seu Agendamento</div>
           <div className="topic-content">
-          <span>
-            {selected.about_booking}
-          </span>
+            <span>
+              {selected.about_booking}
+            </span>
           </div>
         </div>
       );
@@ -150,9 +150,9 @@ export default class Show extends React.Component {
         <div className="topic-container" key='about_location'>
           <div className="topic-title">Sobre a Localização</div>
           <div className="topic-content">
-          <span>
-            {selected.about_location}
-          </span>
+            <span>
+              {selected.about_location}
+            </span>
           </div>
         </div>
       );
@@ -194,8 +194,8 @@ export default class Show extends React.Component {
           <div className="row">
             <div className="col-md-8 col-sm-12">
               <SlideShow>
-                {selected.photos.map(photo => (
-                  <img src={photo.url} />
+                {selected.photos.map((photo, key) => (
+                  <img src={photo.url} key={key} />
                 ))}
               </SlideShow>
               <div className="experience-name">
@@ -207,7 +207,7 @@ export default class Show extends React.Component {
                 </ul>
               </div>
               <div style={{ whiteSpace: 'pre-wrap' }}>
-              {this.renderTopics(selected)}
+                {this.renderTopics(selected)}
               </div>
             </div>
             <div className="col-md-4 sidebar" >
