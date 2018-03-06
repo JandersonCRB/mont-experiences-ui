@@ -34,10 +34,6 @@
   }
 }
 
-.book-container {
-  padding-bottom: 15px;
-}
-
 .btn-book {
   background-color: #9037ff;
   color: #fff;
@@ -64,7 +60,7 @@
 .sidebar{
     position: -webkit-sticky;  // required for Safari
     position: sticky;
-    top: 15px; // required as well.
+    top: 0px;
 }
 
 .experience-name {

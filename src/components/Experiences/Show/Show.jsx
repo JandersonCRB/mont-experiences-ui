@@ -169,10 +169,10 @@ export default class Show extends React.Component {
             <span className="price"><Currency quantity={selected.price} currency='BRL' /></span>
             <span> por pessoa</span>
           </div>
-          <div className="book-container">
+          <div>
             <Link to={`/book/${this.props.params.experienceId}`}>
               <Button
-                className='mb-4 mt-3'
+                className='mb-2 mt-2'
                 variant='raised'
                 size='large'
                 fullWidth
@@ -193,7 +193,7 @@ export default class Show extends React.Component {
       <div id="Show" className="container">
         <div className="page-wrap">
           <div className="row">
-            <div className="col-md-8 col-sm-12">
+            <div className="col-md-8 col-sm-12 mb-3">
               <SlideShow>
                 {selected.photos.map((photo, key) => (
                   <img src={photo.url} key={key} alt="" />
