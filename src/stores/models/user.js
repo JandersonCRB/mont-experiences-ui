@@ -2,13 +2,17 @@ import { Connect, mix } from 'fronto-connect';
 import scopes from './scopes';
 
 class User extends Connect {
+    //GAMBIARRA
     namespace = 'v1';
     resource = 'users';
 
-    createSession = (email, password) => {
-        // console.log(email);
-        // console.log(password);
-        // setIsLoading(true);
+    signUp(email, password, callback){
+        this.create({},{
+            user:{
+                email,
+                password
+            }
+        }, callback)
     }
 }
 

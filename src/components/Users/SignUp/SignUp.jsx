@@ -12,7 +12,8 @@ import { browserHistory } from 'react-router';
 
 import './SignUp.scss';
 
-@inject('session') @observer
+@inject('session')
+@inject('user') @observer
 export default class SignUp extends Component {
 	constructor() {
 		super();
@@ -21,21 +22,38 @@ export default class SignUp extends Component {
 				{
 					email: '',
 					password: ''
-				}
+				},
+			snackbar: false
 		}
 	}
 
-	login = (e) => {
+	signup = (e) => {
 		e.preventDefault();
-		// const { email, password } = this.state.values;
-		// const { session } = this.props;
-		// session.SignUp(email, password);
-
+		const { email, password } = this.state.values;
+		const { session, user } = this.props;
+		user.signUp(email, password, {
+			201: () => {
+				session.signIn(email, password);
+			},
+			422: () => {
+				this.setState({snackbar: true});
+			}
+		});
 	}
+
+	handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+
+		this.setState({ snackbar: false });
+	}
+
 	change(e, v) {
 		const values = Object.assign(this.state.values, { [e.target.name]: e.target.value }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
 		this.setState({ values });
 	}
+	
 	render() {
 		if (this.props.session.signedIn) {
 			browserHistory.push('/');
@@ -49,7 +67,7 @@ export default class SignUp extends Component {
 						autoHideDuration={6000}
 						open={this.state.snackbar}
 						onClose={this.handleClose}
-						message={<span id="message-id">Email ou senha incorretos</span>}
+						message={<span id="message-id">Este email já está cadastrado em nosso sistema</span>}
 						SnackbarContentProps={{
 							style: {
 								backgroundColor: '#b05d5a'
@@ -60,7 +78,7 @@ export default class SignUp extends Component {
 				<div className="col-md-4 col-sm-10 col-10 mx-auto text-center mb-5 mt-5" style={{ maxWidth: '450px' }}>
 					<Paper elevation={6} style={{ borderRadius: "4px" }} className="p-5">
 						<h3 className="title-header">Cadastre-se</h3>
-						<form onSubmit={this.login}>
+						<form onSubmit={this.signup}>
 							<TextField
 								required
 								name='email'

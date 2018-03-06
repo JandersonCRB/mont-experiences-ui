@@ -4,7 +4,11 @@ import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
+import { inject, observer } from 'mobx-react';
 
+import { browserHistory } from 'react-router';
+
+@inject('user') @observer
 class EditPassword extends Component {
 	constructor() {
 		super();
@@ -18,10 +22,20 @@ class EditPassword extends Component {
 	}
 
 	submit = e => {
+		console.log(e);
 		e.preventDefault();
+
+		const { user } = this.props;
+		const { current_password, password, password_confirmation } = this.state.values;
+		const body = { user: { current_password, password, password_confirmation } }
+		user.update({}, body, {
+			201: () => {
+				browserHistory.push('/');
+			}
+		});
 	}
 
-	change(e){
+	change(e) {
 		const values = Object.assign(this.state.values, { [e.target.name]: e.target.value }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
 		this.setState({ values });
 	}

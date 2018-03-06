@@ -21,11 +21,13 @@ const readable = {
 }
 
 const writable = {
-    update(parameters, body) {
+    update(parameters, body, callback) {
         this.setIsLoading(true);
-        this.call({ parameters, body, type: 'patch' }, {
+        let defaultCallback = {
             200: (response) => this.setSelected(response),
-        });
+        }
+        defaultCallback = Object.assign(defaultCallback, callback);
+        this.call({ parameters, body, type: 'patch' }, defaultCallback);
     },
     create(parameters, body, callback) {
         this.setIsLoading(true);
