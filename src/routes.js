@@ -20,6 +20,7 @@ const routes =
             <Route path='sign_in' exact component={c.SignIn} />
             <Route path='sign_up' exact component={c.SignUp} />
             <Route path='profile' exact component={c.EditUser} />
+            <Route path='edit' exact component={c.EditPassword} />
         </Route>
         <Route path='book' component={c.Layout} >
             <Route path=':experienceId' component={c.BookingsNew} />
