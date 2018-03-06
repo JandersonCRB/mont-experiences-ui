@@ -195,7 +195,7 @@ export default class Show extends React.Component {
             <div className="col-md-8 col-sm-12">
               <SlideShow>
                 {selected.photos.map((photo, key) => (
-                  <img src={photo.url} key={key} />
+                  <img src={photo.url} key={key} alt="" />
                 ))}
               </SlideShow>
               <div className="experience-name">
