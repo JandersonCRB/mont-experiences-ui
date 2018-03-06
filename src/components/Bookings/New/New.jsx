@@ -234,7 +234,7 @@ class BookingsNew extends Component {
                   <li>Email: {this.state.values.email}</li>
                   <li>Telefone: {this.state.values.phone}</li>
                   <li>{this.state.values.address}</li>
-                  <li>{this.state.values.address}</li>
+                  <li>  {this.state.values.address}</li>
                 </ul>
             </div>
             <div className="section-container">
