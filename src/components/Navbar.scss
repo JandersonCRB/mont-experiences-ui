@@ -1,49 +1,73 @@
 .header--bar {
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
+}
+
+.navbar-brand {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin: 0px;
+  img {
+    height: 50px;
+    padding-top: 5px;
+    float: left;
   }
-  
-  .navbar-brand {
-    padding-bottom: 0px;
-    padding-top: 0px;
-    img {
-      height: 50px;
-      padding-top: 5px;
-    }
+}
+
+.navbar {
+  margin-bottom: 0px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
+  i {
+    font-size: 15px;
+    color: #666;
   }
-  
-  .navbar {
-    margin-bottom: 0px;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
-    a {
-      color: #666;
-      font-family: "Open Sans";
-      font-size: 15px;
-      font-weight: 700 !important;
-    }
-    a:hover {
-      background-color: #fff !important;
-      color: #4826E8;
-    }
-    a:active {
-      background-color: #fff !important;
-      color: #4826E8;
-    }
-    i {
-      font-size: 15px;
-      color: #666;
-    }
+}
+
+.dropdown.open {
+  background-color: #fff;
+}
+
+.icon--menu_mobile {
+  width: 35px;
+  height: 3px;
+  background-color: #000;
+  margin: 5px 0;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 500 !important;
+  a:hover {
+    background-color: #fff !important;
+    color: #ccc !important;
   }
-  
-  .dropdown.open {
-    background-color: #fff;
+  a:active {
+    background-color: #fff !important;
+    color: #ccc;
   }
-  
-  .icon--menu_mobile {
-    width: 35px;
-    height: 3px;
-    background-color: #000;
-    margin: 5px 0;
+}
+
+.nav-link:hover {
+  color: #cecece !important;
+}
+
+.nav-link:active {
+  color: #cecece !important;
+}
+
+nav {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+  background-color: #9C27B0;
+}
+
+@media all and (max-width: 767px) {
+  nav {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
-  
+}

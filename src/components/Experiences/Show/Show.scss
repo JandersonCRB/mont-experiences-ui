@@ -1,0 +1,119 @@
+.topic-container {
+  padding-top: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.topic-title {
+  margin-bottom: 16px;
+  font-size: 20px;
+  color: #484848;
+  font-weight: 500;
+}
+
+.topic-content {
+  span {
+    font-size: 17px;
+    color: #484848;
+  }
+}
+
+.booking-card {
+  border: 1px solid #DBDBDB;
+  width: 100%;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.price-container {
+  border-bottom: 1px solid #DBDBDB;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  span {
+    color: #484848;
+  }
+}
+
+.book-container {
+  padding-bottom: 15px;
+}
+
+.btn-book {
+  background-color: #9037ff;
+  color: #fff;
+  height: 45px;
+}
+
+.page-wrap {
+  margin-bottom: 40px;
+}
+
+@media all and (min-width: 767px) {
+  .page-wrap {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.price {
+  font-weight: 500;
+  font-size: 25px;
+  color: #484848;
+}
+
+.sidebar{
+    position: -webkit-sticky;  // required for Safari
+    position: sticky;
+    top: 15px; // required as well.
+}
+
+.experience-name {
+  h2 {
+    color: #484848;
+    font-size: 30px;
+    font-weight: 500;
+    padding-bottom: 20px;
+  }
+}
+
+.experience-icons {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #DBDBDB;
+  border-top: 1px solid #DBDBDB;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    padding-bottom: 5px;
+    padding-left: 0px;
+  }
+}
+
+.icon-text {
+  line-height: 28px;
+  font-size: 17px;
+}
+
+.icon {
+  vertical-align: middle;
+  line-height: 28px;
+  font-size: 18px;
+  color: #484848;
+}
+
+@media all and (max-width: 767px) {
+  .icon-text {
+    line-height: 18px;
+  }
+
+  .icon {
+    line-height: 18px;
+  }
+}
+
+button {
+  font-weight: 500 !important;
+}
