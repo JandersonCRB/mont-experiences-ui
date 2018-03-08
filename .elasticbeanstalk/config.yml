@@ -2,6 +2,8 @@ branch-defaults:
   JandersonCRB:
     environment: test
     group_suffix: null
+  master:
+    environment: test
 global:
   application_name: mont-experiences-ui
   branch: null
