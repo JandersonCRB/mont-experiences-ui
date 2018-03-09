@@ -26,7 +26,7 @@ const theme = createMuiTheme({
 });
 
 const endpoint = api({
-    endpoint: 'http://localhost:3000/',
+    endpoint: 'https://api.montviagens.com/',
     header: (h) => {
         h.append('X-User-Email', localStorage.getItem('email'));
         h.append('X-User-Token', localStorage.getItem('token'));
