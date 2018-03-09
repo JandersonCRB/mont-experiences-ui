@@ -8,7 +8,7 @@ import ExperienceList from "../Experiences/List/ExperienceList";
 
 import purple from 'material-ui/colors/purple';
 import { CircularProgress } from 'material-ui/Progress'
-import './Home.scss';
+import './Home.css';
 
 @inject('experience') @observer
 export default class Home extends Component {

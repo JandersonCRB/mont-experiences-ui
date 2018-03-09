@@ -7,7 +7,7 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
-import './Pages.scss';
+import './Pages.css';
 
 export default class Help extends Component {
   render() {

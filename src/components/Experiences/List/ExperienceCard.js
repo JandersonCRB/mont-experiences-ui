@@ -1,5 +1,5 @@
 import React from "react";
-import './ExperienceCard.scss';
+import './ExperienceCard.css';
 import { Link } from 'react-router';
 
 import Currency from 'react-currency-formatter';

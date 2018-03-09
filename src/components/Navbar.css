@@ -1,88 +1,76 @@
 .header--bar {
-  border-bottom: 1px solid rgba(0,0,0,.1);
-  box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 1em 0 rgba(0, 0, 0, .1);
 }
-
 .navbar-brand {
   padding-bottom: 0px;
   padding-top: 0px;
   margin: 0px;
-  img {
-    height: 50px;
-    padding-top: 5px;
-    float: left;
-  }
 }
-
+.navbar-brand img {
+  height: 50px;
+  padding-top: 5px;
+  float: left;
+}
 .navbar {
   margin-bottom: 0px;
-  border-bottom: 1px solid rgba(0,0,0,.1);
-  box-shadow: 0 1px 1em 0 rgba(0,0,0,.1);
-  i {
-    font-size: 15px;
-    color: #666;
-  }
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 1em 0 rgba(0, 0, 0, .1);
 }
-
+.navbar i {
+  font-size: 15px;
+  color: #666;
+}
 .dropdown.open {
   background-color: #fff;
 }
-
 .icon--menu_mobile {
   width: 35px;
   height: 3px;
   background-color: #000;
   margin: 5px 0;
 }
-
 .nav-link {
   color: #fff !important;
   font-size: 16px;
   font-weight: 500 !important;
-  a:hover {
-    background-color: #fff !important;
-    color: #F0EAF2 !important;
-  }
-  a:active {
-    background-color: #fff !important;
-    color: #F0EAF2;
-  }
 }
-
+.nav-link a:hover {
+  background-color: #fff !important;
+  color: #f0eaf2 !important;
+}
+.nav-link a:active {
+  background-color: #fff !important;
+  color: #f0eaf2;
+}
 .nav-link:hover {
-  color: #F0EAF2 !important;
+  color: #f0eaf2 !important;
 }
-
 .nav-link:active {
-  color: #F0EAF2 !important;
+  color: #f0eaf2 !important;
 }
-
 nav {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   padding-left: 50px !important;
   padding-right: 50px !important;
-  background-color: #9C27B0;
+  background-color: #9c27b0;
 }
-
 @media all and (max-width: 767px) {
   nav {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
 }
-
 .dropdown-item {
   color: #484848 !important;
   font-weight: 500 !important;
 }
-
 .dropdown-item:hover {
   background-color: #fff !important;
-  color: #333333 !important;
+  color: #333 !important;
 }
-
 .dropdown-item:active {
   background-color: #fff !important;
-  color: #333333 !important;
+  color: #333 !important;
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Route, IndexRoute, IndexRedirect } from 'react-router';
+import { Route, Redirect, IndexRoute, IndexRedirect } from 'react-router';
 
 import c from './components';
 
 
 const routes =
     <Route>
-        {/* <Redirect from='/' to='index' /> */}
+        <Redirect from='index.html' to='/' />
         <Route path='experiences' component={c.Layout} >
             <IndexRoute component={c.Experiences} />
             <Route path='new' exact component={c.ExperienceNew} />
