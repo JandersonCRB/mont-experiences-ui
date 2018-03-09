@@ -1,6 +1,6 @@
 import React from "react";
 import ExperienceCard from "./ExperienceCard";
-import './ExperienceList.scss';
+import './ExperienceList.css';
 
 const ExperienceList = (props) => {
 

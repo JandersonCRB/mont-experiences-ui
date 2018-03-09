@@ -1,0 +1,16 @@
+a {
+  font-size: 16px;
+  color: #4826e8 !important;
+}
+a:hover {
+  text-decoration: none !important;
+}
+.title-header {
+  color: #484848;
+}
+.sign_up-opening {
+  margin-top: -30px;
+  padding-bottom: 15px;
+  color: #484848;
+  font-size: 28px;
+}

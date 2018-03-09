@@ -10,7 +10,7 @@ import { inject, observer } from 'mobx-react';
 
 import { browserHistory } from 'react-router';
 
-import './SignUp.scss';
+import './SignUp.css';
 
 @inject('session')
 @inject('user') @observer
@@ -53,7 +53,7 @@ export default class SignUp extends Component {
 		const values = Object.assign(this.state.values, { [e.target.name]: e.target.value }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
 		this.setState({ values });
 	}
-	
+
 	render() {
 		if (this.props.session.signedIn) {
 			browserHistory.push('/');
@@ -75,7 +75,8 @@ export default class SignUp extends Component {
 						}}
 					/>
 				</div>
-				<div className="col-md-4 col-sm-10 col-10 mx-auto text-center mb-5 mt-5" style={{ maxWidth: '450px' }}>
+				<div className="col-md-4 col-sm-10 col-10 mx-auto text-center mb-5" style={{ maxWidth: '450px' }}>
+					<div className="sign_up-opening">Agende Experiências Incríveis Perto de Você!</div>
 					<Paper elevation={6} style={{ borderRadius: "4px" }} className="p-5">
 						<h3 className="title-header">Cadastre-se</h3>
 						<form onSubmit={this.signup}>

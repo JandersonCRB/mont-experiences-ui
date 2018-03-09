@@ -2,19 +2,17 @@
   height: 380px;
   margin-bottom: 20px;
 }
-
 .slide-wrap {
   overflow: hidden;
   width: auto;
   height: 380px;
-  img {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
 }
-
+.slide-wrap img {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 @media all and (max-width: 767px) {
   .slideshow {
     height: 440px;
@@ -22,8 +20,8 @@
     margin-right: -15px;
     margin-top: -24px;
     margin-bottom: 15px;
-    .slide-wrap {
-      height: 440px;
-    }
+  }
+  .slideshow .slide-wrap {
+    height: 440px;
   }
 }

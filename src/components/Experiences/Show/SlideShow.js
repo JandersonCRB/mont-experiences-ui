@@ -1,6 +1,6 @@
 import React, {Component, Children} from 'react';
 
-import './SlideShow.scss';
+import './SlideShow.css';
 import Next from 'material-ui-icons/KeyboardArrowRight';
 import Back from 'material-ui-icons/KeyboardArrowLeft';
 
