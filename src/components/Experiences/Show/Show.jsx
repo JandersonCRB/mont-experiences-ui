@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import './Show.scss';
 import SlideShow from './SlideShow.js';
 import Button from 'material-ui/Button';
-
+import Paper from 'material-ui/Paper';
 import Location from 'material-ui-icons/LocationOn';
 import Date from 'material-ui-icons/DateRange';
 import Transfer from 'material-ui-icons/DirectionsBus';
@@ -163,27 +163,25 @@ export default class Show extends React.Component {
 
   renderBookingCard(selected) {
     return (
-      <div className="booking-card">
-        <div className="content-wrap">
-          <div className="price-container">
-            <span className="price"><Currency quantity={selected.price} currency='BRL' /></span>
-            <span> por pessoa</span>
-          </div>
-          <div className="book-container">
-            <Link to={`/book/${this.props.params.experienceId}`}>
-              <Button
-                className='mb-4 mt-3'
-                variant='raised'
-                size='large'
-                fullWidth
-                color='primary'
-              >
-                Verificar Disponibilidade
-              </Button>
-            </Link>
-          </div>
+      <Paper elevation={6} style={{ borderRadius: "4px" }} className="p-3 mb-4">
+        <div className="price-container">
+          <span className="price"><Currency quantity={selected.price} currency='BRL' /></span>
+          <span> por pessoa</span>
         </div>
-      </div>
+        <div className="booking-bottom">
+          <Link to={`/book/${this.props.params.experienceId}`}>
+            <Button
+              className='mb-0 mt-2'
+              variant='raised'
+              size='large'
+              fullWidth
+              color='primary'
+            >
+              Solicitar Agendamento
+            </Button>
+          </Link>
+        </div>
+      </Paper>
     )
   }
   render() {
@@ -193,7 +191,7 @@ export default class Show extends React.Component {
       <div id="Show" className="container">
         <div className="page-wrap">
           <div className="row">
-            <div className="col-md-8 col-sm-12">
+            <div className="col-md-8 col-sm-12 mb-3">
               <SlideShow>
                 {selected.photos.map((photo, key) => (
                   <img src={photo.url} key={key} alt="" />

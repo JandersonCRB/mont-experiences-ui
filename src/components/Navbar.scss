@@ -41,20 +41,20 @@
   font-weight: 500 !important;
   a:hover {
     background-color: #fff !important;
-    color: #ccc !important;
+    color: #F0EAF2 !important;
   }
   a:active {
     background-color: #fff !important;
-    color: #ccc;
+    color: #F0EAF2;
   }
 }
 
 .nav-link:hover {
-  color: #cecece !important;
+  color: #F0EAF2 !important;
 }
 
 .nav-link:active {
-  color: #cecece !important;
+  color: #F0EAF2 !important;
 }
 
 nav {
@@ -70,4 +70,19 @@ nav {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
+}
+
+.dropdown-item {
+  color: #484848 !important;
+  font-weight: 500 !important;
+}
+
+.dropdown-item:hover {
+  background-color: #fff !important;
+  color: #333333 !important;
+}
+
+.dropdown-item:active {
+  background-color: #fff !important;
+  color: #333333 !important;
 }

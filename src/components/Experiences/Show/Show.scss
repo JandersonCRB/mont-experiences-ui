@@ -18,24 +18,11 @@
   }
 }
 
-.booking-card {
-  border: 1px solid #DBDBDB;
-  width: 100%;
-  padding: 15px;
-  border-radius: 4px;
-}
-
 .price-container {
-  border-bottom: 1px solid #DBDBDB;
   padding-bottom: 15px;
-  margin-bottom: 15px;
   span {
     color: #484848;
   }
-}
-
-.book-container {
-  padding-bottom: 15px;
 }
 
 .btn-book {
@@ -55,6 +42,16 @@
   }
 }
 
+.booking-bottom {
+  border-top: 1px solid #DBDBDB;
+  padding-top: 5px;
+  margin-left: -15px;
+  margin-right: -15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 0px !important;
+}
+
 .price {
   font-weight: 500;
   font-size: 25px;
@@ -64,7 +61,7 @@
 .sidebar{
     position: -webkit-sticky;  // required for Safari
     position: sticky;
-    top: 15px; // required as well.
+    top: 0px;
 }
 
 .experience-name {

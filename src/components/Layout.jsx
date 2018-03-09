@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { inject, observer } from 'mobx-react';
+import './Layout.scss';
 
 @inject('session') @observer
 class Layout extends React.Component {
