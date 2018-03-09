@@ -27,6 +27,8 @@ import ExpansionPanel, {
 } from 'material-ui/ExpansionPanel';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
+import { Link } from 'react-router';
+
 @inject('experience')
 @inject('booking')
 @inject('session') @observer
@@ -56,10 +58,14 @@ class BookingsNew extends Component {
 
 
   submit() {
-    let body = this.state.values;
+    const body = Object.assign({}, this.state.values); //Using assign 'cause I don't wanna change the original object
     body.experience_id = this.props.experience.selected.id;
     body.dates = body.dates.format('YYYY-MM-DD');
-    this.props.booking.create({}, body);
+    this.props.booking.create({}, body, {
+      201: booking =>{
+        browserHistory.push(`/bookings/${booking.id}`)
+      }
+    })
   }
 
   handleBack = () => {
@@ -73,20 +79,20 @@ class BookingsNew extends Component {
     const { activeStep } = this.state;
     let { name, email, phone } = this.state.values;
     const steps = getSteps();
-    if(activeStep === 1){
-      if(name && email && phone){
+    if (activeStep === 1) {
+      if (name && email && phone) {
         this.setState({
           activeStep: activeStep + 1,
         });
       }
-    }else{
+    } else if (activeStep === steps.length - 1) {
+      this.submit();
+    } else {
       this.setState({
         activeStep: activeStep + 1,
       });
     }
-    if(activeStep === steps.length - 1){
-      this.submit();
-    }
+
   };
   change(e) {
     if (e._isAMomentObject) {
@@ -142,7 +148,7 @@ class BookingsNew extends Component {
               <div className="info-label">Selecione a Data</div>
               {/* // https://github.com/airbnb/react-dates */}
               <SingleDatePicker
-                transitionDuration = {0}
+                transitionDuration={0}
                 required
                 numberOfMonths={1}
                 showDefaultInputIcon
@@ -223,44 +229,44 @@ class BookingsNew extends Component {
             <div className="section-container">
               <div className="section-title">Seu Agendamento</div>
               <ul className="list-unstyled">
-                <li>Data: {this.state.values.dates.format("ll")}</li>
+                <li>Data: {this.state.values.dates.format("lll")}</li>
                 <li>Quantidade de Pessoas: {this.state.values.adults}</li>
               </ul>
             </div>
             <div className="section-container">
               <div className="section-title">Detalhes do Titular</div>
-                <ul className="list-unstyled">
-                  <li>Nome: {this.state.values.name}</li>
-                  <li>Email: {this.state.values.email}</li>
-                  <li>Telefone: {this.state.values.phone}</li>
-                  <li>{this.state.values.address}</li>
-                  <li>  {this.state.values.address}</li>
-                </ul>
+              <ul className="list-unstyled">
+                <li>Nome: {this.state.values.name}</li>
+                <li>Email: {this.state.values.email}</li>
+                <li>Telefone: {this.state.values.phone}</li>
+                <li>{this.state.values.address}</li>
+                <li>  {this.state.values.address}</li>
+              </ul>
             </div>
             <div className="section-container">
               <div className="section-title">Observações</div>
               <ul>
-                  { () => {
-                    if (this.props.experience.selected.has_transfer) {
-                      return <li>{this.props.experience.selected.has_transfer}</li>
-                    }
-                 } }
-                 { () => {
-                   if (this.props.experience.selected.payment_method) {
-                     return <li>{this.props.experience.selected.payment_method}</li>
-                   }
-                } }
-                { () => {
+                {() => {
+                  if (this.props.experience.selected.has_transfer) {
+                    return <li>{this.props.experience.selected.has_transfer}</li>
+                  }
+                }}
+                {() => {
+                  if (this.props.experience.selected.payment_method) {
+                    return <li>{this.props.experience.selected.payment_method}</li>
+                  }
+                }}
+                {() => {
                   if (this.props.experience.selected.cancelation) {
                     return <li>{this.props.experience.selected.cancelation}</li>
                   }
-               } }
+                }}
               </ul>
             </div>
           </div>
         )
       default:
-        return 'Unknown step';
+        return <span>Ops, parece que algo deu errado.</span>;
     }
   };
 
@@ -278,44 +284,32 @@ class BookingsNew extends Component {
           <div className='row'>
             <div className='col-md-8 col-sm-12'>
               {this.getStepContent(activeStep)}
-              {activeStep === steps.length ? (
-                <div>
-                  <span>
-                    Seu pedido de agendamento foi solicitado, entraremos em contato! <br/>
-                    Obrigado pela preferência
-                </span>
-                </div>
-              ) : (
-                  <React.Fragment>
-                    <form>
-                      <div className="flow-container text-center">
-                        <Button
-                          className="m-3"
-                          disabled={activeStep === 0}
-                          onClick={this.handleBack}
-                        >
-                          Voltar
-                        </Button>
-                        <Button
-                          className="m-3"
-                          variant="raised"
-                          color="primary"
-                          onClick={this.handleNext}
-                        >
-                          {activeStep === steps.length - 1 ? 'Confirmar' : 'Avançar'}
-                        </Button>
-                      </div>
-                    </form>
-                  </React.Fragment>
-                )}
+              <div className="flow-container text-center">
+                <Button
+                  className="m-3"
+                  disabled={activeStep === 0}
+                  onClick={this.handleBack}
+                >
+                  Voltar
+                </Button>
+                <Button
+                  className="m-3"
+                  variant="raised"
+                  color="primary"
+                  onClick={this.handleNext}
+                >
+                  {activeStep === steps.length - 1 ? 'Confirmar' : 'Avançar'}
+                </Button>
+              </div>
             </div>
             <div className='col-sm-4'>
               <Paper elevation={6} style={{ borderRadius: "4px" }} className="p-3 mb-5">
                 <ul className="list-unstyled">
                   <li className="title">{this.props.experience.selected.name}</li>
-                  <li className=""><span className="icon"><Location fontSize /> </span><span className="icon-text">{this.props.experience.selected.location}</span></li>
-                  <li className=""><span className="icon"><Date fontSize /> </span><span className="icon-text">{this.state.values.dates.format("ll")}</span></li>
-                  <li className=""><span className="icon"><People fontSize /> </span><span className="icon-text">{this.state.values.adults}</span></li>
+                  <li><span className="icon"><Location fontSize /> </span><span className="icon-text">{this.props.experience.selected.location}</span></li>
+                  {console.log(this.state)}
+                  <li><span className="icon"><Date fontSize /> </span><span className="icon-text">{this.state.values.dates.format("LL")}</span></li>
+                  <li><span className="icon"><People fontSize /> </span><span className="icon-text">{this.state.values.adults}</span></li>
                 </ul>
                 <div>
                   <div></div>
