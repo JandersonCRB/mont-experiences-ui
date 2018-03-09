@@ -9,7 +9,7 @@ import Binoculars from '../../imgs/binoculars.png';
 import Locked from '../../imgs/locked.png';
 import MoneyBack from '../../imgs/money-back.png';
 
-import './Pages.scss';
+import './Pages.css';
 
 var Background = {
   width: "100%",

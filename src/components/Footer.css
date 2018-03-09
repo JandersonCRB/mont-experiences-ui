@@ -1,7 +1,6 @@
 .footer {
   background-color: #fafafa;
 }
-
 .footer-promo {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -9,44 +8,40 @@
   text-align: center;
   color: #fff;
 }
-
 .footer-menu {
   padding-top: 40px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #DBDBDB;
-  a {
-    color: #808080 !important;
-    font-size: 15px;
-  }
-  a:hover {
-    color: #484848 !important;
-    font-size: 15px;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 15px;
-    li {
-      display: block;
-      vertical-align: top;
-      padding-bottom: 5px;
-      font-size: 15px;
-      color: #808080;
-    }
-  }
+  border-bottom: 1px solid #dbdbdb;
 }
-
+.footer-menu a {
+  color: #808080 !important;
+  font-size: 15px;
+}
+.footer-menu a:hover {
+  color: #484848 !important;
+  font-size: 15px;
+}
+.footer-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 15px;
+}
+.footer-menu ul li {
+  display: block;
+  padding-bottom: 5px;
+  font-size: 15px;
+  color: #808080;
+}
 .footer-end {
   padding-top: 20px;
   padding-bottom: 20px;
-  span {
-    font-size: 14px;
-    color: #DBDBDB;
-  }
 }
-
+.footer-end span {
+  font-size: 14px;
+  color: #dbdbdb;
+}
 .menu-header {
   color: #484848;
   font-size: 15px;

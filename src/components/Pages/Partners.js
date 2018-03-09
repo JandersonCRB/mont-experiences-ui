@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 import Button from 'material-ui/Button';
 
-import './Pages.scss';
+import './Pages.css';
 
 export default class Partners extends Component {
   render() {
