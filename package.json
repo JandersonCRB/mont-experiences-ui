@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "mont-experiences-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -114,5 +114,14 @@
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://JandersonCRB@bitbucket.org/viajamont/mont-experiences-ui.git"
+  },
+  "author": "mont",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/viajamont/mont-experiences-ui#readme"
 }
