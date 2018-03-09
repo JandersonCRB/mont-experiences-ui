@@ -1,0 +1,55 @@
+.bookings-collection ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 40px;
+}
+.bookings-collection ul li {
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px;
+}
+.bookings-collection h3 {
+  padding: 10px;
+}
+@media all and (max-width: 767px) {
+  ul li {
+    padding: 5px;
+  }
+}
+.booking-block:hover {
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+  transition: 2s;
+  position: relative;
+  top: -2px;
+}
+.bookings-wrap {
+  padding-bottom: 20px;
+}
+.booking-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: #484848;
+}
+.booking-detail {
+  color: #484848;
+}
+.detail-title {
+  color: #484848;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.detail-section ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+}
+.detail-section ul li {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px 0px 10px 0px !important;
+}

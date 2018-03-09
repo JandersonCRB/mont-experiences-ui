@@ -10,7 +10,7 @@ import { inject, observer } from 'mobx-react';
 
 import { browserHistory } from 'react-router';
 
-import './SignUp.scss';
+import './SignUp.css';
 
 @inject('session')
 @inject('user') @observer

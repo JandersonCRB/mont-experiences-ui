@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router';
-import './Card.scss';
+import './Card.css';
 
 export default class Card extends React.Component {
 

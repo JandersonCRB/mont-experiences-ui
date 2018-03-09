@@ -1,49 +1,40 @@
 .topic-container {
   padding-top: 20px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #DBDBDB;
+  border-bottom: 1px solid #dbdbdb;
 }
-
 .topic-title {
   margin-bottom: 16px;
   font-size: 20px;
   color: #484848;
   font-weight: 500;
 }
-
-.topic-content {
-  span {
-    font-size: 17px;
-    color: #484848;
-  }
+.topic-content span {
+  font-size: 17px;
+  color: #484848;
 }
-
 .price-container {
   padding-bottom: 15px;
-  span {
-    color: #484848;
-  }
 }
-
+.price-container span {
+  color: #484848;
+}
 .btn-book {
   background-color: #9037ff;
   color: #fff;
   height: 45px;
 }
-
 .page-wrap {
   margin-bottom: 40px;
 }
-
 @media all and (min-width: 767px) {
   .page-wrap {
     padding-left: 30px;
     padding-right: 30px;
   }
 }
-
 .booking-bottom {
-  border-top: 1px solid #DBDBDB;
+  border-top: 1px solid #dbdbdb;
   padding-top: 5px;
   margin-left: -15px;
   margin-right: -15px;
@@ -51,66 +42,55 @@
   padding-right: 15px;
   padding-bottom: 0px !important;
 }
-
 .price {
   font-weight: 500;
   font-size: 25px;
   color: #484848;
 }
-
-.sidebar{
-    position: -webkit-sticky;  // required for Safari
-    position: sticky;
-    top: 0px;
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
 }
-
-.experience-name {
-  h2 {
-    color: #484848;
-    font-size: 30px;
-    font-weight: 500;
-    padding-bottom: 20px;
-  }
+.experience-name h2 {
+  color: #484848;
+  font-size: 30px;
+  font-weight: 500;
+  padding-bottom: 20px;
 }
-
 .experience-icons {
   padding-top: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #DBDBDB;
-  border-top: 1px solid #DBDBDB;
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  li {
-    padding-bottom: 5px;
-    padding-left: 0px;
-  }
+  border-bottom: 1px solid #dbdbdb;
+  border-top: 1px solid #dbdbdb;
 }
-
+.experience-icons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.experience-icons li {
+  padding-bottom: 5px;
+  padding-left: 0px;
+}
 .icon-text {
   line-height: 28px;
   font-size: 17px;
 }
-
 .icon {
   vertical-align: middle;
   line-height: 28px;
   font-size: 18px;
   color: #484848;
 }
-
 @media all and (max-width: 767px) {
   .icon-text {
     line-height: 18px;
   }
-
   .icon {
     line-height: 18px;
   }
 }
-
 button {
   font-weight: 500 !important;
 }

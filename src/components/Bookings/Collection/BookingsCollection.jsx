@@ -8,7 +8,7 @@ import purple from 'material-ui/colors/purple';
 
 import Currency from 'react-currency-formatter';
 
-import './BookingsCollection.scss';
+import './BookingsCollection.css';
 
 import { Link } from 'react-router';
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router';
 
-import './Navbar.scss';
+import './Navbar.css';
 import { inject, observer } from 'mobx-react';
 
 @inject('session') @observer

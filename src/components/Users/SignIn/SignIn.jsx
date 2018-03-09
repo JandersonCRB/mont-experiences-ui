@@ -10,7 +10,7 @@ import { inject, observer } from 'mobx-react';
 
 import { browserHistory } from 'react-router';
 
-import './SignIn.scss';
+import './SignIn.css';
 
 @inject('session') @observer
 export default class SignIn extends Component {

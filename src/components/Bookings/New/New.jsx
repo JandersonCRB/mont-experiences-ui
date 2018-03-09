@@ -11,7 +11,7 @@ import 'moment/locale/pt-br.js';
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
 
-import './New.scss';
+import './New.css';
 
 import Location from 'material-ui-icons/LocationOn';
 import Date from 'material-ui-icons/DateRange';

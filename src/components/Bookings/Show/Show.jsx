@@ -8,7 +8,7 @@ import purple from 'material-ui/colors/purple';
 import Currency from 'react-currency-formatter';
 
 
-import './Show.scss';
+import './Show.css';
 
 @inject('booking') @observer
 class BookingsShow extends Component {
