@@ -29,6 +29,15 @@ const routes =
             <IndexRoute component={c.Bookings} />
             <Route path=':bookingId' exact component={c.BookingsShow} />
         </Route>
+        <Route path='about' component={c.Layout} >
+          <IndexRoute exact component={c.AboutUs} />
+        </Route>
+        <Route path='help' component={c.Layout} >
+          <IndexRoute exact component={c.Help} />
+        </Route>
+        <Route path='partners' component={c.Layout} >
+          <IndexRoute exact component={c.Partners} />
+        </Route>
         <Route path='/' component={c.Layout} >
             <IndexRoute component={c.Home} />
         </Route>

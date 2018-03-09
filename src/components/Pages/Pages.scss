@@ -1,0 +1,68 @@
+.cover-section {
+  margin-top: -24px;
+}
+
+.content-section {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  h2 {
+    color: #484848;
+    font-weight: 500;
+    font-size: 26px;
+  }
+  .content-text {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    p {
+      color: #808080;
+      font-size: 20px;
+    }
+    span {
+      color: #484848;
+      font-size: 16px;
+    }
+  }
+}
+
+.icon-container {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.alternative-bg {
+  background-color: #fafafa;
+}
+
+.featured-section {
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-color: #9C27B0;
+  h1 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: 0px;
+  }
+  h2 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 44px;
+  }
+}
+
+.faq-section {
+  h2 {
+    color: #484848;
+    font-weight: 500;
+    font-size: 26px;
+  }
+  .faq-content {
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+  .summary {
+    color: #808080;
+    font-weight: 500;
+  }
+}
