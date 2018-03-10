@@ -43,7 +43,7 @@ const models = {
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
         <Provider {...stores} {...models} >
-            <Router routes={routes} history={browserHistory} />
+            <Router routes={routes} history={browserHistory} onUpdate={() => window.scrollTo(0, 0)} />
         </Provider>
     </MuiThemeProvider>,
         document.getElementById('root'));
