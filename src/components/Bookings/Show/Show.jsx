@@ -19,7 +19,7 @@ class BookingsShow extends Component {
 	}
 
 	renderBooking = (booking) => {
-		if (!booking) return null;
+		if (!booking.experience) return null;
 		return (
 			<div className="col-sm-8 mx-auto">
 				<div className="booking-details">
