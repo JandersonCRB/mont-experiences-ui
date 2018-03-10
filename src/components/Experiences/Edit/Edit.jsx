@@ -49,7 +49,7 @@ class Edit extends Component {
 				})
 				experience.setSelected(body);
 				this.setState({values: body});
-				console.log(this.state);
+				(this.state);
 			},
 			404: () => {this.notFound = true;}
 		}); //GET REQUEST
@@ -64,7 +64,6 @@ class Edit extends Component {
 	submitExperience(e) {
 		e.preventDefault();
 
-		console.log(this.state);
 	}
 	render() {
 		const { selected, isLoading } = this.props.experience;
@@ -73,7 +72,6 @@ class Edit extends Component {
 		}else if(this.notFound){
 			return <div>EXPERIENCE NOT FOUND</div>;
 		}
-		console.log(selected);
 		return (
 			//ADICIONAR CANCELAMENTO E CHECKBOXES
 			<div className='container mb-4'>
