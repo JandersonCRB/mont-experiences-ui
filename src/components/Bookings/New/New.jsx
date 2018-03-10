@@ -238,9 +238,9 @@ class BookingsNew extends Component {
               <ul className="list-unstyled">
                 <li>Nome: {this.state.values.name}</li>
                 <li>Email: {this.state.values.email}</li>
-                <li>Telefone: {this.state.values.phone}</li>
-                <li>{this.state.values.address}</li>
-                <li>  {this.state.values.address}</li>
+                <li>Telefone:{this.state.values.phone}</li>
+                <li>Endereço:{this.state.values.address}</li>
+                <li>Complemento:{this.state.values.complement}</li>
               </ul>
             </div>
             {/* <div className="section-container">
@@ -307,7 +307,6 @@ class BookingsNew extends Component {
                 <ul className="list-unstyled">
                   <li className="title">{this.props.experience.selected.name}</li>
                   <li><span className="icon"><Location fontSize /> </span><span className="icon-text">{this.props.experience.selected.location}</span></li>
-                  {console.log(this.state)}
                   <li><span className="icon"><Date fontSize /> </span><span className="icon-text">{this.state.values.dates.format("LL")}</span></li>
                   <li><span className="icon"><People fontSize /> </span><span className="icon-text">{this.state.values.adults}</span></li>
                 </ul>
