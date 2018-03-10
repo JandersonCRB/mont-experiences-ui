@@ -243,7 +243,7 @@ class BookingsNew extends Component {
                 <li>  {this.state.values.address}</li>
               </ul>
             </div>
-            <div className="section-container">
+            {/* <div className="section-container">
               <div className="section-title">Observações</div>
               <ul>
                 {() => {
@@ -258,11 +258,11 @@ class BookingsNew extends Component {
                 }}
                 {() => {
                   if (this.props.experience.selected.cancelation) {
-                    return <li>{this.props.experience.selected.cancelation}</li>
+                    return <li><span>{this.props.experience.selected.cancelation}</span></li>
                   }
                 }}
               </ul>
-            </div>
+            </div> */}
           </div>
         )
       default:
