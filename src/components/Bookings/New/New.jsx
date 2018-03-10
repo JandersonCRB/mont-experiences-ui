@@ -10,6 +10,7 @@ import 'moment/locale/pt-br.js';
 
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
+import Currency from 'react-currency-formatter';
 
 import './New.css';
 
@@ -135,6 +136,10 @@ class BookingsNew extends Component {
       return null;
     }
   }
+
+  getFinalPrice() {
+    return this.props.experience.selected.price*this.state.values.adults
+  };
 
   getStepContent(step) {
     switch (step) {
@@ -309,21 +314,34 @@ class BookingsNew extends Component {
                   <li><span className="icon"><Location fontSize /> </span><span className="icon-text">{this.props.experience.selected.location}</span></li>
                   {console.log(this.state)}
                   <li><span className="icon"><Date fontSize /> </span><span className="icon-text">{this.state.values.dates.format("LL")}</span></li>
-                  <li><span className="icon"><People fontSize /> </span><span className="icon-text">{this.state.values.adults}</span></li>
                 </ul>
                 <div>
                   <div></div>
                   <div>{this.props.experience.selected.cost}</div>
                 </div>
                 <div className="confirm-container">
-                  <Button
-                    variant="raised"
-                    fullWidth
-                    color="primary"
-                    onClick={this.handleNext}
-                  >
-                    {activeStep === steps.length - 1 ? 'Confirmar' : 'Avançar'}
-                  </Button>
+                    <div className='row'>
+                      <div className='col-5'>
+                        {this.state.values.adults} Adultos
+                      </div>
+                      <div className='col-2 text-center'>
+                          x
+                      </div>
+                      <div className='col-5 text-right'>
+                        <Currency quantity={this.props.experience.selected.price} currency='BRL' />
+                      </div>
+                    </div>
+                </div>
+                <div className="total-container">
+                  <hr/>
+                  <div className='row'>
+                    <div className='col-6'>
+                      <span>Total</span>
+                    </div>
+                    <div className='col-6 text-right'>
+                      <span><Currency quantity={this.getFinalPrice()} currency='BRL' /></span>
+                    </div>
+                  </div>
                 </div>
               </Paper>
             </div>
