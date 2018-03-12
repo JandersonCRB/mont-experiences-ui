@@ -35,48 +35,48 @@ export default class Show extends React.Component {
 
     if (selected.location) {
       buffer.push(
-        <li key='location-icon'><span className="icon"><Location fontSize /> </span><span className="icon-text">{selected.location}</span></li>
+        <li key='location-icon'><span className="icon"><Location /> </span><span className="icon-text">{selected.location}</span></li>
       );
     }
 
     if (selected.calendar) {
       buffer.push(
-        <li key='calendar-icon'><span className="icon"><Date fontSize /> </span><span className="icon-text">{selected.calendar}</span></li>
+        <li key='calendar-icon'><span className="icon"><Date /> </span><span className="icon-text">{selected.calendar}</span></li>
       );
     }
 
     if (selected.duration) {
       buffer.push(
-        <li key='duration-icon'><span className="icon"><Timer fontSize /> </span><span className="icon-text">{selected.duration}</span></li>
+        <li key='duration-icon'><span className="icon"><Timer /> </span><span className="icon-text">{selected.duration}</span></li>
       );
     }
 
     if (selected.language) {
       buffer.push(
-        <li key='language-icon'><span className="icon"><Language fontSize /> </span><span className="icon-text">{selected.language}</span></li>
+        <li key='language-icon'><span className="icon"><Language /> </span><span className="icon-text">{selected.language}</span></li>
       );
     }
 
     if (selected.cancelation) {
       buffer.push(
-        <li key='cancelation-icon'><span className="icon"><Cancel fontSize /> </span><span className="icon-text">{selected.cancelation}</span></li>
+        <li key='cancelation-icon'><span className="icon"><Cancel /> </span><span className="icon-text">{selected.cancelation}</span></li>
       );
     }
 
     if (selected.payment_method) {
       buffer.push(
-        <li key='payment_method-icon'><span className="icon"><Payment fontSize /> </span><span className="icon-text">{selected.payment_method}</span></li>
+        <li key='payment_method-icon'><span className="icon"><Payment  /> </span><span className="icon-text">{selected.payment_method}</span></li>
       );
     }
 
     if (selected.has_transfer) {
       buffer.push(
-        <li key='bus-icon'><span className="icon"><Transfer fontSize /> </span><span className="icon-text">Transfer Incluso</span></li>
+        <li key='bus-icon'><span className="icon"><Transfer /> </span><span className="icon-text">Transfer Incluso</span></li>
       );
     }
     else {
       buffer.push(
-        <li key='car-icon'><span className="icon"><Car fontSize /> </span><span className="icon-text">Encontro no local</span></li>
+        <li key='car-icon'><span className="icon"><Car /> </span><span className="icon-text">Encontro no local</span></li>
       );
     }
 
