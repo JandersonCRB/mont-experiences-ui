@@ -16,10 +16,12 @@ class SlideShow extends Component {
     this.interval = setInterval(this.showPrevious, 3000);
   }
 
-  componentWillMount() {
+  // componentWillMount() {
+  //   clearInterval(this.interval);
+  // }
+  componentWillUnmount(){
     clearInterval(this.interval);
   }
-
   showNext = () => {
     const { total, current} = this.state;
     this.setState({
