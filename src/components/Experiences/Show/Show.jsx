@@ -165,7 +165,7 @@ export default class Show extends React.Component {
     return (
       <Paper elevation={6} style={{ borderRadius: "4px" }} className="p-3 mb-4">
         <div className="price-container">
-          <span className="price"><Currency quantity={selected.price} currency='BRL' /></span>
+          <span className="price"><Currency quantity={Number(selected.price)} currency='BRL' /></span>
           <span> por pessoa</span>
         </div>
         <div className="booking-bottom">

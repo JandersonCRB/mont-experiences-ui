@@ -37,11 +37,11 @@ class BookingsShow extends Component {
 							</li>
 							<li className="col-sm-6 col-6">
 								<div className="detail-title">Valor por Pessoa</div>
-								<div className="booking-detail-2"><Currency quantity={booking.experience.price} currency='BRL' /></div>
+								<div className="booking-detail-2"><Currency quantity={Number(booking.experience.price)} currency='BRL' /></div>
 							</li>
 							<li className="col-sm-6 col-6">
 								<div className="detail-title">Total</div>
-								<div className="booking-detail-2">{<Currency quantity={booking.cost} currency='BRL' />}</div>
+								<div className="booking-detail-2">{<Currency quantity={Number(booking.cost)} currency='BRL' />}</div>
 							</li>
 						</ul>
 					</div>

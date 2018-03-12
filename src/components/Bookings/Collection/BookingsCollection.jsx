@@ -46,7 +46,7 @@ class BookingsCollection extends Component {
 									</li>
 									<li className="col-sm-6 col-6">
 										<div className="detail-title">Total</div>
-										<div className="booking-detail"><Currency quantity={booking.cost} currency='BRL' /></div>
+										<div className="booking-detail"><Currency quantity={Number(booking.cost)} currency='BRL' /></div>
 									</li>
 								</ul>
 							</div>

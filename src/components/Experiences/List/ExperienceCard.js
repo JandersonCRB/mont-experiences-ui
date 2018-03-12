@@ -19,7 +19,7 @@ const ExperienceCard = ({experience}) => {
             <div className="title-block">
               <div className="title">{experience.name}</div>
             </div>
-            <div className="price"><Currency quantity={experience.price} currency='BRL' /></div>
+            <div className="price"><Currency quantity={Number(experience.price)} currency='BRL' /></div>
           </div>
         </div>
         </Link>
