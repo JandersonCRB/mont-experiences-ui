@@ -85,3 +85,13 @@
   font-size: 18px;
   font-weight: 600;
 }
+
+.total-container hr {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.total-container span  {
+  font-weight: 700;
+  color: #484848;
+}
