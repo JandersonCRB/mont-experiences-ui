@@ -49,7 +49,6 @@ class Edit extends Component {
 				})
 				experience.setSelected(body);
 				this.setState({values: body});
-				(this.state);
 			},
 			404: () => {this.notFound = true;}
 		}); //GET REQUEST
@@ -66,7 +65,7 @@ class Edit extends Component {
 
 	}
 	render() {
-		const { selected, isLoading } = this.props.experience;
+		const { isLoading } = this.props.experience;
 		if (isLoading){
 			return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
 		}else if(this.notFound){

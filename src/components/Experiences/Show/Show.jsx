@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router';
 
 import './Show.css';
-import SlideShow from './SlideShow.js';
+import SlideShow from './SlideShow.jsx';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Location from 'material-ui-icons/LocationOn';

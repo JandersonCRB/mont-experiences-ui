@@ -1,8 +1,8 @@
 import React, {Component, Children} from 'react';
 
 import './SlideShow.css';
-import Next from 'material-ui-icons/KeyboardArrowRight';
-import Back from 'material-ui-icons/KeyboardArrowLeft';
+// import Next from 'material-ui-icons/KeyboardArrowRight';
+// import Back from 'material-ui-icons/KeyboardArrowLeft';
 
 class SlideShow extends Component {
   state = {

@@ -15,19 +15,10 @@ import './New.css';
 
 import Location from 'material-ui-icons/LocationOn';
 import Date from 'material-ui-icons/DateRange';
-import Timer from 'material-ui-icons/Timer';
 import People from 'material-ui-icons/People';
-import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-
-import { Link } from 'react-router';
 
 @inject('experience')
 @inject('booking')
