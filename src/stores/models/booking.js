@@ -21,6 +21,11 @@ class Booking extends Connect {
                     ];
         return status[this.selected.status];
     }
+    @action cancel(){
+        if(!this.selected){
+            return null;
+        }
+    }
 }
 
 mix(Booking, scopes.readable);

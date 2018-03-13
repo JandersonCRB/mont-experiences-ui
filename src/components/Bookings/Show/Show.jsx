@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 
 import { CircularProgress } from 'material-ui/Progress';
 import purple from 'material-ui/colors/purple';
+import Button from 'material-ui/Button';
 
 import moment from 'moment'
 import 'moment/locale/pt-br.js';
@@ -17,6 +18,7 @@ import './Show.css';
 class BookingsShow extends Component {
 	constructor(){
 		super();
+		this.state = {disabled: false}
 		moment.locale('pt-br');
 	}
 	componentWillMount() {
@@ -69,15 +71,19 @@ class BookingsShow extends Component {
 							</li>
 						</ul>
 					</div>
+					{/* <Button color='primary' variant='raised' disabled={this.state.disabled} onClick={this.cancel}> Cancelar </Button> */}
 				</div>
 			</div>
 		)
 	}
-
+	cancel = (e) => {
+		this.props.bookings.cancel();
+		this.setState({disabled: true});
+	}
 	render() {
 		const { isLoading, selected } = this.props.booking;
 		if (isLoading) {
-			return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
+			return <CircularProgress className="mr-auto ml-auto" color='primary' thickness={7} />;
 		} else {
 			return (
 				<div className="container">
