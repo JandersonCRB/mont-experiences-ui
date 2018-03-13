@@ -5,6 +5,9 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress } from 'material-ui/Progress';
 import purple from 'material-ui/colors/purple';
 
+import moment from 'moment'
+import 'moment/locale/pt-br.js';
+
 import Currency from 'react-currency-formatter';
 
 
@@ -12,6 +15,10 @@ import './Show.css';
 
 @inject('booking') @observer
 class BookingsShow extends Component {
+	constructor(){
+		super();
+		moment.locale('pt-br');
+	}
 	componentWillMount() {
 		const { booking } = this.props;
 		const id = this.props.params.bookingId;
@@ -29,7 +36,7 @@ class BookingsShow extends Component {
 						<ul>
 							<li className="col-sm-6 col-6">
 								<div className="detail-title">Data</div>
-								<div className="booking-detail-2">{booking.dates}</div>
+								<div className="booking-detail-2">{moment(booking.dates).format('LL')}</div>
 							</li>
 							<li className="col-sm-6 col-6">
 								<div className="detail-title">Pessoas</div>
