@@ -31,7 +31,7 @@ class BookingsShow extends Component {
 			<div className="col-sm-8 mx-auto">
 				<div className="booking-details">
 					<div className="booking-name-2">{booking.experience.name}</div>
-					<div className="booking-status">{booking.status}</div>
+					<div className="booking-status">{this.props.booking.getStatusName()}</div>
 					<div className="detail-section">
 						<ul>
 							<li className="col-sm-6 col-6">
