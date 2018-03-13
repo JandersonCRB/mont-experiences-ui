@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react';
 
 import { CircularProgress } from 'material-ui/Progress';
-import purple from 'material-ui/colors/purple';
 import Button from 'material-ui/Button';
 
 import moment from 'moment'
