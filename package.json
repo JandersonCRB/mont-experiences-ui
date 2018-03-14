@@ -26,7 +26,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "testdeploy": "aws s3 cp build s3://testmontviagens-hosting-mobilehub-1694655000 --recursive",
-    "deploy": "aws s3 cp build s3://montexperiences-hosting-mobilehub-212957878 --recursive",
+    "deploy": "aws s3 cp build s3://montexperiencesuser-hosting-mobilehub-327530553 --recursive",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject"
   }
