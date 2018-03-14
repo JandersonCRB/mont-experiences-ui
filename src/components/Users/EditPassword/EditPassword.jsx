@@ -22,7 +22,6 @@ class EditPassword extends Component {
 	}
 
 	submit = e => {
-		console.log(e);
 		e.preventDefault();
 
 		const { user } = this.props;

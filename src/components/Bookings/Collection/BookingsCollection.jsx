@@ -12,9 +12,15 @@ import './BookingsCollection.css';
 
 import { Link } from 'react-router';
 
+import moment from 'moment'
+import 'moment/locale/pt-br.js';
+
 @inject('booking') @observer
 class BookingsCollection extends Component {
-
+	constructor(){
+		super();
+		moment.locale('pt-br');
+	}
 	componentWillMount() {
 		const { booking } = this.props;
 
@@ -34,7 +40,7 @@ class BookingsCollection extends Component {
 								<ul>
 									<li className="col-sm-6 col-6">
 										<div className="detail-title">Data</div>
-										<div className="booking-detail">{booking.dates}</div>
+										<div className="booking-detail">{moment(booking.dates).format('ll')}</div>
 									</li>
 									<li className="col-sm-6 col-6">
 										<div className="detail-title">Pessoas</div>
@@ -46,7 +52,7 @@ class BookingsCollection extends Component {
 									</li>
 									<li className="col-sm-6 col-6">
 										<div className="detail-title">Total</div>
-										<div className="booking-detail"><Currency quantity={booking.cost} currency='BRL' /></div>
+										<div className="booking-detail"><Currency quantity={Number(booking.cost)} currency='BRL' /></div>
 									</li>
 								</ul>
 							</div>

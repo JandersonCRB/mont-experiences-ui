@@ -1,8 +1,8 @@
 import React, {Component, Children} from 'react';
 
 import './SlideShow.css';
-import Next from 'material-ui-icons/KeyboardArrowRight';
-import Back from 'material-ui-icons/KeyboardArrowLeft';
+// import Next from 'material-ui-icons/KeyboardArrowRight';
+// import Back from 'material-ui-icons/KeyboardArrowLeft';
 
 class SlideShow extends Component {
   state = {
@@ -16,10 +16,12 @@ class SlideShow extends Component {
     this.interval = setInterval(this.showPrevious, 3000);
   }
 
-  componentWillMount() {
+  // componentWillMount() {
+  //   clearInterval(this.interval);
+  // }
+  componentWillUnmount(){
     clearInterval(this.interval);
   }
-
   showNext = () => {
     const { total, current} = this.state;
     this.setState({

@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react';
 
 import { CircularProgress } from 'material-ui/Progress';
-import purple from 'material-ui/colors/purple';
+import Button from 'material-ui/Button';
+
+import moment from 'moment'
+import 'moment/locale/pt-br.js';
 
 import Currency from 'react-currency-formatter';
 
@@ -12,6 +15,11 @@ import './Show.css';
 
 @inject('booking') @observer
 class BookingsShow extends Component {
+	constructor(){
+		super();
+		this.state = {disabled: false}
+		moment.locale('pt-br');
+	}
 	componentWillMount() {
 		const { booking } = this.props;
 		const id = this.props.params.bookingId;
@@ -19,17 +27,17 @@ class BookingsShow extends Component {
 	}
 
 	renderBooking = (booking) => {
-		if (!booking) return null;
+		if (!booking.experience) return null;
 		return (
 			<div className="col-sm-8 mx-auto">
 				<div className="booking-details">
 					<div className="booking-name-2">{booking.experience.name}</div>
-					<div className="booking-status">{booking.status}</div>
+					<div className="booking-status">{this.props.booking.getStatusName()}</div>
 					<div className="detail-section">
 						<ul>
 							<li className="col-sm-6 col-6">
 								<div className="detail-title">Data</div>
-								<div className="booking-detail-2">{booking.dates}</div>
+								<div className="booking-detail-2">{moment(booking.dates).format('LL')}</div>
 							</li>
 							<li className="col-sm-6 col-6">
 								<div className="detail-title">Pessoas</div>
@@ -37,11 +45,11 @@ class BookingsShow extends Component {
 							</li>
 							<li className="col-sm-6 col-6">
 								<div className="detail-title">Valor por Pessoa</div>
-								<div className="booking-detail-2"><Currency quantity={booking.experience.price} currency='BRL' /></div>
+								<div className="booking-detail-2"><Currency quantity={Number(booking.experience.price)} currency='BRL' /></div>
 							</li>
 							<li className="col-sm-6 col-6">
 								<div className="detail-title">Total</div>
-								<div className="booking-detail-2">{<Currency quantity={booking.cost} currency='BRL' />}</div>
+								<div className="booking-detail-2">{<Currency quantity={Number(booking.cost)} currency='BRL' />}</div>
 							</li>
 						</ul>
 					</div>
@@ -62,15 +70,19 @@ class BookingsShow extends Component {
 							</li>
 						</ul>
 					</div>
+					{/* <Button color='primary' variant='raised' disabled={this.state.disabled} onClick={this.cancel}> Cancelar </Button> */}
 				</div>
 			</div>
 		)
 	}
-
+	cancel = (e) => {
+		this.props.bookings.cancel();
+		this.setState({disabled: true});
+	}
 	render() {
 		const { isLoading, selected } = this.props.booking;
 		if (isLoading) {
-			return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
+			return <CircularProgress className="mr-auto ml-auto" color='primary' thickness={7} />;
 		} else {
 			return (
 				<div className="container">

@@ -51,7 +51,6 @@ class New extends Component {
 			},
 			422: (response) => {
 				this.setState(response);
-				console.log(this.state.errors.name[0]);
 			}
 		})
 	}

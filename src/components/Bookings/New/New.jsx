@@ -10,22 +10,18 @@ import 'moment/locale/pt-br.js';
 
 import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates';
+import Currency from 'react-currency-formatter';
 
 import './New.css';
 
 import Location from 'material-ui-icons/LocationOn';
 import Date from 'material-ui-icons/DateRange';
-import Timer from 'material-ui-icons/Timer';
-import People from 'material-ui-icons/People';
-import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
-import ExpansionPanel, {
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+
+
+const MAX_ADULTS = 30;
 
 @inject('experience')
 @inject('booking')
@@ -45,7 +41,8 @@ class BookingsNew extends Component {
         complement: '',
         dates: moment()
       },
-      activeStep: 0
+      activeStep: 0,
+      disabled: false
     }
   }
 
@@ -56,10 +53,15 @@ class BookingsNew extends Component {
 
 
   submit() {
-    let body = this.state.values;
+    this.setState({disabled: true});
+    const body = Object.assign({}, this.state.values); //Using assign 'cause I don't wanna change the original object
     body.experience_id = this.props.experience.selected.id;
     body.dates = body.dates.format('YYYY-MM-DD');
-    this.props.booking.create({}, body);
+    this.props.booking.create({}, body, {
+      201: booking => {
+        browserHistory.push(`/bookings/${booking.id}`)
+      }
+    })
   }
 
   handleBack = () => {
@@ -69,28 +71,36 @@ class BookingsNew extends Component {
     });
   };
 
-  handleNext = () => {
+  handleNext = (e) => {
+    e.preventDefault();
     const { activeStep } = this.state;
     let { name, email, phone } = this.state.values;
     const steps = getSteps();
-    if(activeStep === 1){
-      if(name && email && phone){
+    if (activeStep === 1) {
+      if (name && email && phone) {
         this.setState({
           activeStep: activeStep + 1,
         });
       }
-    }else{
+    } else if (activeStep === steps.length - 1) {
+      this.submit();
+    } else {
       this.setState({
         activeStep: activeStep + 1,
       });
     }
-    if(activeStep === steps.length - 1){
-      this.submit();
-    }
+
   };
   change(e) {
     if (e._isAMomentObject) {
       const values = Object.assign(this.state.values, { dates: e }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
+      this.setState({ values });
+    } else if (e.target.name === 'adults') { //ADULTS VALIDATIONS
+      let adults = Number(e.target.value);
+      if (adults === 0) adults = 1;
+      if (adults < 0) adults *= -1;
+      if (adults > 30) adults = MAX_ADULTS;
+      const values = Object.assign(this.state.values, { adults }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
       this.setState({ values });
     } else {
       const values = Object.assign(this.state.values, { [e.target.name]: e.target.value }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
@@ -108,6 +118,7 @@ class BookingsNew extends Component {
               <TextField
                 name='address'
                 fullWidth
+                required
                 label='Hotel / Endereço'
                 value={this.state.values.address}
                 onChange={(e) => this.change(e)}
@@ -130,6 +141,10 @@ class BookingsNew extends Component {
     }
   }
 
+  getFinalPrice() {
+    return this.props.experience.selected.price * this.state.values.adults
+  };
+
   getStepContent(step) {
     switch (step) {
       case 0:
@@ -142,7 +157,7 @@ class BookingsNew extends Component {
               <div className="info-label">Selecione a Data</div>
               {/* // https://github.com/airbnb/react-dates */}
               <SingleDatePicker
-                transitionDuration = {0}
+                transitionDuration={0}
                 required
                 numberOfMonths={1}
                 showDefaultInputIcon
@@ -193,6 +208,7 @@ class BookingsNew extends Component {
                     fullWidth
                     name='email'
                     label='Email'
+                    type='email'
                     value={this.state.values.email}
                     onChange={(e) => this.change(e)}
                   />
@@ -223,44 +239,44 @@ class BookingsNew extends Component {
             <div className="section-container">
               <div className="section-title">Seu Agendamento</div>
               <ul className="list-unstyled">
-                <li>Data: {this.state.values.dates.format("ll")}</li>
+                <li>Data: {this.state.values.dates.format("lll")}</li>
                 <li>Quantidade de Pessoas: {this.state.values.adults}</li>
               </ul>
             </div>
             <div className="section-container">
               <div className="section-title">Detalhes do Titular</div>
-                <ul className="list-unstyled">
-                  <li>Nome: {this.state.values.name}</li>
-                  <li>Email: {this.state.values.email}</li>
-                  <li>Telefone: {this.state.values.phone}</li>
-                  <li>{this.state.values.address}</li>
-                  <li>  {this.state.values.address}</li>
-                </ul>
-            </div>
-            <div className="section-container">
-              <div className="section-title">Observações</div>
-              <ul>
-                  { () => {
-                    if (this.props.experience.selected.has_transfer) {
-                      return <li>{this.props.experience.selected.has_transfer}</li>
-                    }
-                 } }
-                 { () => {
-                   if (this.props.experience.selected.payment_method) {
-                     return <li>{this.props.experience.selected.payment_method}</li>
-                   }
-                } }
-                { () => {
-                  if (this.props.experience.selected.cancelation) {
-                    return <li>{this.props.experience.selected.cancelation}</li>
-                  }
-               } }
+              <ul className="list-unstyled">
+                <li>Nome: {this.state.values.name}</li>
+                <li>Email: {this.state.values.email}</li>
+                <li>Telefone:{this.state.values.phone}</li>
+                <li>Endereço:{this.state.values.address}</li>
+                <li>Complemento:{this.state.values.complement}</li>
               </ul>
             </div>
+            {/* <div className="section-container">
+              <div className="section-title">Observações</div>
+              <ul>
+                {() => {
+                  if (this.props.experience.selected.has_transfer) {
+                    return <li>{this.props.experience.selected.has_transfer}</li>
+                  }
+                }}
+                {() => {
+                  if (this.props.experience.selected.payment_method) {
+                    return <li>{this.props.experience.selected.payment_method}</li>
+                  }
+                }}
+                {() => {
+                  if (this.props.experience.selected.cancelation) {
+                    return <li><span>{this.props.experience.selected.cancelation}</span></li>
+                  }
+                }}
+              </ul>
+            </div> */}
           </div>
         )
       default:
-        return 'Unknown step';
+        return <span>Ops, parece que algo deu errado.</span>;
     }
   };
 
@@ -277,59 +293,62 @@ class BookingsNew extends Component {
         <div className='container'>
           <div className='row'>
             <div className='col-md-8 col-sm-12'>
-              {this.getStepContent(activeStep)}
-              {activeStep === steps.length ? (
-                <div>
-                  <span>
-                    Seu pedido de agendamento foi solicitado, entraremos em contato! <br/>
-                    Obrigado pela preferência
-                </span>
+              <form onSubmit={this.handleNext}>
+                {this.getStepContent(activeStep)}
+                <div className="flow-container text-center">
+                  <Button
+                    className="m-3"
+                    disabled={activeStep === 0}
+                    onClick={this.handleBack}
+                  >
+                    Voltar
+                  </Button>
+                  <Button
+                    className="m-3"
+                    variant="raised"
+                    color="primary"
+                    type="submit"
+                    disabled = {this.state.disabled}
+                  >
+                    {activeStep === steps.length - 1 ? 'Confirmar' : 'Avançar'}
+                  </Button>
                 </div>
-              ) : (
-                  <React.Fragment>
-                    <form>
-                      <div className="flow-container text-center">
-                        <Button
-                          className="m-3"
-                          disabled={activeStep === 0}
-                          onClick={this.handleBack}
-                        >
-                          Voltar
-                        </Button>
-                        <Button
-                          className="m-3"
-                          variant="raised"
-                          color="primary"
-                          onClick={this.handleNext}
-                        >
-                          {activeStep === steps.length - 1 ? 'Confirmar' : 'Avançar'}
-                        </Button>
-                      </div>
-                    </form>
-                  </React.Fragment>
-                )}
+              </form>
             </div>
             <div className='col-sm-4'>
               <Paper elevation={6} style={{ borderRadius: "4px" }} className="p-3 mb-5">
                 <ul className="list-unstyled">
                   <li className="title">{this.props.experience.selected.name}</li>
-                  <li className=""><span className="icon"><Location fontSize /> </span><span className="icon-text">{this.props.experience.selected.location}</span></li>
-                  <li className=""><span className="icon"><Date fontSize /> </span><span className="icon-text">{this.state.values.dates.format("ll")}</span></li>
-                  <li className=""><span className="icon"><People fontSize /> </span><span className="icon-text">{this.state.values.adults}</span></li>
+                  <li><span className="icon"><Location /> </span><span className="icon-text">{this.props.experience.selected.location}</span></li>
+                  <li><span className="icon"><Date /> </span><span className="icon-text">{this.state.values.dates.format("LL")}</span></li>
                 </ul>
                 <div>
                   <div></div>
                   <div>{this.props.experience.selected.cost}</div>
                 </div>
                 <div className="confirm-container">
-                  <Button
-                    variant="raised"
-                    fullWidth
-                    color="primary"
-                    onClick={this.handleNext}
-                  >
-                    {activeStep === steps.length - 1 ? 'Confirmar' : 'Avançar'}
-                  </Button>
+                  <div className='row'>
+                    <div className='col-5'>
+                      {this.state.values.adults} {this.state.values.adults > 1 ? 'Adultos' : 'Adulto'}
+                    </div>
+                    <div className='col-2 text-center'>
+                      x
+                      </div>
+                    <div className='col-5 text-right'>
+                      <Currency quantity={Number(this.props.experience.selected.price)} currency='BRL' />
+                    </div>
+                  </div>
+                </div>
+                <div className="total-container">
+                  <hr />
+                  <div className='row'>
+                    <div className='col-6'>
+                      <span>Total</span>
+                    </div>
+                    <div className='col-6 text-right'>
+                      <span><Currency quantity={Number(this.getFinalPrice())} currency='BRL' /></span>
+                    </div>
+                  </div>
                 </div>
               </Paper>
             </div>

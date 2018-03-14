@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router';
 
 import './Footer.css';
 
@@ -12,7 +13,7 @@ export default class Footer extends Component {
               <div className="col-md-3 col-sm-6">
                 <div className="menu-header">Sobre</div>
                 <ul>
-                  <li>Sobre Nós</li>
+                  <li><Link to={'/about'} >Sobre Nós</Link></li>
                   <li>Política de Privacidade</li>
                   <li>Termos e Condições</li>
                 </ul>
@@ -20,7 +21,7 @@ export default class Footer extends Component {
               <div className="col-md-3 col-sm-6">
                 <div className="menu-header">Ajuda</div>
                 <ul>
-                  <li>FAQ</li>
+                  <li><Link to={'/help'} >Perguntas Frequentes</Link></li>
                 </ul>
               </div>
               <div className="col-md-3 col-sm-6">
@@ -33,7 +34,6 @@ export default class Footer extends Component {
               <div className="menu-header">Fale com a Mont</div>
               <ul>
                 <li>suporte@montviagens.com</li>
-                <li>Chat</li>
               </ul>
               </div>
             </div>

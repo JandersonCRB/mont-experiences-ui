@@ -25,8 +25,11 @@ const theme = createMuiTheme({
     },
 });
 
+const hostname = window && window.location && window.location.hostname;
+const api_link = hostname === 'montviagens.com' ? 'https://api.montviagens.com/' : 'http://localhost:3000/';
+
 const endpoint = api({
-    endpoint: 'https://api.montviagens.com/',
+    endpoint: api_link,
     header: (h) => {
         h.append('X-User-Email', localStorage.getItem('email'));
         h.append('X-User-Token', localStorage.getItem('token'));
@@ -43,7 +46,7 @@ const models = {
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
         <Provider {...stores} {...models} >
-            <Router routes={routes} history={browserHistory} />
+            <Router routes={routes} history={browserHistory} onUpdate={() => window.scrollTo(0, 0)} />
         </Provider>
     </MuiThemeProvider>,
         document.getElementById('root'));

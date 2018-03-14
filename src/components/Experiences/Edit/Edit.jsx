@@ -49,7 +49,6 @@ class Edit extends Component {
 				})
 				experience.setSelected(body);
 				this.setState({values: body});
-				console.log(this.state);
 			},
 			404: () => {this.notFound = true;}
 		}); //GET REQUEST
@@ -64,16 +63,14 @@ class Edit extends Component {
 	submitExperience(e) {
 		e.preventDefault();
 
-		console.log(this.state);
 	}
 	render() {
-		const { selected, isLoading } = this.props.experience;
+		const { isLoading } = this.props.experience;
 		if (isLoading){
 			return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
 		}else if(this.notFound){
 			return <div>EXPERIENCE NOT FOUND</div>;
 		}
-		console.log(selected);
 		return (
 			//ADICIONAR CANCELAMENTO E CHECKBOXES
 			<div className='container mb-4'>
