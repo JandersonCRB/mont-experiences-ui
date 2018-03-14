@@ -14,7 +14,7 @@ export default class Home extends Component {
 
 		const experience = this.props.experience;
 
-		experience.findAll();
+		experience.load({recommended: true});
 	}
 
 	renderExperiences(collection, isLoading) {

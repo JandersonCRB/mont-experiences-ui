@@ -67,19 +67,19 @@ const request = (method, path, callback, body) => {
 		.then(response => {
 			status = response.status;
 			return response.text()
-			.then((text) =>{
-				return text ? JSON.parse(text) : {}
-			})
+				.then((text) => {
+					return text ? JSON.parse(text) : {}
+				})
 		})
 		.then(body => {
-			if (defaultCallback[status]){
+			if (defaultCallback[status]) {
 				defaultCallback[status](body);
-			} else if(defaultCallback['default']){
+			} else if (defaultCallback['default']) {
 				defaultCallback['default'](body);
 			}
-			if (userCallback[status]){
+			if (userCallback[status]) {
 				userCallback[status](body);
-			} else if(userCallback['default']){
+			} else if (userCallback['default']) {
 				userCallback['default'](body);
 			}
 		});
@@ -88,7 +88,16 @@ const request = (method, path, callback, body) => {
 };
 
 const api = {
-	get(path) {
+	get(path, params = {}, userCallback = {}) {
+		const callback = {defaultCallback: {}, userCallback};
+		if (!Object.keys(params).length === 0 && params.constructor === Object) { //checks if params is not empty
+			path += `/?`;
+			Object.keys(params).map(e => {
+				path += `${e}=${params[e]}&`
+			})
+			path = path.slice(0, -1); //Removes the last element. which is a '&' character
+		}
+
 		return request('GET', path);
 	},
 	post(path, data = {}, userCallback = {}) {
