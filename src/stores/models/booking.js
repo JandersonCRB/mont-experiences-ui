@@ -25,8 +25,17 @@ class Booking extends Connect {
         if(!this.selected){
             return null;
         }
-        console.log(this.api.endpoint);
-        this.put(`${this.api.endpoint}${this.namespace}/${this.resource}/${this.selected.id}/cancel`);
+        const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${this.selected.id}/cancel`
+        this.put(path, {}, {
+            200: (body) => {
+                this.setSelected(body);
+
+                this.setIsLoading(false);
+            },
+            default: () => {
+                this.setIsLoading(false);
+            }
+        });
     }
 }
 
