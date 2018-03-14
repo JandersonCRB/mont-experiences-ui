@@ -27,10 +27,12 @@ const theme = createMuiTheme({
 
 const hostname = window && window.location && window.location.hostname;
 const api_link = hostname === 'montviagens.com' ? 'https://api.montviagens.com/' : 'http://localhost:3000/';
+// const api_link = 'https://api.montviagens.com/';
 
 const endpoint = api({
     endpoint: api_link,
     header: (h) => {
+        h.append('Content-Type', 'application/json');
         h.append('X-User-Email', localStorage.getItem('email'));
         h.append('X-User-Token', localStorage.getItem('token'));
     }

@@ -70,13 +70,13 @@ class BookingsShow extends Component {
 							</li>
 						</ul>
 					</div>
-					{/* <Button color='primary' variant='raised' disabled={this.state.disabled} onClick={this.cancel}> Cancelar </Button> */}
+					<Button color='primary' variant='raised' disabled={this.state.disabled} onClick={this.cancel}> Cancelar </Button>
 				</div>
 			</div>
 		)
 	}
 	cancel = (e) => {
-		this.props.bookings.cancel();
+		this.props.booking.cancel();
 		this.setState({disabled: true});
 	}
 	render() {

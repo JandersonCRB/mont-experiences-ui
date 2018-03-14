@@ -25,9 +25,12 @@ class Booking extends Connect {
         if(!this.selected){
             return null;
         }
+        console.log(this.api.endpoint);
+        this.put(`${this.api.endpoint}${this.namespace}/${this.resource}/${this.selected.id}/cancel`);
     }
 }
 
+mix(Booking, scopes.api);
 mix(Booking, scopes.readable);
 mix(Booking, scopes.writable);
 
