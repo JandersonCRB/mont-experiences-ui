@@ -52,7 +52,7 @@ export default class SignIn extends Component {
 
 	render() {
 		if (this.props.session.signedIn) {
-			browserHistory.push('/');
+			browserHistory.goBack();
 		}
 		return (
 			<React.Fragment>
