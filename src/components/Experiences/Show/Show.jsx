@@ -21,7 +21,7 @@ export default class Show extends React.Component {
 
   componentWillMount() {
     const { experience } = this.props;
-    experience.findBy({ id: this.props.params.experienceId }, {
+    experience.load({ id: this.props.params.experienceId }, {
       200: (body) => {
         experience.setSelected(body);
         this.setState({ values: body });

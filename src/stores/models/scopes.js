@@ -72,15 +72,15 @@ const request = (method, path, callback, body) => {
 				})
 		})
 		.then(body => {
-			if (defaultCallback[status]) {
-				defaultCallback[status](body);
-			} else if (defaultCallback['default']) {
-				defaultCallback['default'](body);
-			}
 			if (userCallback[status]) {
 				userCallback[status](body);
 			} else if (userCallback['default']) {
 				userCallback['default'](body);
+			}
+			if (defaultCallback[status]) {
+				defaultCallback[status](body);
+			} else if (defaultCallback['default']) {
+				defaultCallback['default'](body);
 			}
 		});
 
@@ -89,16 +89,24 @@ const request = (method, path, callback, body) => {
 
 const api = {
 	get(path, params = {}, userCallback = {}) {
-		const callback = {defaultCallback: {}, userCallback};
-		if (!Object.keys(params).length === 0 && params.constructor === Object) { //checks if params is not empty
-			path += `/?`;
-			Object.keys(params).map(e => {
-				path += `${e}=${params[e]}&`
-			})
-			path = path.slice(0, -1); //Removes the last element. which is a '&' character
+		if (params.id){
+			path += `/${params.id}`;
+		}else{
+			if (Object.keys(params).length !== 0 && params.constructor === Object) { //checks if params is not empty
+				path += `?`;
+				Object.keys(params).map(e => {
+					path += `${e}=${params[e]}&`;
+					return null;
+				})
+				path = path.slice(0, -1); //Removes the last element. which is a '&' character
+			}
 		}
-
-		return request('GET', path);
+		
+		const callback = {defaultCallback: {
+			default: () => this.setIsLoading(false)
+		}, userCallback};
+		this.setIsLoading(true);
+		return request('GET', path, callback);
 	},
 	post(path, data = {}, userCallback = {}) {
 		const callback = { defaultCallback: {}, userCallback };

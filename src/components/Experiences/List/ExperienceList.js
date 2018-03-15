@@ -4,7 +4,7 @@ import './ExperienceList.css';
 
 const ExperienceList = (props) => {
 
-  const experienceItems = props.collection.map((experience) => {
+  const experienceItems = props.collection.slice().map((experience) => {
     return <ExperienceCard key={experience.id} experience={experience} />
   });
 

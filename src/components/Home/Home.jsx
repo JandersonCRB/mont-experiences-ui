@@ -10,28 +10,28 @@ import './Home.css';
 @inject('experience') @observer
 export default class Home extends Component {
 	componentDidMount() {
-		// this.props.experiences.fetchAll();
-
 		const experience = this.props.experience;
 
-		experience.load({recommended: true});
+		experience.load({ recommended: true, active: true },{
+			200: (body) => experience.setCollection(body)
+		});
 	}
 
 	renderExperiences(collection, isLoading) {
 		if (isLoading) {
-			return (<
-			div className="container">
-				<CircularProgress color='primary' thickness={7} />
-			</div>
+			return (
+				<div className="container">
+					<CircularProgress color='primary' thickness={7} />
+				</div>
 			)
 		} else {
 			return (
 				<div className="experiences-section">
 					<div className="container">
 						<div className="row">
-								<div className="experiences-list">
-									<ExperienceList collection={collection} />
-								</div>
+							<div className="experiences-list">
+								<ExperienceList collection={collection} />
+							</div>
 						</div>
 					</div>
 				</div>
@@ -41,7 +41,6 @@ export default class Home extends Component {
 
 	render() {
 		const { collection, isLoading } = this.props.experience;
-		
 		return (
 			<div>
 				<div className="container">
