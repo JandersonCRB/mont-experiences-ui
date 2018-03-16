@@ -12,6 +12,8 @@ import { Provider } from 'mobx-react';
 import stores from './stores';
 import purple from 'material-ui/colors/purple';
 
+import ReactGA from 'react-ga';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BootstrapOverride.scss';
 
@@ -45,10 +47,18 @@ const models = {
     session: new stores.Session(endpoint)
 }
 
+const onUpdate = () => {
+    window.scrollTo(0, 0);
+    const hostname = window && window.location && window.location.hostname;
+    if(hostname === 'montviagens.com' || hostname === 'www.montviagens.com'){
+        ReactGA.pageview(window.location.pathname);
+    }
+}
+
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
         <Provider {...stores} {...models} >
-            <Router routes={routes} history={browserHistory} onUpdate={() => window.scrollTo(0, 0)} />
+            <Router routes={routes} history={browserHistory} onUpdate={() => onUpdate()} />
         </Provider>
     </MuiThemeProvider>,
         document.getElementById('root'));
