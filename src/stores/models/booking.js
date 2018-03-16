@@ -25,9 +25,21 @@ class Booking extends Connect {
         if(!this.selected){
             return null;
         }
+        const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${this.selected.id}/cancel`
+        this.put(path, {}, {
+            200: (body) => {
+                this.setSelected(body);
+
+                this.setIsLoading(false);
+            },
+            default: () => {
+                this.setIsLoading(false);
+            }
+        });
     }
 }
 
+mix(Booking, scopes.api);
 mix(Booking, scopes.readable);
 mix(Booking, scopes.writable);
 

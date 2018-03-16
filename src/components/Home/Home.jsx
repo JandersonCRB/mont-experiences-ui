@@ -2,41 +2,45 @@ import React, { Component } from "react";
 
 import { inject, observer } from 'mobx-react';
 
-import Card from '../Card/Card';
-
 import ExperienceList from "../Experiences/List/ExperienceList";
 
-import purple from 'material-ui/colors/purple';
 import { CircularProgress } from 'material-ui/Progress'
 import './Home.css';
 
 @inject('experience') @observer
 export default class Home extends Component {
 	componentDidMount() {
-		// this.props.experiences.fetchAll();
-
 		const experience = this.props.experience;
 
-		experience.findAll();
+		experience.load({ recommended: true, active: true },{
+			200: (body) => experience.setCollection(body)
+		});
 	}
 
 	renderExperiences(collection, isLoading) {
 		if (isLoading) {
-			return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />
+			return (
+				<div className="container">
+					<CircularProgress color='primary' thickness={7} />
+				</div>
+			)
 		} else {
 			return (
-				collection.slice().map((info, key) => (
-					<div key={key} className="col-12 col-sm-5 col-md-4 col-lg-3 col-xs-1 ml-auto mr-auto">
-						<Card {...info} />
+				<div className="experiences-section">
+					<div className="container">
+						<div className="row">
+							<div className="experiences-list">
+								<ExperienceList collection={collection} />
+							</div>
+						</div>
 					</div>
-				))
+				</div>
 			)
 		}
 	}
 
 	render() {
-		const { collection } = this.props.experience;
-		
+		const { collection, isLoading } = this.props.experience;
 		return (
 			<div>
 				<div className="container">
@@ -51,15 +55,7 @@ export default class Home extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="experiences-section">
-					<div className="container">
-						<div className="row">
-								<div className="experiences-list">
-									<ExperienceList collection={collection} />
-								</div>
-						</div>
-					</div>
-				</div>
+				{this.renderExperiences(collection, isLoading)}
 			</div>
 		)
 	}

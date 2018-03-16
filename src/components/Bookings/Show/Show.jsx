@@ -28,6 +28,10 @@ class BookingsShow extends Component {
 
 	renderBooking = (booking) => {
 		if (!booking.experience) return null;
+		if(booking.status !== 1 && booking.status !== 2){
+			if(!this.state.disabled)
+				this.setState({disabled: true})
+		}
 		return (
 			<div className="col-sm-8 mx-auto">
 				<div className="booking-details">
@@ -70,13 +74,13 @@ class BookingsShow extends Component {
 							</li>
 						</ul>
 					</div>
-					{/* <Button color='primary' variant='raised' disabled={this.state.disabled} onClick={this.cancel}> Cancelar </Button> */}
+					<Button color='primary' variant='raised' disabled={this.state.disabled} onClick={this.cancel}> Cancelar </Button>
 				</div>
 			</div>
 		)
 	}
 	cancel = (e) => {
-		this.props.bookings.cancel();
+		this.props.booking.cancel();
 		this.setState({disabled: true});
 	}
 	render() {

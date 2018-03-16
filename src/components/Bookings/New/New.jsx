@@ -285,7 +285,8 @@ class BookingsNew extends Component {
     const steps = getSteps();
     const { activeStep } = this.state;
     if (!session.signedIn && !session.isLoading) {
-      browserHistory.push('/users/sign_in');
+      console.log(browserHistory);
+      browserHistory.replace('/users/sign_in');
       return null;
     }
     else {
