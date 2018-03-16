@@ -21,7 +21,7 @@ class Edit extends Component {
 				about_location: '',
 				latitude: '',
 				longitude: '',
-				has_transfer: true,
+				has_transfer: false,
 				about_transfer: '',
 				about_booking: '',
 				price: '',
@@ -127,7 +127,7 @@ class Edit extends Component {
 						<div {...props.grid}>
 							<h2>Transfer</h2>
 
-							<input name="has_transfer" type="checkbox" value={values.has_transfer} onChange={e => this.change(e)} />
+							<input name="has_transfer" type="checkbox" checked={values.has_transfer} onChange={e => this.change(e)} />
 							<label>Possui Transfer</label><br />
 							<label>Sobre o Transfer</label>
 							<textarea name='about_transfer' value={values.about_transfer} {...props.input} />
@@ -162,10 +162,10 @@ class Edit extends Component {
 							<label>Duração</label>
 							<input name='duration' value={values.duration} {...props.input} />
 
-							<input name="active" type="checkbox" value={values.active} onChange={e => this.change(e)} />
+							<input name="active" type="checkbox" checked={values.active} onChange={e => this.change(e)} />
 							<label>Ativo</label><br />
 
-							<input name="recommended" type="checkbox" value={values.recommended} onChange={e => this.change(e)} />
+							<input name="recommended" type="checkbox" checked={values.recommended} onChange={e => this.change(e)} />
 							<label>Recomendado</label><br />
 						</div>
 					</div>
