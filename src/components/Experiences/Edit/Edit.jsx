@@ -65,6 +65,25 @@ class Edit extends Component {
 		e.preventDefault();
 		this.setState({ disabled: true });
 		console.log(this.state.values);
+		const {values} = this.state;
+		const {experience} = this.props;
+		const {experienceId} = this.props.params;
+		experience.edit(experienceId, values, {
+			201: (body) => {
+				alert('Sucesso!');
+				Object.keys(body).forEach(key => {
+					body[key] = body[key] || '';
+				})
+				delete body.photos;
+				delete body.cover_photo_url;
+				experience.setSelected(body);
+				this.setState({disabled: false, values: body});
+			},
+			default: () => {
+				alert('Ops, parece que algo deu errado.');
+			}
+		});
+
 	}
 
 	render() {

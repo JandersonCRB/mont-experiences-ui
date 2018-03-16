@@ -87,11 +87,12 @@ const request = (method, path, callback, body) => {
 	return null;
 };
 
+
 const api = {
 	get(path, params = {}, userCallback = {}) {
-		if (params.id){
+		if (params.id) {
 			path += `/${params.id}`;
-		}else{
+		} else {
 			if (Object.keys(params).length !== 0 && params.constructor === Object) { //checks if params is not empty
 				path += `?`;
 				Object.keys(params).map(e => {
@@ -101,19 +102,26 @@ const api = {
 				path = path.slice(0, -1); //Removes the last element. which is a '&' character
 			}
 		}
-		
-		const callback = {defaultCallback: {
+
+		const defaultCallback = {
 			default: () => this.setIsLoading(false)
-		}, userCallback};
+		}
+		const callback = { defaultCallback, userCallback };
 		this.setIsLoading(true);
 		return request('GET', path, callback);
 	},
 	post(path, data = {}, userCallback = {}) {
-		const callback = { defaultCallback: {}, userCallback };
+		const defaultCallback = {
+			default: () => this.setIsLoading(false)
+		}
+		const callback = { defaultCallback, userCallback };
 		return request('POST', path, callback, data);
 	},
 	put(path, data = {}, userCallback = {}) {
-		const callback = { defaultCallback: {}, userCallback };
+		const defaultCallback = {
+			default: () => this.setIsLoading(false)
+		}
+		const callback = { defaultCallback, userCallback };
 		this.setIsLoading(true);
 		return request('PUT', path, callback, data);
 	},
