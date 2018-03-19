@@ -21,7 +21,9 @@ export default class Home extends Component {
 		if (isLoading) {
 			return (
 				<div className="container">
-					<CircularProgress color='primary' thickness={7} />
+				<div className="row">
+					<CircularProgress className="mx-auto" color='primary' thickness={7} />
+				</div>
 				</div>
 			)
 		} else {

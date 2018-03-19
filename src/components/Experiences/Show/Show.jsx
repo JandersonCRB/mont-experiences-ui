@@ -1,11 +1,16 @@
 import React from 'react';
+
 import { inject, observer } from 'mobx-react';
+
 import { Link } from 'react-router';
 
-import './Show.css';
 import SlideShow from './SlideShow.jsx';
+
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
+import { CircularProgress } from 'material-ui/Progress';
+
+//Ícones
 import Location from 'material-ui-icons/LocationOn';
 import Date from 'material-ui-icons/DateRange';
 import Transfer from 'material-ui-icons/DirectionsBus';
@@ -14,7 +19,10 @@ import Payment from 'material-ui-icons/Payment';
 import Timer from 'material-ui-icons/Timer';
 import Cancel from 'material-ui-icons/Cancel';
 import Car from 'material-ui-icons/DirectionsCar';
+
 import Currency from 'react-currency-formatter';
+
+import './Show.css';
 
 @inject('experience') @observer
 export default class Show extends React.Component {
@@ -186,7 +194,15 @@ export default class Show extends React.Component {
   }
   render() {
     const { selected, isLoading } = this.props.experience;
-    if (isLoading) return <div className="container">Loading</div>
+    if (isLoading){
+      return (
+				<div className="container">
+					<div className="row">
+						<CircularProgress className="mx-auto" color='primary' thickness={7} />
+					</div>
+				</div>
+			)
+    }
     return (
       <div id="Show" className="container">
         <div className="page-wrap">
