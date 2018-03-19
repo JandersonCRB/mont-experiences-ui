@@ -28,7 +28,7 @@ export default class NavBar extends React.Component {
           <li className="nav-item dropdown">
             <Link to={'#'} className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{session.email}</Link>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <Link to={'#'} className="dropdown-item">Editar Perfil</Link>
+              <Link to={'/users/edit'} className="dropdown-item">Alterar Senha</Link>
               <div className="dropdown-divider"></div>
               <a href='' className="dropdown-item" onClick={this.signOut}>Sair</a>
             </div>
