@@ -13,6 +13,7 @@ const routes =
             <Route path='search' exact component={c.Search} />
             <Route path=':experienceId' exact component={c.Show} />
             <Route path=':experienceId/edit' exact component={c.ExperienceEdit} />
+            <Route path=':experienceId/photos' exact component={c.EditPhotos} />
         </Route>
         <Route path='users' component={c.Layout} >
             <IndexRedirect to='sign_in' />

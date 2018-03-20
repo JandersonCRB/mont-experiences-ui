@@ -3,6 +3,7 @@ import Home from './Home/Home.jsx';
 import Show from './Experiences/Show/Show.jsx';
 import ExperienceNew from './Experiences/New/New.jsx';
 import ExperienceEdit from './Experiences/Edit/Edit.jsx';
+import EditPhotos from './Experiences/Edit/EditPhotos.jsx';
 import ExperienceSearch from './Experiences/Search/Search.jsx';
 import Experiences from './Experiences/Collection/Collection.jsx';
 import SignIn from './Users/SignIn/SignIn.jsx';
@@ -22,6 +23,7 @@ export default{
     Show,
     ExperienceNew,
     ExperienceEdit,
+    EditPhotos,
     ExperienceSearch,
     Experiences,
     Bookings,

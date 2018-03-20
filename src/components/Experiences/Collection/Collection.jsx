@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 import Paper from 'material-ui/Paper';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-import DeleteIcon from 'material-ui-icons/Delete';
-import ModeEditIcon from 'material-ui-icons/ModeEdit';
-import VisibilityIcon from 'material-ui-icons/Visibility';
 import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import { CircularProgress } from 'material-ui/Progress';
-import purple from 'material-ui/colors/purple';
+import CameraAltIcon from 'material-ui-icons/CameraAlt';
+import DeleteIcon from 'material-ui-icons/Delete';
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
+import VisibilityIcon from 'material-ui-icons/Visibility';
 
 import { browserHistory } from 'react-router';
 
@@ -25,8 +25,14 @@ class Collection extends Component {
   }
   render() {
     const { collection, isLoading } = this.props.experience;
-    if (isLoading){
-      return <CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} />;
+    if (isLoading) {
+      return (
+        <div className="container">
+          <div className="row">
+            <CircularProgress className="mx-auto" thickness={7} />
+          </div>
+        </div>
+      );
     }
     return (
       <div>
@@ -54,17 +60,22 @@ class Collection extends Component {
                     <TableCell>Sim</TableCell>
                     <TableCell>
                       <Tooltip id="tooltip-icon" title="Mostrar">
-                        <IconButton aria-label="Mostrar">
+                        <IconButton color='primary' aria-label="Mostrar">
                           <VisibilityIcon onClick={() => browserHistory.push(`/experiences/${n.id}`)} />
                         </IconButton>
                       </Tooltip>
                       <Tooltip id="tooltip-icon" title="Editar">
-                        <IconButton aria-label="Editar">
+                        <IconButton color='primary' aria-label="Editar">
                           <ModeEditIcon onClick={() => browserHistory.push(`/experiences/${n.id}/edit`)} />
                         </IconButton>
                       </Tooltip>
+                      <Tooltip id="tooltip-icon" title="Fotos">
+                        <IconButton color='primary' aria-label="Fotos">
+                          <CameraAltIcon onClick={() => browserHistory.push(`/experiences/${n.id}/photos`)} />
+                        </IconButton>
+                      </Tooltip>
                       <Tooltip id="tooltip-icon" title="Deletar">
-                        <IconButton aria-label="Deletar">
+                        <IconButton color='primary' aria-label="Deletar">
                           <DeleteIcon />
                         </IconButton>
                       </Tooltip>
