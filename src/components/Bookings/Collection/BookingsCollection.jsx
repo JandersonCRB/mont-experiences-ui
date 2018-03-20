@@ -4,7 +4,6 @@ import { inject, observer } from 'mobx-react';
 
 import { CircularProgress } from 'material-ui/Progress';
 import Paper from 'material-ui/Paper';
-import purple from 'material-ui/colors/purple';
 
 import Currency from 'react-currency-formatter';
 
@@ -17,7 +16,7 @@ import 'moment/locale/pt-br.js';
 
 @inject('booking') @observer
 class BookingsCollection extends Component {
-	constructor(){
+	constructor() {
 		super();
 		moment.locale('pt-br');
 	}
@@ -75,7 +74,13 @@ class BookingsCollection extends Component {
 	render() {
 		const { collection, isLoading } = this.props.booking;
 		if (isLoading) {
-			return <div className="container"><CircularProgress className="mr-auto ml-auto" style={{ color: purple[500] }} thickness={7} /></div>;
+			return (
+				<div className="container">
+					<div className="row">
+						<CircularProgress className="mx-auto" color='primary' thickness={7} />
+					</div>
+				</div>
+			);
 		} else {
 			return (
 				<div className="bookings-collection">

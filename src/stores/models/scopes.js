@@ -32,18 +32,12 @@ const writable = {
 	create(parameters, body, callback) {
 		this.setIsLoading(true);
 		this.call({ parameters, body, type: 'post' }, callback);
-	},
-	delete(parameters) {
-		this.setIsLoading(true);
-		this.call({ parameters, type: 'delete' }, {
-			200: (response) => this.removeFromColletion(response),
-		});
-	},
+	}
 }
 
-const request = (method, path, callback, body) => {
+const request = (method, path, callback, body, file = false) => {
 	const h = new Headers();
-	h.append('Content-Type', 'application/json');
+	if(!file) h.append('Content-Type', 'application/json');
 	const { userCallback, defaultCallback } = callback;
 	const session = {
 		email: localStorage.getItem('email'),
@@ -59,7 +53,7 @@ const request = (method, path, callback, body) => {
 	const options = { method, headers: h };
 
 	if (body) {
-		options.body = JSON.stringify(body);
+		options.body = file ? body : JSON.stringify(body);
 	}
 
 	var status;
@@ -110,12 +104,12 @@ const api = {
 		this.setIsLoading(true);
 		return request('GET', path, callback);
 	},
-	post(path, data = {}, userCallback = {}) {
+	post(path, data = {}, userCallback = {}, file = false) {
 		const defaultCallback = {
 			default: () => this.setIsLoading(false)
 		}
 		const callback = { defaultCallback, userCallback };
-		return request('POST', path, callback, data);
+		return request('POST', path, callback, data, file);
 	},
 	put(path, data = {}, userCallback = {}) {
 		const defaultCallback = {
@@ -125,8 +119,13 @@ const api = {
 		this.setIsLoading(true);
 		return request('PUT', path, callback, data);
 	},
-	delete(path) {
-		return request('DELETE', path);
+	delete(path, userCallback = {}) {
+		const defaultCallback = {
+			default: () => this.setIsLoading(false)
+		}
+		const callback = { defaultCallback, userCallback };
+		this.setIsLoading(true);
+		return request('DELETE', path, callback);
 	}
 }
 export default { readable, writable, api };

@@ -15,9 +15,9 @@ import './Show.css';
 
 @inject('booking') @observer
 class BookingsShow extends Component {
-	constructor(){
+	constructor() {
 		super();
-		this.state = {disabled: false}
+		this.state = { disabled: false }
 		moment.locale('pt-br');
 	}
 	componentWillMount() {
@@ -28,9 +28,9 @@ class BookingsShow extends Component {
 
 	renderBooking = (booking) => {
 		if (!booking.experience) return null;
-		if(booking.status !== 1 && booking.status !== 2){
-			if(!this.state.disabled)
-				this.setState({disabled: true})
+		if (booking.status !== 1 && booking.status !== 2) {
+			if (!this.state.disabled)
+				this.setState({ disabled: true })
 		}
 		return (
 			<div className="col-sm-8 mx-auto">
@@ -81,12 +81,18 @@ class BookingsShow extends Component {
 	}
 	cancel = (e) => {
 		this.props.booking.cancel();
-		this.setState({disabled: true});
+		this.setState({ disabled: true });
 	}
 	render() {
 		const { isLoading, selected } = this.props.booking;
 		if (isLoading) {
-			return <CircularProgress className="mr-auto ml-auto" color='primary' thickness={7} />;
+			return (
+				<div className="container">
+					<div className="row">
+						<CircularProgress className="mx-auto" color='primary' thickness={7} />
+					</div>
+				</div>
+			)
 		} else {
 			return (
 				<div className="container">

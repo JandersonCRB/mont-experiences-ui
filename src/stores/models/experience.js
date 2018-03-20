@@ -11,6 +11,11 @@ class Experience extends Connect {
         this.get(path, query, callback);
     }
 
+    @action loadPhotos(id, callback = {}) {
+        const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${id}/photos`;
+        this.get(path, {}, callback);
+    }
+
     /*
     * @param {callback} callback
     * Defines callback based on response status
@@ -22,6 +27,26 @@ class Experience extends Connect {
     //     path += id || '';
     //     console.log(path);
     // }
+
+    @action uploadPhotos(id, body = [], callback = {}){
+        const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${id}/photos`;
+        var data = new FormData();
+        for(let i = 0;i < body.length;i++){
+            console.log(body[i]);
+            data.append('images[]', body[i]);
+        }
+        this.post(path, data, callback, true);
+    }
+
+    @action setCoverPhoto(experienceId, photoId, callback = {}){
+        const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${experienceId}/photos/${photoId}/set_cover`;
+        this.post(path, {}, callback);
+    }
+
+    @action deletePhoto(experienceId, photoId, callback = {}){
+        const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${experienceId}/photos/${photoId}`;
+        this.delete(path,callback);
+    }
 
     @action edit(id, body = {}, callback = {}) {
         const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${id}`;

@@ -12,7 +12,7 @@ export default class Home extends Component {
 	componentDidMount() {
 		const experience = this.props.experience;
 
-		experience.load({ active: true },{
+		experience.load({ active: true }, {
 			200: (body) => experience.setCollection(body)
 		});
 	}
@@ -21,7 +21,9 @@ export default class Home extends Component {
 		if (isLoading) {
 			return (
 				<div className="container">
-					<CircularProgress color='primary' thickness={7} />
+					<div className="row">
+						<CircularProgress className="mx-auto" color='primary' thickness={7} />
+					</div>
 				</div>
 			)
 		} else {
