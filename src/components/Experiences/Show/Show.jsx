@@ -197,7 +197,7 @@ export default class Show extends React.Component {
   render() {
     const { selected, isLoading } = this.props.experience;
     const { experienceId } = this.props.params;
-    if (isLoading && (_.isEmpty(selected) || selected.id != experienceId)) {
+    if (isLoading && (_.isEmpty(selected) || selected.id !== experienceId)) {
       return (
         <div className="container">
           <div className="row">
