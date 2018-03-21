@@ -22,6 +22,8 @@ import Car from 'material-ui-icons/DirectionsCar';
 
 import Currency from 'react-currency-formatter';
 
+import _ from 'lodash';
+
 import './Show.css';
 
 @inject('experience') @observer
@@ -73,7 +75,7 @@ export default class Show extends React.Component {
 
     if (selected.payment_method) {
       buffer.push(
-        <li key='payment_method-icon'><span className="icon"><Payment  /> </span><span className="icon-text">{selected.payment_method}</span></li>
+        <li key='payment_method-icon'><span className="icon"><Payment /> </span><span className="icon-text">{selected.payment_method}</span></li>
       );
     }
 
@@ -194,14 +196,15 @@ export default class Show extends React.Component {
   }
   render() {
     const { selected, isLoading } = this.props.experience;
-    if (isLoading){
+    const { experienceId } = this.props.params;
+    if (isLoading && (_.isEmpty(selected) || selected.id !== experienceId)) {
       return (
-				<div className="container">
-					<div className="row">
-						<CircularProgress className="mx-auto" color='primary' thickness={7} />
-					</div>
-				</div>
-			)
+        <div className="container">
+          <div className="row">
+            <CircularProgress className="mx-auto" color='primary' thickness={7} />
+          </div>
+        </div>
+      )
     }
     return (
       <div id="Show" className="container">

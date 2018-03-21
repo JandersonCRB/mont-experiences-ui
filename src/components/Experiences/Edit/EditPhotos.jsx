@@ -11,6 +11,7 @@ import DeleteIcon from 'material-ui-icons/Delete';
 import CoverIcon from 'material-ui-icons/PartyMode';
 
 import { inject, observer } from 'mobx-react';
+import _ from 'lodash';
 
 const styles = {
 	card: {
@@ -101,8 +102,9 @@ class EditPhotos extends Component {
 	}
 
 	render() {
-		const { selected, isLoading } = this.props.experience;
-		if (isLoading && !selected.photos) {
+		const { isLoading } = this.props.experience;
+		const selected = this.props.experience.selected;
+		if (isLoading && _.isEmpty(selected)) {
 			return (
 				<div className="container">
 					<div className="row">

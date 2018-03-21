@@ -7,6 +7,8 @@ import ExperienceList from "../Experiences/List/ExperienceList";
 import { CircularProgress } from 'material-ui/Progress'
 import './Home.css';
 
+import _ from 'lodash';
+
 @inject('experience') @observer
 export default class Home extends Component {
 	componentDidMount() {
@@ -18,7 +20,7 @@ export default class Home extends Component {
 	}
 
 	renderExperiences(collection, isLoading) {
-		if (isLoading) {
+		if (isLoading && _.isEmpty(collection)) {
 			return (
 				<div className="container">
 					<div className="row">
