@@ -21,8 +21,24 @@ class Collection extends Component {
   componentDidMount() {
     const { experience } = this.props;
 
-    experience.findAll();
+    experience.load();
   }
+
+  delete(id) {
+    const { experience } = this.props;
+    if (window.confirm('Tem certeza que deseja deletar esta experiência?')) {
+      experience.deleteExperience({
+        id,
+        callback: {
+          204: () => {
+            experience.load();
+          },
+          default: () => alert('Ocorreu um erro.')
+        }
+      })
+    }
+  }
+
   render() {
     const { collection, isLoading } = this.props.experience;
     if (isLoading) {
@@ -50,7 +66,7 @@ class Collection extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {collection.slice().map(n => {
+              {collection.map(n => {
                 return (
                   <TableRow key={n.id} hover>
                     <TableCell numeric>{n.id}</TableCell>
@@ -75,7 +91,7 @@ class Collection extends Component {
                         </IconButton>
                       </Tooltip>
                       <Tooltip id="tooltip-icon" title="Deletar">
-                        <IconButton color='primary' aria-label="Deletar">
+                        <IconButton onClick={() => this.delete(n.id)} color='primary' aria-label="Deletar">
                           <DeleteIcon />
                         </IconButton>
                       </Tooltip>
