@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
-// import Checkbox from 'material-ui/Checkbox';
-// import { FormGroup, FormControlLabel } from 'material-ui/Form';
+
+import { browserHistory } from 'react-router';
 
 import { inject, observer } from 'mobx-react';
 
@@ -25,7 +25,8 @@ class New extends Component {
 				description: [],
 				itinerary: [],
 				observation: []
-			}
+			},
+			disabled: false
 		}
 	}
 
@@ -42,16 +43,21 @@ class New extends Component {
 
 	submitExperience(event) {
 		event.preventDefault();
-
+		this.setState({ disabled: true });
 		const { experience } = this.props;
 
 		experience.create({}, this.state.values, {
 			201: (response) => {
 				experience.appendToCollection(response);
+				alert('Experiência criada com sucesso');
+				experience.setSelected({});
+				browserHistory.push(`/experiences/${response.id}/photos`);
 			},
 			422: (response) => {
 				this.setState(response);
-			}
+				this.setState({ disabled: false });
+			},
+			default: () => alert('Parece que algo deu errado.')
 		})
 	}
 
@@ -91,19 +97,6 @@ class New extends Component {
 									onChange={e => this.change(e)}
 								/>
 								<br />
-								{/* <FormGroup>
-								<FormControlLabel
-									control={
-										<Checkbox
-											name="has_transfer"
-											label="Has Transfer"
-											checked={this.state.has_transfer}
-											onChange={(e, v) => this.change(e, v)}
-										/>
-									}
-									label="Possui transfer"
-								/>
-							</FormGroup> */}
 								<TextField
 									name="itinerary"
 									label="Itinerário"

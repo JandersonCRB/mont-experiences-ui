@@ -7,31 +7,32 @@ class Experience extends Connect {
     resource = 'experiences';
 
     @action load(query = {}, callback) {
-        if(!query.id){
+        if (!query.id) {
             var collection = localStorage.getItem('experiences');
-            if(collection){
-                try{
+            if (collection) {
+                try {
                     collection = JSON.parse(collection);
-                }catch(error){
+                } catch (error) {
                     localStorage.clear('experiences');
                     collection = {};
                 }
                 this.setCollection(collection);
             }
-        }else{
+        } else {
             var selected = localStorage.getItem(`experience_${query.id}`);
-            if(selected){
-                try{
+            if (selected) {
+                try {
                     selected = JSON.parse(selected)
-                }catch(error){
+                } catch (error) {
                     localStorage.clear(`experience_${query.id}`);
                     selected = {};
                 }
                 this.setSelected(selected);
             }
         }
-        if(!callback){
+        if (!callback) {
             callback = {
+                200: (body) => { query.id ? this.setSelected(body) : this.setCollection(body) },
                 201: (body) => query.id ? this.setSelected(body) : this.setCollection(body)
             }
         }
@@ -56,24 +57,24 @@ class Experience extends Connect {
     //     console.log(path);
     // }
 
-    @action uploadPhotos(id, body = [], callback = {}){
+    @action uploadPhotos(id, body = [], callback = {}) {
         const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${id}/photos`;
         var data = new FormData();
-        for(let i = 0;i < body.length;i++){
+        for (let i = 0; i < body.length; i++) {
             console.log(body[i]);
             data.append('images[]', body[i]);
         }
         this.post(path, data, callback, true);
     }
 
-    @action setCoverPhoto(experienceId, photoId, callback = {}){
+    @action setCoverPhoto(experienceId, photoId, callback = {}) {
         const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${experienceId}/photos/${photoId}/set_cover`;
         this.post(path, {}, callback);
     }
 
-    @action deletePhoto(experienceId, photoId, callback = {}){
+    @action deletePhoto(experienceId, photoId, callback = {}) {
         const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${experienceId}/photos/${photoId}`;
-        this.delete(path,callback);
+        this.delete(path, callback);
     }
 
     @action edit(id, body = {}, callback = {}) {
@@ -81,7 +82,7 @@ class Experience extends Connect {
         this.put(path, body, callback);
     }
 
-    @action deleteExperience({id, callback = {} } = {}){
+    @action deleteExperience({ id, callback = {} } = {}) {
         const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${id}`;
         this.delete(path, callback);
     }

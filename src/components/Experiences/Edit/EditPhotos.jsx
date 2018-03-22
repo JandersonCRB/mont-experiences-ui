@@ -33,6 +33,7 @@ class EditPhotos extends Component {
 	componentWillMount() {
 		const { experience } = this.props;
 		const { experienceId } = this.props.params;
+		experience.setSelected({});
 		experience.loadPhotos(experienceId, {
 			200: (body) => experience.setSelected(body)
 		})
@@ -72,7 +73,7 @@ class EditPhotos extends Component {
 			}
 		});
 	}
-	
+
 	renderPhotos(selected) {
 		return (
 			selected.photos.map(photo => {
@@ -103,8 +104,8 @@ class EditPhotos extends Component {
 
 	render() {
 		const { isLoading } = this.props.experience;
-		const selected = this.props.experience.selected;
-		if (isLoading && _.isEmpty(selected)) {
+		const { selected } = this.props.experience;
+		if (isLoading || _.isEmpty(selected)) {
 			return (
 				<div className="container">
 					<div className="row">

@@ -21,18 +21,21 @@ class Collection extends Component {
   componentDidMount() {
     const { experience } = this.props;
 
-    experience.findAll();
+    experience.load();
   }
 
   delete(id) {
     const { experience } = this.props;
     if (window.confirm('Tem certeza que deseja deletar esta experiência?')) {
-      experience.deleteExperience({ id, callback:{
-        204: () => {
-          experience.load();
-          alert('Experiência excluída com sucesso!');
+      experience.deleteExperience({
+        id,
+        callback: {
+          204: () => {
+            experience.load();
+          },
+          default: () => alert('Ocorreu um erro.')
         }
-      }})
+      })
     }
   }
 
@@ -63,7 +66,7 @@ class Collection extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {collection.slice().map(n => {
+              {collection.map(n => {
                 return (
                   <TableRow key={n.id} hover>
                     <TableCell numeric>{n.id}</TableCell>
