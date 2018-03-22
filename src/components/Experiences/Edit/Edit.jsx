@@ -62,7 +62,6 @@ class Edit extends Component {
 	}
 
 	change(e) {
-		console.log(e.target.value);
 		const values = Object.assign(this.state.values, { [e.target.name]: (e.target.type === "checkbox" ? e.target.checked : e.target.value) }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
 		this.setState({ values });
 	}
