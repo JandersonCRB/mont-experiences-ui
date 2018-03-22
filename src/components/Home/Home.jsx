@@ -15,7 +15,10 @@ export default class Home extends Component {
 		const experience = this.props.experience;
 
 		experience.load({ active: true }, {
-			200: (body) => experience.setCollection(body)
+			200: (body) => {
+				experience.setCollection(body);
+				localStorage.setItem('experiences', JSON.stringify(body));
+			}
 		});
 	}
 

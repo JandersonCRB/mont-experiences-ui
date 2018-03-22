@@ -7,6 +7,29 @@ class Experience extends Connect {
     resource = 'experiences';
 
     @action load(query = {}, callback = {}) {
+        if(!query.id){
+            var collection = localStorage.getItem('experiences');
+            if(collection){
+                try{
+                    collection = JSON.parse(collection);
+                }catch(error){
+                    localStorage.clear('experiences');
+                    collection = {};
+                }
+                this.setCollection(collection);
+            }
+        }else{
+            var selected = localStorage.getItem(`experience_${query.id}`);
+            if(selected){
+                try{
+                    selected = JSON.parse(selected)
+                }catch(error){
+                    localStorage.clear(`experience_${query.id}`);
+                    selected = {};
+                }
+                this.setSelected(selected);
+            }
+        }
         const path = `${this.api.endpoint}${this.namespace}/${this.resource}`;
         this.get(path, query, callback);
     }

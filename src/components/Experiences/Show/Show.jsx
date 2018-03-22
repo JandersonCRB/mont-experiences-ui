@@ -31,9 +31,11 @@ export default class Show extends React.Component {
 
   componentWillMount() {
     const { experience } = this.props;
-    experience.load({ id: this.props.params.experienceId }, {
+    const id = this.props.params.experienceId;
+    experience.load({ id }, {
       200: (body) => {
         experience.setSelected(body);
+        localStorage.setItem(`experience_${id}`, JSON.stringify(body));
         this.setState({ values: body });
       },
       404: () => { this.notFound = true; }
