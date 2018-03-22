@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
 import { CircularProgress } from 'material-ui/Progress';
 
 import { inject, observer } from 'mobx-react';
 
+@inject('category')
 @inject('experience') @observer
 class Edit extends Component {
 	constructor(props) {
@@ -31,8 +29,10 @@ class Edit extends Component {
 				duration: '',
 				language: '',
 				recommended: false,
-				active: false
+				active: false,
+				category_ids: ''
 			},
+			categories: [],
 			errors: {},
 			disabled: false
 		}
@@ -41,7 +41,7 @@ class Edit extends Component {
 
 	componentWillMount() {
 
-		const { experience } = this.props;
+		const { experience, category } = this.props;
 		experience.load({ id: this.props.params.experienceId }, {
 			200: (body) => {
 				Object.keys(body).forEach(key => {
@@ -54,9 +54,15 @@ class Edit extends Component {
 			},
 			404: () => { this.notFound = true; }
 		}); //GET REQUEST
+		category.load({}, {
+			200: (body) => {
+				this.setState({ categories: body });
+			}
+		})
 	}
 
 	change(e) {
+		console.log(e.target.value);
 		const values = Object.assign(this.state.values, { [e.target.name]: (e.target.type === "checkbox" ? e.target.checked : e.target.value) }) //values RECEIVES THE STATE WITH THE NEW MODIFIED ATTRIBUTES
 		this.setState({ values });
 	}
@@ -64,10 +70,10 @@ class Edit extends Component {
 	submit(e) {
 		e.preventDefault();
 		this.setState({ disabled: true });
-		console.log(this.state.values);
-		const {values} = this.state;
-		const {experience} = this.props;
-		const {experienceId} = this.props.params;
+		const { values } = this.state;
+		const { experience } = this.props;
+		const { experienceId } = this.props.params;
+		values.category_ids = [values.category_ids];
 		experience.edit(experienceId, values, {
 			201: (body) => {
 				alert('Sucesso!');
@@ -77,13 +83,23 @@ class Edit extends Component {
 				delete body.photos;
 				delete body.cover_photo_url;
 				experience.setSelected(body);
-				this.setState({disabled: false, values: body});
+				this.setState({ disabled: false, values: body });
 			},
 			default: () => {
 				alert('Ops, parece que algo deu errado.');
 			}
 		});
 
+	}
+	renderCategories() {
+		const { categories } = this.state;
+		return (
+			<select name='category_ids' value={this.state.values.category_ids} onChange={(e) => this.change(e)}>
+				{categories.map((category) => {
+					return <option key={category.id} value={category.id}>{category.name}</option>
+				})}
+			</select>
+		);
 	}
 
 	render() {
@@ -187,6 +203,10 @@ class Edit extends Component {
 							<input name="recommended" type="checkbox" checked={values.recommended} onChange={e => this.change(e)} />
 							<label>Recomendado</label><br />
 						</div>
+						<div {...props.grid}>
+							<h2>Categorias</h2>
+							{this.renderCategories()}
+						</div>
 					</div>
 					<div className="row">
 						<button className='w-100' type='submit' disabled={this.state.disabled}>Enviar</button>
@@ -194,196 +214,6 @@ class Edit extends Component {
 				</form>
 			</div>
 		)
-	}
-
-	old() {
-		return (
-			//ADICIONAR CANCELAMENTO E CHECKBOXES
-			<div className='container mb-4'>
-				<div>
-					<form className="row">
-						<div className="col-md-6 col-lg-4" >
-							<Paper style={{ padding: 10, margin: 5 }}>
-								<h2>Básico</h2>
-								<TextField
-									className="mt-3 mb-3"
-									inputRef={e => this.name = e}
-									name="name"
-									label="Nome"
-									fullWidth
-									value={this.state.values.name}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									name="description"
-									label="Descrição"
-									placeholder="Insira a descrição"
-									multiline
-									fullWidth
-									rows={3}
-									rowsMax={10}
-									value={this.state.values.description}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									name="itinerary"
-									label="Itinerário"
-									placeholder="Insira ao itinerário"
-									multiline
-									fullWidth
-									rows={3}
-									rowsMax={10}
-									value={this.state.values.itinerary}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									name="observation"
-									label="Observações"
-									placeholder="Insira as observações"
-									multiline
-									fullWidth
-									rows={3}
-									rowsMax={10}
-									value={this.state.values.observation}
-									onChange={e => this.change(e)}
-								/>
-							</Paper>
-						</div>
-						<div className="col-md-6 col-lg-4">
-							<Paper style={{ padding: 10, margin: 5 }}>
-								<h2>Local</h2>
-								<TextField
-									className="mt-3 mb-3"
-									name="location"
-									label="Localização"
-									fullWidth
-									value={this.state.values.location}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									name="about_location"
-									label="Sobre a localização"
-									multiline
-									fullWidth
-									rows={3}
-									rowsMax={10}
-									value={this.state.values.about_location}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									type='number'
-									name="latitude"
-									label="Latitude"
-									fullWidth
-									value={this.state.values.latitude}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									type='number'
-									name="longitude"
-									label="Longitude"
-									fullWidth
-									value={this.state.values.longitude}
-									onChange={e => this.change(e)}
-								/>
-							</Paper>
-						</div>
-						<div className="col-md-6 col-lg-4">
-							<Paper style={{ padding: 10, margin: 5 }}>
-								<h2>Transfer</h2>
-								<TextField
-									className="mt-3 mb-3"
-									name="about_transfer"
-									label="Sobre o transfer"
-									multiline
-									fullWidth
-									rows={3}
-									rowsMax={10}
-									value={this.state.values.about_transfer}
-									onChange={e => this.change(e)}
-								/>
-								LEMBRAR DE ADICIONAR CHECKBOX
-					</Paper>
-
-						</div>
-						<div className="col-lg-4 col-md 6">
-							<Paper style={{ padding: 10, margin: 5 }}>
-								<h2>Booking</h2>
-								<TextField
-									className="mt-3 mb-3"
-									name="about_booking"
-									label="Sobre o booking"
-									multiline
-									fullWidth
-									rows={3}
-									rowsMax={10}
-									value={this.state.values.about_booking}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									name="calendar"
-									label="Calendário"
-									fullWidth
-									value={this.state.values.calendar}
-									onChange={e => this.change(e)}
-								/>
-							</Paper>
-						</div>
-						<div className="col-md-6 col-lg-4">
-							<Paper style={{ padding: 10, margin: 5 }}>
-								<h2>Pagamento</h2>
-								<TextField
-									className="mt-3 mb-3"
-									type='number'
-									name="price"
-									label="Preço"
-									fullWidth
-									value={this.state.values.price}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									name="payment_method"
-									label="Método de pagamento"
-									fullWidth
-									value={this.state.values.payment_method}
-									onChange={e => this.change(e)}
-								/>
-							</Paper>
-						</div>
-						<div className="col-md-6 col-lg-4">
-							<Paper style={{ padding: 10, margin: 5 }}>
-								<h2>Outras informações</h2>
-								<TextField
-									className="mt-3 mb-3"
-									name="duration"
-									label="Duração"
-									fullWidth
-									value={this.state.values.duration}
-									onChange={e => this.change(e)}
-								/>
-								<TextField
-									className="mt-3 mb-3"
-									name="language"
-									label="Linguagem"
-									fullWidth
-									value={this.state.values.language}
-									onChange={e => this.change(e)}
-								/>
-							</Paper>
-						</div>
-						<Button className="mr-auto ml-auto" variant="raised" color="secondary" size="large" onClick={e => this.submitExperience(e)} >Editar Experiência</Button>
-					</form>
-				</div>
-			</div>
-		);
 	}
 }
 
