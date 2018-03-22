@@ -23,6 +23,19 @@ class Collection extends Component {
 
     experience.findAll();
   }
+
+  delete(id) {
+    const { experience } = this.props;
+    if (window.confirm('Tem certeza que deseja deletar esta experiência?')) {
+      experience.deleteExperience({ id, callback:{
+        204: () => {
+          experience.load();
+          alert('Experiência excluída com sucesso!');
+        }
+      }})
+    }
+  }
+
   render() {
     const { collection, isLoading } = this.props.experience;
     if (isLoading) {
@@ -75,7 +88,7 @@ class Collection extends Component {
                         </IconButton>
                       </Tooltip>
                       <Tooltip id="tooltip-icon" title="Deletar">
-                        <IconButton color='primary' aria-label="Deletar">
+                        <IconButton onClick={() => this.delete(n.id)} color='primary' aria-label="Deletar">
                           <DeleteIcon />
                         </IconButton>
                       </Tooltip>

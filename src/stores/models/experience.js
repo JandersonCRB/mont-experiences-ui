@@ -6,7 +6,7 @@ class Experience extends Connect {
     namespace = 'v1';
     resource = 'experiences';
 
-    @action load(query = {}, callback = {}) {
+    @action load(query = {}, callback) {
         if(!query.id){
             var collection = localStorage.getItem('experiences');
             if(collection){
@@ -28,6 +28,11 @@ class Experience extends Connect {
                     selected = {};
                 }
                 this.setSelected(selected);
+            }
+        }
+        if(!callback){
+            callback = {
+                201: (body) => query.id ? this.setSelected(body) : this.setCollection(body)
             }
         }
         const path = `${this.api.endpoint}${this.namespace}/${this.resource}`;
@@ -74,6 +79,11 @@ class Experience extends Connect {
     @action edit(id, body = {}, callback = {}) {
         const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${id}`;
         this.put(path, body, callback);
+    }
+
+    @action deleteExperience({id, callback = {} } = {}){
+        const path = `${this.api.endpoint}${this.namespace}/${this.resource}/${id}`;
+        this.delete(path, callback);
     }
 }
 
