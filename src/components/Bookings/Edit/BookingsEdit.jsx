@@ -50,7 +50,6 @@ class BookingsEdit extends Component {
 				}
 			}
 		});
-		console.log(this.state.status);
 	}
 
 
