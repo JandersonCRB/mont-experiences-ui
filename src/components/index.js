@@ -13,6 +13,7 @@ import EditPassword from './Users/EditPassword/EditPassword.jsx';
 import Bookings from './Bookings/Collection/BookingsCollection.jsx';
 import BookingsShow from './Bookings/Show/Show.jsx';
 import BookingsNew from './Bookings/New/New.jsx';
+import BookingsEdit from './Bookings/Edit/BookingsEdit.jsx';
 import AboutUs from './Pages/AboutUs.js';
 import Help from './Pages/Help.js';
 import Partners from './Pages/Partners.js';
@@ -35,5 +36,6 @@ export default{
     EditPassword,
     AboutUs,
     Help,
-    Partners
+    Partners,
+    BookingsEdit
 }

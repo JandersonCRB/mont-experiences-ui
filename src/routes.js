@@ -28,6 +28,7 @@ const routes =
         <Route path='bookings' component={c.Layout} >
             <IndexRoute component={c.Bookings} />
             <Route path=':bookingId' exact component={c.BookingsShow} />
+            <Route path=':bookingId/edit' exact component={c.BookingsEdit} />
         </Route>
         <Route path='about' component={c.Layout} >
           <IndexRoute exact component={c.AboutUs} />
