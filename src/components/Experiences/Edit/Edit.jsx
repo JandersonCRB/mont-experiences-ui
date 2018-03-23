@@ -86,6 +86,7 @@ class Edit extends Component {
 			},
 			default: () => {
 				alert('Ops, parece que algo deu errado.');
+				this.setState({ disabled: false });
 			}
 		});
 
@@ -94,6 +95,7 @@ class Edit extends Component {
 		const { categories } = this.state;
 		return (
 			<select name='category_ids' value={this.state.values.category_ids} onChange={(e) => this.change(e)}>
+				<option value={''}>Selecione uma Categoria</option>
 				{categories.map((category) => {
 					return <option key={category.id} value={category.id}>{category.name}</option>
 				})}
