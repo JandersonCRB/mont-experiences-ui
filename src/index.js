@@ -36,6 +36,7 @@ const endpoint = api({
         h.append('Content-Type', 'application/json');
         h.append('X-User-Email', localStorage.getItem('email'));
         h.append('X-User-Token', localStorage.getItem('token'));
+        h.append('Authorization', localStorage.getItem('token'));
     }
 });
 

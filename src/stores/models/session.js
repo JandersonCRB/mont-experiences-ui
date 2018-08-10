@@ -42,10 +42,9 @@ class Session extends Connect {
             this.setIsLoading(true);
             let defaultCallback = {
                 201: (body) => {
-                    const { authentication_token, email } = body;
+                    const { token } = body;
                     localStorage.setItem('email', email);
-                    localStorage.setItem('token', authentication_token);
-                    
+                    localStorage.setItem('token', token);
                     this.signInFromStorage(email);
                 },
                 401: () => {
@@ -57,7 +56,7 @@ class Session extends Connect {
         }
     }
     @action signInFromStorage(email) {
-        this.findAll({}, {
+        this.get(this.api.endpoint + 'v1/sessions', {}, {
             200: (body) => {
                 this.email = email;
                 this.signedIn = true;
@@ -74,5 +73,6 @@ class Session extends Connect {
 
 mix(Session, scopes.readable);
 mix(Session, scopes.writable);
+mix(Session, scopes.api);
 
 export default Session;

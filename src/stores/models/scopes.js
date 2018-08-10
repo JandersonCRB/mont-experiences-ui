@@ -43,6 +43,7 @@ const request = (method, path, callback, body, file = false) => {
 		email: localStorage.getItem('email'),
 		token: localStorage.getItem('token'),
 	};
+	console.log(session)
 	if (session.email && session.token) {
 		h.append('X-User-Email', session.email);
 		h.append('X-User-Token', session.token);
