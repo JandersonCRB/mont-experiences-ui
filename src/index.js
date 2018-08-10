@@ -28,10 +28,7 @@ const theme = createMuiTheme({
 });
 
 const hostname = window && window.location && window.location.hostname;
-var api_link = (hostname === 'montviagens.com' || hostname === 'www.montviagens.com') ? 'https://api.montviagens.com/' : 'http://localhost:3000/';
-if(hostname === 'test.montviagens.com'){
-    api_link = 'https://api.test.montviagens.com/';
-}
+let api_link = 'https://mont-experiences-ui.herokuapp.com/';
 
 const endpoint = api({
     endpoint: api_link,
