@@ -46,6 +46,7 @@ const request = (method, path, callback, body, file = false) => {
 	if (session.email && session.token) {
 		h.append('X-User-Email', session.email);
 		h.append('X-User-Token', session.token);
+    h.append('Authorization', session.token);
 	}
 
 
