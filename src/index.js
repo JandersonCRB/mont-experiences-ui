@@ -28,7 +28,7 @@ const theme = createMuiTheme({
 });
 
 const hostname = window && window.location && window.location.hostname;
-let api_link = 'https://mont-experiences-ui.herokuapp.com/';
+let api_link = 'https://mont-experiences-api.herokuapp.com/';
 
 const endpoint = api({
     endpoint: api_link,
